@@ -8,6 +8,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 2. run docker container
 
 ```bash
+cd frontend
 # macOS
 docker run -it --rm -v '${pwd}':/frontend -w /frontend -p 3000:3000 node:20.11-slim /bin/bash
 

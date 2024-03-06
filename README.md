@@ -2,6 +2,28 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+### run in docker
+
+1. First, install [docker](https://docs.docker.com/get-docker/)
+2. run docker container
+
+```bash
+# macOS
+docker run -it --rm -v '${pwd}':/frontend -w /frontend -p 3000:3000 node:20.11-slim /bin/bash
+
+# windows
+docker run -it --rm -v "path/to/frontend/dir":/frontend -w /frontend -p 3000:3000 node:20.11-slim /bin/bash
+
+# inside docker container
+# install dependencies (only need to run once)
+npm install
+
+# run server
+npm run dev  
+```
+
+### run in local
+
 1. First, install [node.js](https://nodejs.org/en) and npm (npm will automatically installed with node.js).
 
 ​	Add node and npm to path.

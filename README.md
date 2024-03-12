@@ -10,7 +10,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ```bash
 cd frontend
 # macOS
-docker run -it --rm -v '${pwd}':/frontend -w /frontend -p 3000:3000 node:20.11-slim /bin/bash
+docker run -it --rm -v 'path/to/backend/dir':/frontend -w /frontend -p 3000:3000 node:20.11-slim /bin/bash
 
 # windows
 docker run -it --rm -v "path/to/frontend/dir":/frontend -w /frontend -p 3000:3000 node:20.11-slim /bin/bash

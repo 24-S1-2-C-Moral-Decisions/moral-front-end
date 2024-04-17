@@ -74,3 +74,114 @@
     @apply bg-background text-foreground;
   }
 }
+
+.clip-circle-3-30-35 {
+  clip-path: circle(3% at 30% 35%);
+}
+
+@keyframes expandImg {
+  0% {
+    transform: scale(0.75);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes expandImgBg {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(3);
+  }
+}
+
+@keyframes expandCircle {
+  0% {
+    clip-path: circle(3% at 30% 35%);
+  }
+  100% {
+    clip-path: circle(100% at 30% 35%);
+  }
+}
+
+@keyframes shrink {
+  0% {
+    clip-path: circle(150% at 0% 0%);
+  }
+  100% {
+    clip-path: circle(0% at 0% 0%);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+
+@keyframes expandMove {
+  0% {
+    width: 0px;
+    height: 0px;
+    transform: translate(40%, 40%);
+  }
+  15% {
+    transform: translate(-30%, -30%);
+  }
+  100% {
+    width: 3000px;
+    height: 3000px;
+    transform: translate(-70%, -70%);
+  }
+}
+
+@keyframes dotBgFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 100;
+    transform: translateY(0px)
+  }
+}
+
+.animate-expand-move {
+  animation: expandMove 3s ease-out 2s forwards;
+}
+
+.animate-expand-img {
+  animation: expandImg 1s ease-in 4s forwards;
+}
+
+.animate-shrink {
+  animation: shrink 0.5s linear forwards;
+}
+
+.animate-fade-in{
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+.animate-expand-circle{
+  animation: expandCircle 1s ease-in-out 2s forwards;
+}
+
+.animate-expand-img-bg{
+  animation: expandImgBg 1s ease-in 3s forwards;
+}
+
+.animate-button-fade-in{
+  animation: fadeIn 0.5s ease-in 2.5s forwards;
+}
+
+.animate-dot-bg-fade-in{
+  animation: dotBgFadeIn 0.5s ease-in 4.5s forwards;
+}
+
+
+

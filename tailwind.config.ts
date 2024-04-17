@@ -67,10 +67,20 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "text-fade-to-white": {
+          '0%': { color: '#000000' },
+          '100%': { color: '#ffffff' },
+        },
+        "fade-in": {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "text-fade-to-white": "text-fade-to-white 1s ease-in-out 2s forwards",
+        "fade-in":"fade-in 2s ease-in-out 2s forwards"
       },
     },
   },

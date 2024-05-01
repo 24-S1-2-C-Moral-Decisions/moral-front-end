@@ -19,7 +19,7 @@ export const GamePage=({data}:{data:any})=>{
                 </div>
 
                 <div className="w-[50%] h-full">
-                    <p className="text-sm font-semibold mb-2">You've been saving and finally have enough money to buy a long-desired Apple Watch. However, your partner is facing financial challenges due to the unexpected medical bills and believes you should contribute more to the bills. How do you respond?</p>
+                    <p className="text-sm font-semibold mb-2">You&apos;ve been saving and finally have enough money to buy a long-desired Apple Watch. However, your partner is facing financial challenges due to the unexpected medical bills and believes you should contribute more to the bills. How do you respond?</p>
 
                     <img src="../imgs/scene.png" alt="scene" />
                 </div>

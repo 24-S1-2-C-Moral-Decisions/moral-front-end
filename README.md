@@ -5,22 +5,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ### run in docker
 
 1. First, install [docker](https://docs.docker.com/get-docker/)
-2. run docker container
+2. build and run docker container
 
 ```bash
-cd frontend
-# macOS
-docker run -it --rm -v './':/frontend -w /frontend -p 3000:3000 node:20.11-slim /bin/bash
-
-# windows
-docker run -it --rm -v "path/to/frontend/dir":/frontend -w /frontend -p 3000:3000 node:20.11-slim /bin/bash
-
-# inside docker container
-# install dependencies (only need to run once)
-npm install
-
-# run server
-npm run dev  
+# docker build -build-arg API_URL=http://localhost:8000 -t moral-front-end .
+docker build -build-arg FRONTEND_PORT=3000 -t moral-front-end .
+docker run -p 3000:3000 moral-front-end
 ```
 
 ### run in local
@@ -30,7 +20,6 @@ npm run dev
 ​	Add node and npm to path.
 
 
-
 2. Try the following command to see if you've installed node and npm correctly.
 
 ```bas
@@ -38,25 +27,17 @@ node --version
 npm --v
 ```
 
-
-
-3. Enter the root directory of project: `/moral-front-end/`
-
-​	Run the following command to install dependencies.
+3. Run the following command to install the dependencies:
 
 ```ba
 npm install
 ```
-
-
 
 4. Run server at development mode:
 
 ```bash
 npm run dev             
 ```
-
-
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

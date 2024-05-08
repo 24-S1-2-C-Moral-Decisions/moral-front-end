@@ -7,9 +7,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 1. First, install [docker](https://docs.docker.com/get-docker/)
 2. build and run docker container
 
+<!--  docker build -build-arg API_URL=http://localhost:8000 -t moral-front-end . -->
 ```bash
-# docker build -build-arg API_URL=http://localhost:8000 -t moral-front-end .
-docker build -build-arg FRONTEND_PORT=3000 -t moral-front-end .
+docker build --build-arg FRONTEND_PORT=3000 -t moral-front-end .
 docker run -p 3000:3000 moral-front-end
 ```
 

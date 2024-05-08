@@ -14,7 +14,7 @@ COPY . .
 RUN npm run build
 
 # set environment variables
-ARG FRONTEND_PORT = 3000
+ARG FRONTEND_PORT=3000
 ENV PORT=${FRONTEND_PORT}
 
 # Expose port and start application

@@ -36,6 +36,7 @@ npm install
 4. Run server at development mode:
 
 ```bash
+npm run build
 npm run dev             
 ```
 

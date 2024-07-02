@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "buildAzure": "./node_modules/next/dist/bin/next build",
     "startAzure": "./node_modules/next/dist/bin/next start",
     "lint": "next lint"
   },

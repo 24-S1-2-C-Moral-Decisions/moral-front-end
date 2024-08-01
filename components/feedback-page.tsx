@@ -1,7 +1,6 @@
 import { usePage } from "@/lib/usePage"
 import { Button } from "./ui/button"
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 import { DoughnutChart } from './ui/chart';
 import { RadarChart } from "./ui/chart";
 
@@ -57,7 +56,7 @@ export const FeedbackPage = ({ data }: { data: any }) => {
                 <div className="flex w-full h-12 items-center justify-center">
                     {/*<h2>Feedback Results</h2>*/}
                 </div>
-                <PieChartAndResult />
+                <DoughnutChartAndResult />
                 <div className="flex w-full h-16 items-center justify-center">
                 </div>
             </div>
@@ -88,21 +87,55 @@ function Banner() {
     )
 }
 
-function PieChartAndResult() {
-    const voteData = [result.assholeNumber, result.notAssholeNumber]; // 两个数据点
+function DoughnutChartAndResult() {
+    const voteData = [result.assholeNumber, result.notAssholeNumber];
     const labels = ['Asshole', 'Not Asshole'];
     return (
         <>
-            <div className="flex w-full items-stretch">
-                <div className="w-[50%] flex justify-center min-h-[200px]">
-                    <div className="w-[90%] mx-auto bg-[#FFFFFF] h-full rounded-lg p-4">
-                        <div className="w-[55%] mx-auto p-4">
+            <div className="flex w-full">
+                <div className="w-[50%] justify-center bg-[#FFFFFF] p-[2vw]">
+                    <div className="relative w-[90%] mx-auto h-[18vw]"> {/* Set a height for proper overlapping */}
+                        {/* left div */}
+                        <div className="absolute flex items-center justify-center w-[30%] h-full opacity-0 absolute h-full animate-dot-bg-fade-in-fast"
+                            style={{
+                                backgroundImage: "url('/imgs/notAssholeLine.png')",
+                                backgroundSize: '10vw auto',
+                                backgroundPosition: 'right center',
+                                backgroundRepeat: 'no-repeat',
+                                left: '0%',  // Align to the left edge
+                            }}>
+                            <h3 className="text-[3vw] text-[#8CC2FF] relative" style={{ right: '30%', top: '15%' }}>
+                                {result.notAssholeNumber}
+                            </h3>
+                        </div>
+                            {/* right div */}
+                        <div className="absolute flex items-center justify-center w-[30%] h-full opacity-0 absolute h-full animate-dot-bg-fade-in-fast"
+                            style={{
+                                backgroundImage: "url('/imgs/assholeLine.png')",
+                                backgroundSize: '70% auto',
+                                backgroundPosition: 'left center',
+                                backgroundRepeat: 'no-repeat',
+                                right: '0%',  // Align to the right edge
+                            }}>
+                            <h3 className="text-[3vw] text-[#FFB8B8] relative" style={{ right: '-20%', top: '-15%' }}>
+                                {result.assholeNumber}
+                            </h3>
+                        </div>
+                        {/* middle DoughnutChart div */}
+                        <div className="absolute w-[50%] mx-auto h-[18vw]"
+                            style={{
+                                left: '25%',   // Start from 25%
+                                top: '0',      // Align to the top of the parent container
+                                bottom: '0',   // Align to the bottom of the parent container
+                            }}>
                             <DoughnutChart labels={labels} voteData={voteData} />
                         </div>
 
-                        <AssholePanel />
-
+                        
                     </div>
+
+                    <AssholePanel />
+
                 </div>
                 <div className="w-[50%] flex flex-col justify-center">
                     <div className="w-[80%] mx-auto">
@@ -115,12 +148,13 @@ function PieChartAndResult() {
 
 }
 
+
 function AssholePanel() {
     return (
         <>
-            <div className="w-full flex mx-auto p-8">
-                <SubAssholePanel backgroundImageUrl="/imgs/assholePanel.png" result={result} isAsshole={true} textColorClass="text-[#FFB8B8]" />
+            <div className="w-full flex mx-auto mt-[2vw]">
                 <SubAssholePanel backgroundImageUrl="/imgs/notAssholePanel.png" result={result} isAsshole={false} textColorClass="text-[#8CC2FF]" />
+                <SubAssholePanel backgroundImageUrl="/imgs/assholePanel.png" result={result} isAsshole={true} textColorClass="text-[#FFB8B8]" />
             </div >
         </>
     )
@@ -139,13 +173,13 @@ function SubAssholePanel({ backgroundImageUrl, result, isAsshole, textColorClass
             }}
         >
             <div className="absolute inset-0 bottom-[2vw] flex flex-col items-center justify-center">
-                <div className={`text-[5vw] ${textColorClass} font-bold`}>
+                <div className={`text-[5.5vw] ${textColorClass} font-bold`}>
                     {isAsshole ? result.assholeNumber : result.notAssholeNumber}
                 </div>
             </div>
-            <div className="absolute bottom-[1vw] left-0 right-0 flex flex-col items-center text-center">
-                <div className="mt-2 text-[1vw] font-bold">You Are {!isAsshole && <span>Not</span>} The Asshole</div>
-                <div className="mt-2 text-[0.8vw] text-gray-500">
+            <div className="absolute bottom-[1.3vw] left-0 right-0 flex flex-col items-center text-center">
+                <div className="text-[1.3vw] font-bold">You Are {!isAsshole && <span>Not</span>} The Asshole</div>
+                <div className="text-[1vw] text-gray-500">
                     The number of people out of {result.totalNumber} <br /> who think you are {!isAsshole && <span>not</span>} the asshole
                 </div>
             </div>
@@ -156,14 +190,14 @@ function SubAssholePanel({ backgroundImageUrl, result, isAsshole, textColorClass
 function Feedback() {
     return (
         <>
-            <div className="w-full flex flex-col mx-auto p-4">
+            <div className="w-full flex flex-col mx-auto p-[1vw]">
                 <div className="mb-4">
-                    <h3 className="text-sm text-blue-600 font-bold">What Did You Choose</h3>
+                    <h3 className="text-[1.3vw] text-blue-600 font-bold">What Did You Choose</h3>
                 </div>
                 <div>
-                    <h1 className="text-lg font-bold mb-2 text-2xl">Option A – Call Your Friend Fat</h1>
+                    <h1 className="text-[2.2vw] font-bold mb-2 text-2xl">Option A – Call Your Friend Fat</h1>
                     <br />
-                    <p className="text-lg">
+                    <p className="text-[1.3vw]">
                         It could indicate that the user is confrontational or not afraid to engage in tit-for-tat banter.
                         This response may suggest a willingness to retaliate or use humor to deflect criticism, but it could
                         also be seen as insensitive or lacking empathy, especially in a sensitive context like body image.
@@ -184,7 +218,7 @@ function RadarChartAndAnalysis() {
             </div>
             <div className="flex w-full items-stretch">
                 <div className="w-[50%] flex items-center justify-center">
-                    <div className="w-[60%] bg-[#FFFFFF] h-full rounded-lg p-4">
+                    <div className="w-[60%] bg-[#FFFFFF] h-full rounded-lg p-[2vw]">
                         <RadarChart labels={labels} dataPoints={dataPoints} />
                     </div>
                 </div>

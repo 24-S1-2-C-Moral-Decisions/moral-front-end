@@ -183,5 +183,8 @@
   animation: dotBgFadeIn 0.5s ease-in 4.5s forwards;
 }
 
+.animate-dot-bg-fade-in-fast{
+  animation: dotBgFadeIn 0.5s ease-in 2s forwards;
+}
 
 

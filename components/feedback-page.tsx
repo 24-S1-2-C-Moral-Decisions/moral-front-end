@@ -5,9 +5,21 @@ import { cn } from "@/lib/utils";
 import { DoughnutChart } from './ui/chart';
 import { RadarChart } from "./ui/chart";
 
+interface SubAssholePanelProps {
+    backgroundImageUrl: string;
+    result: {
+        assholeNumber: number;
+        notAssholeNumber: number;
+        totalNumber: number;
+    };
+    isAsshole: boolean;
+    textColorClass: string;
+}
+
 const result = {
-    assholePercentage: 41,
-    notAssholePercentage: 74
+    assholeNumber: 41,
+    notAssholeNumber: 74,
+    totalNumber: 115
 };
 
 
@@ -46,7 +58,7 @@ export const FeedbackPage = ({ data }: { data: any }) => {
                     {/*<h2>Feedback Results</h2>*/}
                 </div>
                 <PieChartAndResult />
-                <div className="flex w-full h-24 items-center justify-center">
+                <div className="flex w-full h-16 items-center justify-center">
                 </div>
             </div>
             <RadarChartAndAnalysis />
@@ -77,7 +89,7 @@ function Banner() {
 }
 
 function PieChartAndResult() {
-    const voteData = [result.assholePercentage, result.notAssholePercentage]; // 两个数据点
+    const voteData = [result.assholeNumber, result.notAssholeNumber]; // 两个数据点
     const labels = ['Asshole', 'Not Asshole'];
     return (
         <>
@@ -87,9 +99,9 @@ function PieChartAndResult() {
                         <div className="w-[55%] mx-auto p-4">
                             <DoughnutChart labels={labels} voteData={voteData} />
                         </div>
-                        <div className="w-[90%] flex mx-auto p-4">
-                            <AssholePanel />
-                        </div>
+
+                        <AssholePanel />
+
                     </div>
                 </div>
                 <div className="w-[50%] flex flex-col justify-center">
@@ -106,36 +118,58 @@ function PieChartAndResult() {
 function AssholePanel() {
     return (
         <>
-            <div className="w-full flex mx-auto p-4">
-                <div className="w-[45%] mr-auto" style={{
-                    backgroundImage: 'url("/imgs/assholePanel.png")',
-                    backgroundSize: '100%',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    paddingBottom: '45%'
-                }}>
-
-                </div>
-                <div className="w-[45%] ml-auto" style={{
-                    backgroundImage: 'url("/imgs/notAssholePanel.png")',
-                    backgroundSize: '100%',
-                    backgroundPosition: 'top center',
-                    backgroundRepeat: 'no-repeat',
-                    paddingBottom: '45%'
-                }}>
-                </div>
-
-            </div>
+            <div className="w-full flex mx-auto p-8">
+                <SubAssholePanel backgroundImageUrl="/imgs/assholePanel.png" result={result} isAsshole={true} textColorClass="text-[#FFB8B8]" />
+                <SubAssholePanel backgroundImageUrl="/imgs/notAssholePanel.png" result={result} isAsshole={false} textColorClass="text-[#8CC2FF]" />
+            </div >
         </>
     )
+}
+
+function SubAssholePanel({ backgroundImageUrl, result, isAsshole, textColorClass }: SubAssholePanelProps) {
+    return (
+        <div
+            className="relative w-[45%] mx-auto"
+            style={{
+                backgroundImage: `url(${backgroundImageUrl})`,
+                backgroundSize: '100% auto',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                paddingBottom: '45%',
+            }}
+        >
+            <div className="absolute inset-0 bottom-[2vw] flex flex-col items-center justify-center">
+                <div className={`text-[5vw] ${textColorClass} font-bold`}>
+                    {isAsshole ? result.assholeNumber : result.notAssholeNumber}
+                </div>
+            </div>
+            <div className="absolute bottom-[1vw] left-0 right-0 flex flex-col items-center text-center">
+                <div className="mt-2 text-[1vw] font-bold">You Are {!isAsshole && <span>Not</span>} The Asshole</div>
+                <div className="mt-2 text-[0.8vw] text-gray-500">
+                    The number of people out of {result.totalNumber} <br /> who think you are {!isAsshole && <span>not</span>} the asshole
+                </div>
+            </div>
+        </div>
+    );
 }
 
 function Feedback() {
     return (
         <>
-            <h3>What Did You Choose</h3>
-            <h4>Option A - Call Your Friend Fat</h4>
-            <p>{optionAnalysisTexts[userChoice]}</p>
+            <div className="w-full flex flex-col mx-auto p-4">
+                <div className="mb-4">
+                    <h3 className="text-sm text-blue-600 font-bold">What Did You Choose</h3>
+                </div>
+                <div>
+                    <h1 className="text-lg font-bold mb-2 text-2xl">Option A – Call Your Friend Fat</h1>
+                    <br />
+                    <p className="text-lg">
+                        It could indicate that the user is confrontational or not afraid to engage in tit-for-tat banter.
+                        This response may suggest a willingness to retaliate or use humor to deflect criticism, but it could
+                        also be seen as insensitive or lacking empathy, especially in a sensitive context like body image.
+                    </p>
+                </div>
+            </div>
         </>
     )
 }

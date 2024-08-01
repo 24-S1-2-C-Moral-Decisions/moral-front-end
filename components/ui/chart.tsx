@@ -61,8 +61,8 @@ const DoughnutChart: React.FC<DoughnutChartProps> = ({labels,voteData}) => {
         position: 'top',
       },
       title: {
-        display: true,
-        text: 'Doughnut Chart Example with Two Data Points',
+        display: false,
+        text: 'Are you an asshole doughnut chart',
       },
     },
     cutout: '45%', // control the size of the inner circle

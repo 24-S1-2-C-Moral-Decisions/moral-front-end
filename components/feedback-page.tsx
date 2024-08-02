@@ -45,11 +45,9 @@ const resultAnalysisTexts = {
 
 const userChoice = 'A';
 
+
+
 export const FeedbackPage = ({ data }: { data: any }) => {
-
-    const { setPage } = usePage();
-    const [close, setClose] = useState("false");
-
     return (
         <>
             <div className="w-full bg-[#fafafc]">
@@ -57,42 +55,25 @@ export const FeedbackPage = ({ data }: { data: any }) => {
                     {/*<h2>Feedback Results</h2>*/}
                 </div>
                 <DoughnutChartAndResult />
-                <div className="flex w-full h-16 items-center justify-center">
+                <div className="flex w-full items-center justify-center">
                 </div>
             </div>
             <RadarChartAndAnalysis />
-            <div className="flex w-full h-8 items-center justify-center">
+            <div className="flex w-full items-center justify-center">
             </div>
             <Banner />
         </>
     )
 }
 
-function Banner() {
-    return (
-        <>
-            <div className="w-full flex items-center justify-center">
-                <div
-                    className="w-[80%] mx-auto bg-[#ffffff]"
-                    style={{
-                        backgroundImage: 'url("/imgs/survey-banner.png")',
-                        backgroundSize: '100% auto',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat', // 不重复
-                        paddingBottom: '30%'
-                    }}
-                ></div>
-            </div>
-        </>
-    )
-}
+
 
 function DoughnutChartAndResult() {
     const voteData = [result.assholeNumber, result.notAssholeNumber];
     const labels = ['Asshole', 'Not Asshole'];
     return (
         <>
-            <div className="flex w-full">
+            <div className="flex w-full mb-[4vw]">
                 <div className="w-[50%] justify-center bg-[#FFFFFF] p-[2vw]">
                     <div className="relative w-[90%] mx-auto h-[18vw]"> {/* Set a height for proper overlapping */}
                         {/* left div */}
@@ -108,7 +89,7 @@ function DoughnutChartAndResult() {
                                 {result.notAssholeNumber}
                             </h3>
                         </div>
-                            {/* right div */}
+                        {/* right div */}
                         <div className="absolute flex items-center justify-center w-[30%] h-full opacity-0 absolute h-full animate-dot-bg-fade-in-fast"
                             style={{
                                 backgroundImage: "url('/imgs/assholeLine.png')",
@@ -131,7 +112,7 @@ function DoughnutChartAndResult() {
                             <DoughnutChart labels={labels} voteData={voteData} />
                         </div>
 
-                        
+
                     </div>
 
                     <AssholePanel />
@@ -178,10 +159,10 @@ function SubAssholePanel({ backgroundImageUrl, result, isAsshole, textColorClass
                 </div>
             </div>
             <div className="absolute bottom-[1.3vw] left-0 right-0 flex flex-col items-center text-center">
-                <div className="text-[1.3vw] font-bold">You Are {!isAsshole && <span>Not</span>} The Asshole</div>
-                <div className="text-[1vw] text-gray-500">
+                <p className="text-[1.3vw] font-bold">You Are {!isAsshole && <span>Not</span>} The Asshole</p>
+                <p className="text-[1vw] text-gray-500">
                     The number of people out of {result.totalNumber} <br /> who think you are {!isAsshole && <span>not</span>} the asshole
-                </div>
+                </p>
             </div>
         </div>
     );
@@ -191,11 +172,11 @@ function Feedback() {
     return (
         <>
             <div className="w-full flex flex-col mx-auto p-[1vw]">
-                <div className="mb-4">
+                <div className="mb-[0.5vw]">
                     <h3 className="text-[1.3vw] text-blue-600 font-bold">What Did You Choose</h3>
                 </div>
                 <div>
-                    <h1 className="text-[2.2vw] font-bold mb-2 text-2xl">Option A – Call Your Friend Fat</h1>
+                    <h1 className="text-[2.2vw] font-bold mb-[0.5vw] text-2xl">Option A – Call Your Friend Fat</h1>
                     <br />
                     <p className="text-[1.3vw]">
                         It could indicate that the user is confrontational or not afraid to engage in tit-for-tat banter.
@@ -213,12 +194,12 @@ function RadarChartAndAnalysis() {
     const dataPoints = Object.values(radarResult);
     return (
         <>
-            <div className="flex w-full h-24 items-center justify-center bg-[#ffffff]">
-                <h2>Your Result Analysis</h2>
+            <div className="flex w-full h-[12vw] items-center justify-center bg-[#ffffff]">
+                <h2 className="text-[2.5vw] font-bold">Your Result Analysis</h2>
             </div>
             <div className="flex w-full items-stretch">
                 <div className="w-[50%] flex items-center justify-center">
-                    <div className="w-[60%] bg-[#FFFFFF] h-full rounded-lg p-[2vw]">
+                    <div className="w-[70%] bg-[#FFFFFF] h-full rounded-lg p-[2vw]">
                         <RadarChart labels={labels} dataPoints={dataPoints} />
                     </div>
                 </div>
@@ -236,31 +217,72 @@ function RadarChartAndAnalysis() {
 function ResultAnalysisTexts() {
     return (
         <>
-            <article>
-                <h3>AUTHORITY</h3>
-                <p>{resultAnalysisTexts['AUTHORITY']}</p>
-                <br></br>
+            <article className="text-[1.3vw]">
+                <section>
+                    <h3 className="text-[#65BEFF] common-bold-text">AUTHORITY</h3>
+                    <p >{resultAnalysisTexts['AUTHORITY']}</p>
+                    <br />
+                </section>
+                <section>
+                    <h3 className="text-[#FBA9D5] common-bold-text">CARE</h3>
+                    <p>{resultAnalysisTexts['CARE']}</p>
+                    <br />
+                </section>
+                <section>
+                    <h3 className="text-[#F5C569] common-bold-text">SANCTITY</h3>
+                    <p>{resultAnalysisTexts['SANCTITY']}</p>
+                    <br />
+                </section>
+                <section>
+                    <h3 className="text-[#DAABFF] common-bold-text">FAIRNESS</h3>
+                    <p>{resultAnalysisTexts['FAIRNESS']}</p>
+                    <br />
+                </section>
+                <section>
+                    <h3 className="text-[#8ED082] common-bold-text">LOYALTY</h3>
+                    <p>{resultAnalysisTexts['LOYALTY']}</p>
+                    <br />
+                </section>
             </article>
-            <article>
-                <h3>CARE</h3>
-                <p>{resultAnalysisTexts['CARE']}</p>
-                <br></br>
-            </article>
-            <article>
-                <h3>SANCTITY</h3>
-                <p>{resultAnalysisTexts['SANCTITY']}</p>
-                <br></br>
-            </article>
-            <article>
-                <h3>FAIRNESS</h3>
-                <p>{resultAnalysisTexts['FAIRNESS']}</p>
-                <br></br>
-            </article>
-            <article>
-                <h3>LOYALTY</h3>
-                <p>{resultAnalysisTexts['LOYALTY']}</p>
-                <br></br>
-            </article>
+
+        </>
+    )
+}
+
+function Banner() {
+    const { setPage } = usePage();
+    const [close, setClose] = useState("false");
+    return (
+        <>
+            <div className="w-full flex items-center justify-center">
+                <div
+                    className="w-[80%] h-[30vw] bg-[#ffffff] flex justify-center items-center"
+                    style={{
+                        backgroundImage: 'url("/imgs/survey-banner.png")',
+                        backgroundSize: '100% auto',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                    }}
+                >
+                    <div className="w-[60%] flex flex-col justify-start items-start">
+                        <p className="text-[#FE5354] text-[1.2vw] font-bold mb-[0.5vw]">Unlock deeper insights and shape the future of AI ethics!</p>
+                        <p className="text-white text-[2.6vw] font-bold">Share Your Voice in Our Survey.</p>
+                    </div>
+                    <div className="w-[20%] flex justify-end items-end">
+                        <Button className="flex w-[12vw] h-[3vw] justify-center text-white text-[1.2vw] bg-[#FE5354] rounded-xl hover:bg-[#C62828] transition-colors duration-300"
+                            onClick={() => {
+                                setClose("true");
+                                setTimeout(() => {
+                                    setPage("game");{/* Change to survey page later */}
+                                }, 500);
+                            }}
+                        >
+                            <span>Take Survey!</span>
+                            <img src="/imgs/buttonArrow.png" alt="arrow" className="w-[1.5vw] justify-center ml-auto" />
+                        </Button>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

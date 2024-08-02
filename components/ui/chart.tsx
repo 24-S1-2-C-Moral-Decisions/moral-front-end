@@ -77,7 +77,7 @@ const DoughnutChart: React.FC<DoughnutChartProps> = ({ labels, voteData }) => {
     },
 
     cutout: '45%', // control the size of the inner circle
-    rotation: 75,
+    rotation: 50,
     circumference: 365,
   };
 
@@ -115,7 +115,12 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints }) => {
         suggestedMin: 0,
         suggestedMax: 5,
         pointLabels: {
-          display: true
+          display: true,
+          font: {
+            weight: 'bold', 
+            
+          },
+          padding: 10, 
         },
         ticks: {
           stepSize: 1,

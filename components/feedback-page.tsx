@@ -173,7 +173,7 @@ function Feedback() {
         <>
             <div className="w-full flex flex-col mx-auto p-[1vw]">
                 <div className="mb-[0.5vw]">
-                    <h3 className="text-[1.3vw] text-blue-600 font-bold">What Did You Choose</h3>
+                    <h3 className="text-[1.3vw] text-blue-600 font-bold">What You Chose</h3>
                 </div>
                 <div>
                     <h1 className="text-[2.2vw] font-bold mb-[0.5vw] text-2xl">Option A – Call Your Friend Fat</h1>

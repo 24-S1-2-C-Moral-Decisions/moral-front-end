@@ -130,6 +130,15 @@
   }
 }
 
+@keyframes fadeOut {
+  0% {
+    opacity: 100;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes expandMove {
   0% {
     width: 0px;
@@ -176,7 +185,15 @@
   animation: fadeIn 0.5s ease-in forwards;
 }
 
-.animate-expand-circle {
+.animate-fade-in{
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+.animate-fade-out{
+  animation: fadeOut 0.5s ease-in forwards;
+}
+
+.animate-expand-circle{
   animation: expandCircle 1s ease-in-out 2s forwards;
 }
 

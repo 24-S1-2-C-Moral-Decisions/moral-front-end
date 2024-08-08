@@ -90,21 +90,34 @@ const DoughnutChart: React.FC<DoughnutChartProps> = ({ labels, voteData }) => {
 
 interface RadarChartProps {
   labels: string[];
-  dataPoints: number[];
+  dataPoints1: number[];
+  dataPoints2?: number[]; // 第二组数据是可选的
 }
 
-const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints }) => {
+const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints2 }) => {
+  const datasets = [
+    {
+      label: 'Your test data',
+      data: dataPoints1,
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 2,
+    }
+  ];
+
+  if (dataPoints2 && dataPoints2.length > 0) {
+    datasets.push({
+      label: 'Post test data',
+      data: dataPoints2,
+      backgroundColor: 'rgba(34, 202, 236, 0.2)',
+      borderColor: 'rgba(34, 202, 236, 1)',
+      borderWidth: 2,
+    });
+  }
+
   const data: ChartData<'radar'> = {
     labels: labels,
-    datasets: [
-      {
-        /*label: 'Work Personality',*/
-        data: dataPoints,
-        backgroundColor: 'rgba(34, 202, 236, 0.2)',
-        borderColor: 'rgba(34, 202, 236, 1)',
-        borderWidth: 2,
-      },
-    ],
+    datasets: datasets,
   };
 
   const options: ChartOptions<'radar'> = {
@@ -117,21 +130,20 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints }) => {
         pointLabels: {
           display: true,
           font: {
-            weight: 'bold', 
-            
+            weight: 'bold',
           },
-          padding: 10, 
+          padding: 10,
         },
         ticks: {
           stepSize: 1,
-          display: false // hide ticks
+          display: false, // hide ticks
         },
       },
     },
     plugins: {
       legend: {
-        position: 'top',
-        display: false
+        position: 'bottom',
+        display: datasets.length > 1, // 如果有两个数据集，则显示图例
       },
       title: {
         display: false,

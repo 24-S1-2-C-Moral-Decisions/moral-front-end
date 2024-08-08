@@ -58,9 +58,7 @@ export const FeedbackPage = ({ data }: { data: any }) => {
                 <div className="flex w-full items-center justify-center">
                 </div>
             </div>
-            <RadarChartAndAnalysis />
-            <div className="flex w-full items-center justify-center">
-            </div>
+            {/* <RadarChartAndAnalysis /> */}
             <Banner />
         </>
     )
@@ -173,7 +171,7 @@ function Feedback() {
         <>
             <div className="w-full flex flex-col mx-auto p-[1vw]">
                 <div className="mb-[0.5vw]">
-                    <h3 className="text-[1.3vw] text-blue-600 font-bold">What Did You Choose</h3>
+                    <h3 className="text-[1.3vw] text-blue-600 font-bold">What You Chose</h3>
                 </div>
                 <div>
                     <h1 className="text-[2.2vw] font-bold mb-[0.5vw] text-2xl">Option A – Call Your Friend Fat</h1>
@@ -200,7 +198,7 @@ function RadarChartAndAnalysis() {
             <div className="flex w-full items-stretch">
                 <div className="w-[50%] flex items-center justify-center">
                     <div className="w-[70%] bg-[#FFFFFF] h-full rounded-lg p-[2vw]">
-                        <RadarChart labels={labels} dataPoints={dataPoints} />
+                        <RadarChart labels={labels} dataPoints1={dataPoints} />
                     </div>
                 </div>
                 <div className="w-[50%] flex flex-col justify-center">

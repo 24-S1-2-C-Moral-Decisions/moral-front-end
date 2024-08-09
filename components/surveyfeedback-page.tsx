@@ -5,19 +5,19 @@ import { RadarChart } from "./ui/chart";
 
 
 const radarResult = {
-    Authority: 0,
-    Care: 1,
-    Sanctity: 3,
-    Fairness: 2,
-    Loyalty: 5
+    Authority: 4,
+    Care: 2,
+    Sanctity: 2,
+    Fairness: 1,
+    Loyalty: 3
 }
 
 const radarPostData = {
-    Authority: 1,
-    Care: 3,
-    Sanctity: 2,
-    Fairness: 4,
-    Loyalty: 3
+    Authority: 3,
+    Care: 1,
+    Sanctity: 1,
+    Fairness: 2,
+    Loyalty: 4
 }
 
 const resultAnalysisTexts = {

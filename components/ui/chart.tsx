@@ -91,7 +91,7 @@ const DoughnutChart: React.FC<DoughnutChartProps> = ({ labels, voteData }) => {
 interface RadarChartProps {
   labels: string[];
   dataPoints1: number[];
-  dataPoints2?: number[]; // 第二组数据是可选的
+  dataPoints2?: number[]; // second data set is optional
 }
 
 const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints2 }) => {
@@ -99,9 +99,9 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints
     {
       label: 'Your test data',
       data: dataPoints1,
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgba(255, 99, 132, 1)',
-      borderWidth: 2,
+      backgroundColor: 'rgba(208,21,21, 0.2)',
+      borderColor: 'rgba(208,21,21, 1)',
+      borderWidth: 3,
     }
   ];
 
@@ -109,9 +109,9 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints
     datasets.push({
       label: 'Post test data',
       data: dataPoints2,
-      backgroundColor: 'rgba(34, 202, 236, 0.2)',
-      borderColor: 'rgba(34, 202, 236, 1)',
-      borderWidth: 2,
+      backgroundColor: 'rgba(31,95,209, 0.2)',
+      borderColor: 'rgba(31,95,209, 1)',
+      borderWidth: 3,
     });
   }
 
@@ -124,7 +124,11 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints
     scales: {
       r: {
         beginAtZero: true,
-        angleLines: { display: false },
+        angleLines: {
+          display: true, // Show lines from each point to the center
+          color: 'rgba(183,183,183, 1)', // Customize the color of the lines
+          lineWidth: 1.5, // Customize the width of the lines
+        },
         suggestedMin: 0,
         suggestedMax: 5,
         pointLabels: {
@@ -138,12 +142,16 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints
           stepSize: 1,
           display: false, // hide ticks
         },
+        grid: {
+          color: 'rgba(183,183,183,0.8)', // Customize the color of the grid lines
+          lineWidth: 1, // Customize the width of the grid lines
+        },
       },
     },
     plugins: {
       legend: {
         position: 'bottom',
-        display: datasets.length > 1, // 如果有两个数据集，则显示图例
+        display: datasets.length > 1, // Display legend when having more than one data sets
       },
       title: {
         display: false,

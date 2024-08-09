@@ -27,44 +27,29 @@ const resultAnalysisTexts = {
     FAIRNESS: "Your approach to morality reflects a commitment to principles of justice, equality, and fairness. You strive to ensure equitable treatment and opportunities for all individuals, advocating for fairness in social, political, and economic contexts.",
     LOYALTY: "You demonstrate a moderate inclination towards loyalty to groups, institutions, or individuals, valuing relationships and commitments while also recognizing the importance of individual autonomy and integrity."
 };
+const selectedChange = true;
+
+const selectedChangeAnalysisTexts = {
+    true: "You are open to new perspectives and possibly values social harmony or consensus. You hold strong to your principles and show strength in maintaining your stance under social pressure.",
+    false: "You remain steadfast in your beliefs, showing confidence in your moral compass. You value consistency and resilience, remaining steadfast despite others' opinions.",
+};
 
 export const SurveyFeedbackPage = ({ data }: { data: any }) => {
     return (
         <>
             <div className="w-[80%] mx-auto bg-[#ffffff]">
-                <div className="flex w-full mb-6 bg-gray-500 h-16 justify-center">banner</div>
+                <div className="flex w-full mb-8 bg-gray-500 h-16 justify-center">banner</div>
                 <RadarChartAndResult />
                 <ImpactResult />
-                <div className="flex mb-8"> {/* 添加外边距 */}
+                <div className="flex mb-8">
                     <Share />
                 </div>
-                
-            </div>
-        </>
-    )
-}
-function ImpactResult() {
-    return (
-        <>
-            <div className="flex w-full items-center justify-center">
-                <h2 className="text-2xl font-bold mb-8 text-[#507186]">The Impact of Others on Your Moral Decision</h2>
-            </div>
-            <div className="flex w-full h-56 items-center justify-center">
+
             </div>
         </>
     )
 }
 
-function Share() {
-    return (
-        <>
-        <div className="flex w-full h-56 bg-[#F5F5F5] items-center justify-center mb-16">
-    <p>Share Component</p>
-</div>
-        </>
-        
-    )
-}
 
 function RadarChartAndResult() {
     const labels = Object.keys(radarResult);
@@ -72,16 +57,16 @@ function RadarChartAndResult() {
     const postDataPoints = Object.values(radarPostData);
     return (
         <>
-            <div className="w-full text-center">
+            <div className="w-full text-center bg-[#FFFFFF]">
                 <h2 className="text-2xl font-bold mb-8 text-[#507186]">Here Are Your Result</h2>
             </div>
-            <div className="flex w-full items-stretch justify-center mb-8">
+            <div className="flex w-full items-stretch justify-center mb-8 bg-[#FFFFFF]">
                 <div className="w-[50%] flex items-center justify-center">
-                    <div className="w-[80%] bg-[#FFFFFF] h-full rounded-lg p-[2vw]">
+                    <div className="w-[80%]  h-full">
                         <RadarChart labels={labels} dataPoints1={userDataPoints} dataPoints2={postDataPoints} />
                     </div>
                 </div>
-                <div className="w-[50%] flex flex-col justify-center">
+                <div className="w-[50%] flex flex-col justify-center mb-8">
                     <ResultAnalysisTexts />
                 </div>
             </div>
@@ -112,5 +97,62 @@ function ResultAnalysisTexts() {
                 </article>
             </div>
         </>
+    )
+}
+
+function ImpactResult() {
+    return (
+        <>
+            <div className="flex w-full items-center justify-center">
+                <h2 className="text-2xl font-bold mb-8 text-[#507186]">The Impact of Others on Your Moral Decision</h2>
+            </div>
+            <div className="flex flex-col items-center">
+                {/* human icon */}
+                <div className={`mb-2 w-[45%] mx-auto ${selectedChange ? 'self-start' : 'self-end'}`}>
+                    <img src="/imgs/icon-human.png" alt="Icon" width="32" />
+                </div>
+                <div className="w-[80%] mb-2 flex items-center justify-center">
+                    {/* left text */}
+                    <div className="w-[15%] text-right text-base font-bold">
+                        Change
+                    </div>
+
+                    {/* gradient rectangle */}
+                    <div className="w-[70%] h-10 bg-gradient-to-r ml-4 mr-4 from-[#0957B4] to-[#F0EBFE] border-4 border-[#AECEF6]"></div>
+
+                    {/* right text */}
+                    <div className="w-[15%] text-base font-bold">
+                        Stay Firm
+                    </div>
+                </div>
+
+                {/* text */}
+                <div className="text-center text-base mt-2 mb-16 space-y-2">
+                    {selectedChange && (
+                        <>
+                            <p>You are open to new perspectives and possibly value social harmony or consensus.</p>
+                            <p>You hold strong to your principles and show strength in maintaining your stance under social pressure.</p>
+                        </>
+                    )}
+                    {!selectedChange && (
+                        <>
+                            <p>You remain steadfast in your beliefs, showing confidence in your moral compass. </p>
+                            <p>You value consistency and resilience, remaining steadfast despite others' opinions.</p>
+                        </>
+                    )}
+                </div>
+            </div>
+        </>
+    )
+}
+
+function Share() {
+    return (
+        <>
+            <div className="flex w-full h-56 bg-[#F5F5F5] items-center justify-center mb-16">
+                <p>Share Component</p>
+            </div>
+        </>
+
     )
 }

@@ -147,10 +147,31 @@ function ImpactResult() {
 }
 
 function Share() {
+    const { setPage } = usePage();
+    const [close, setClose] = useState("false");
     return (
         <>
-            <div className="flex w-full h-56 bg-[#F5F5F5] items-center justify-center mb-16">
-                <p>Share Component</p>
+            <div className="w-full bg-[#F5F5F5] items-center justify-center mb-16 p-8">
+                <div className="w-full h-36 flex flex-col text-left">
+                <p>Share Your Result!</p>
+                <p>Let someone else glimpse into your result by sharing your encrypted profile link.</p>
+                <p>https://www.yourresult.com</p>
+                </div>
+                <div className="w-full h-36 flex flex-col text-left">
+                <p>Explore More!</p>
+                <p>Consider learn more about daily moral decisions through searching and navigating Am I the Asshole (AITA) posts:</p>
+                <Button className="flex w-64 h-8 justify-center text-white text-[1.2vw] bg-[#FE5354] rounded-xl hover:bg-[#C62828] transition-colors duration-300"
+                            onClick={() => {
+                                setClose("true");
+                                setTimeout(() => {
+                                    setPage("game");{/* Change to survey page later */}
+                                }, 500);
+                            }}
+                        >
+                            <span>Home Page exploration</span>
+                            <img src="/imgs/Arrow-Right.png" alt="arrow" className="w-4 justify-center ml-auto" />
+                        </Button>
+                </div>
             </div>
         </>
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { RadarChart } from "./ui/chart";
 
 
+
 const radarResult = {
     Authority: 4,
     Care: 2,
@@ -137,7 +138,7 @@ function ImpactResult() {
                     {!selectedChange && (
                         <>
                             <p>You remain steadfast in your beliefs, showing confidence in your moral compass. </p>
-                            <p>You value consistency and resilience, remaining steadfast despite others' opinions.</p>
+                            <p>You value consistency and resilience, remaining steadfast despite others&apos; opinions.</p>
                         </>
                     )}
                 </div>

@@ -263,7 +263,7 @@ function Banner() {
                     }}
                 >
                     <div className="w-[60%] flex flex-col justify-start items-start">
-                        <p className="text-[#FE5354] text-[1.2vnmw] font-bold mb-[0.5vw]">Unlock deeper insights and shape the future of AI ethics!</p>
+                        <p className="text-[#FE5354] text-[1.2vw] font-bold mb-[0.5vw]">Unlock deeper insights and shape the future of AI ethics!</p>
                         <p className="text-white text-[2.6vw] font-bold">Share Your Voice in Our Survey.</p>
                     </div>
                     <div className="w-[20%] flex justify-end items-end">

@@ -108,7 +108,7 @@ function ImpactResult() {
             </div>
             <div className="flex flex-col items-center">
                 {/* human icon */}
-                <div className={`mb-2 w-[45%] mx-auto ${selectedChange ? 'self-start' : 'self-end'}`}>
+                <div className={`flex mb-2 w-[45%] mx-auto ${selectedChange ? 'justify-start' : 'justify-end'}`}>
                     <img src="/imgs/icon-human.png" alt="Icon" width="32" />
                 </div>
                 <div className="w-[80%] mb-2 flex items-center justify-center">

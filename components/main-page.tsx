@@ -12,8 +12,6 @@ export const MainPage = ({ data }: { data: any }) => {
     const [dispalyInfo, setDisplayInfo] = React.useState<String>("");
     const [blink, setBlink] = React.useState<boolean>(true);
 
-    React.useEffect(() => typingEffect(), [])
-
     /**
      * The function used to update situation.
      */
@@ -32,9 +30,11 @@ export const MainPage = ({ data }: { data: any }) => {
                 }
             })
             index++;
-        }, 200)
+        }, 200);
         return () => clearInterval(interval);
-    }
+    };
+
+    React.useEffect(() => typingEffect(), []);
 
     return (
         <div className={cn("relative flex flex-col h-full w-full overflow-hidden", { "animate-shrink": close === "true" })}>
@@ -81,5 +81,5 @@ export const MainPage = ({ data }: { data: any }) => {
                 </div>
             </div>
         </div>
-    )
+    );
 }

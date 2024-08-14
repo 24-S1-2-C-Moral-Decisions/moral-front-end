@@ -170,16 +170,6 @@
   }
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-
-  to {
-    width: 20%;
-  }
-}
-
 @keyframes blink-caret {
 
   from,
@@ -237,7 +227,7 @@
 }
 
 .animate-typing-effect {
-  animation: typing 1.5s steps(20, end) 1, blink-caret 0.5s step-end infinite;
+  animation: blink-caret 0.5s step-end infinite;
 }
 
 .common-bold-text {

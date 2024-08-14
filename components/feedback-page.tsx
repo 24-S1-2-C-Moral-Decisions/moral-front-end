@@ -71,7 +71,7 @@ function DoughnutChartAndResult() {
     const labels = ['Asshole', 'Not Asshole'];
     return (
         <>
-            <div className="flex w-full mb-[4vw]">
+            <div className="flex w-full mb-[4vw] ml-[2vw]">
                 <div className="w-[50%] justify-center bg-[#FFFFFF] p-[2vw]">
                     <div className="relative w-[90%] mx-auto h-[18vw]"> {/* Set a height for proper overlapping */}
                         {/* left div */}
@@ -171,12 +171,12 @@ function Feedback() {
         <>
             <div className="w-full flex flex-col mx-auto p-[1vw]">
                 <div className="mb-[0.5vw]">
-                    <h3 className="text-[1.3vw] text-blue-600 font-bold">What You Chose</h3>
+                    <h3 className="text-[1.4vw] text-blue-600 font-bold">What You Chose</h3>
                 </div>
                 <div>
-                    <h1 className="text-[2.2vw] font-bold mb-[0.5vw] text-2xl">Option A – Call Your Friend Fat</h1>
+                    <h1 className="text-[2.3vw] font-bold mb-[0.5vw] text-2xl">Option A – Call Your Friend Fat</h1>
                     <br />
-                    <p className="text-[1.3vw]">
+                    <p className="text-[1.4vw]">
                         It could indicate that the user is confrontational or not afraid to engage in tit-for-tat banter.
                         This response may suggest a willingness to retaliate or use humor to deflect criticism, but it could
                         also be seen as insensitive or lacking empathy, especially in a sensitive context like body image.

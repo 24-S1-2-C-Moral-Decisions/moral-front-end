@@ -2,7 +2,7 @@ import { usePage } from "@/lib/usePage"
 import { Button } from "./ui/button"
 import { useState } from "react";
 import { RadarChart } from "./ui/chart";
-
+import UrlCopyBox from "./ui/url-copy-box"
 
 
 const radarResult = {
@@ -35,6 +35,7 @@ const selectedChangeAnalysisTexts = {
     false: "You remain steadfast in your beliefs, showing confidence in your moral compass. You value consistency and resilience, remaining steadfast despite others' opinions.",
 };
 
+
 export const SurveyFeedbackPage = ({ data }: { data: any }) => {
     return (
         <>
@@ -59,7 +60,7 @@ function RadarChartAndResult() {
     return (
         <>
             <div className="w-full text-center bg-[#FFFFFF]">
-                <h2 className="text-2xl font-bold mb-8 text-[#507186]">Here Are Your Result</h2>
+                <h2 className="text-2xl font-optima font-bold mb-8 text-[#507186]">Here Are Your Result</h2>
             </div>
             <div className="flex w-full items-stretch justify-center mb-8 bg-[#FFFFFF]">
                 <div className="w-[50%] flex items-center justify-center">
@@ -105,7 +106,7 @@ function ImpactResult() {
     return (
         <>
             <div className="flex w-full items-center justify-center">
-                <h2 className="text-2xl font-bold mb-8 text-[#507186]">The Impact of Others on Your Moral Decision</h2>
+                <h2 className="text-2xl font-optima font-bold mb-8 text-[#507186]">The Impact of Others on Your Moral Decision</h2>
             </div>
             <div className="flex flex-col items-center">
                 {/* human icon */}
@@ -114,7 +115,7 @@ function ImpactResult() {
                 </div>
                 <div className="w-[80%] mb-2 flex items-center justify-center">
                     {/* left text */}
-                    <div className="w-[15%] text-right text-base font-bold">
+                    <div className="w-[15%] text-right text-base font-optima font-bold">
                         Change
                     </div>
 
@@ -122,7 +123,7 @@ function ImpactResult() {
                     <div className="w-[70%] h-10 bg-gradient-to-r ml-4 mr-4 from-[#0957B4] to-[#F0EBFE] border-4 border-[#AECEF6]"></div>
 
                     {/* right text */}
-                    <div className="w-[15%] text-base font-bold">
+                    <div className="w-[15%] text-base font-optima font-bold">
                         Stay Firm
                     </div>
                 </div>
@@ -154,9 +155,9 @@ function Share() {
         <>
             <div className="w-full bg-[#F5F5F5] items-center justify-center mb-16 p-8">
                 <div className="w-full h-36 flex flex-col text-left">
-                <p>Share Your Result!</p>
-                <p>Let someone else glimpse into your result by sharing your encrypted profile link.</p>
-                <p>https://www.yourresult.com</p>
+                <h2 className="text-xl font-optima font-bold mb-4 text-[#507186]">Share Your Result!</h2>
+                <p className="text-base mb-4">Let someone else glimpse into your result by sharing your encrypted profile link.</p>
+                <UrlCopyBox />
                 </div>
                 <div className="w-full h-36 flex flex-col text-left">
                 <p>Explore More!</p>

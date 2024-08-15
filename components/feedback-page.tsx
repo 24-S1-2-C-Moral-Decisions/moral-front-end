@@ -72,8 +72,8 @@ function DoughnutChartAndResult() {
     return (
         <>
             <div className="flex w-full mb-[4vw] ml-[2vw]">
-                <div className="w-[50%] justify-center bg-[#FFFFFF] p-[2vw]">
-                    <div className="relative w-[90%] mx-auto h-[18vw]"> {/* Set a height for proper overlapping */}
+                <div className="w-[45%] justify-center bg-[#FFFFFF] p-[2vw]">
+                    <div className="relative w-[90%] items-center mx-auto h-[18vw]"> {/* Set a height for proper overlapping */}
                         {/* left div */}
                         <div className="absolute flex items-center justify-center w-[30%] h-full opacity-0 absolute h-full animate-dot-bg-fade-in-fast"
                             style={{
@@ -83,7 +83,7 @@ function DoughnutChartAndResult() {
                                 backgroundRepeat: 'no-repeat',
                                 left: '0%',  // Align to the left edge
                             }}>
-                            <h3 className="text-[3vw] text-[#8CC2FF] relative" style={{ right: '30%', top: '15%' }}>
+                            <h3 className="text-[3vw] text-[#8CC2FF] font-bold relative" style={{ right: '30%', top: '15%' }}>
                                 {result.notAssholeNumber}
                             </h3>
                         </div>
@@ -96,7 +96,7 @@ function DoughnutChartAndResult() {
                                 backgroundRepeat: 'no-repeat',
                                 right: '0%',  // Align to the right edge
                             }}>
-                            <h3 className="text-[3vw] text-[#FFB8B8] relative" style={{ right: '-20%', top: '-15%' }}>
+                            <h3 className="text-[3vw] font-bold text-[#FFB8B8] relative" style={{ right: '-20%', top: '-15%' }}>
                                 {result.assholeNumber}
                             </h3>
                         </div>

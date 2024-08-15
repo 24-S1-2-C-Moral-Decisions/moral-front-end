@@ -20,14 +20,14 @@ const UrlCopyBox: React.FC = () => {
   return (
     <>
     <div className='w-full flex items-center'>
-    <div className="flex h-10 border rounded items-center">
+    <div className="flex h-10 border-2 border-[#C8C8C8] rounded items-center">
     <img src="/imgs/icon _link.png" alt="link" className="w-4 justify-center ml-4 mr-2" />
 
       <input
         type="text"
         value={currentUrl}
         readOnly
-        className="bg-[#F5F5F5] w-96 p-2 mr-2 h-9 "
+        className="bg-[#F5F5F5] w-96 p-2 mr-2 h-8 focus:outline-none"
       />
       <button
         onClick={handleCopy}

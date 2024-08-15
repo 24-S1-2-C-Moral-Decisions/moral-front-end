@@ -154,19 +154,19 @@ function Share() {
     return (
         <>
             <div className="w-full bg-[#F5F5F5] items-center justify-center mb-16 p-8">
-                <div className="w-full h-36 flex flex-col text-left">
-                <h2 className="text-xl font-optima font-bold mb-4 text-[#507186]">Share Your Result!</h2>
+                <div className="w-full flex flex-col text-left">
+                <h2 className="text-xl font-optima font-bold mb-2 text-[#507186]">Share Your Result!</h2>
                 <p className="text-base mb-4">Let someone else glimpse into your result by sharing your encrypted profile link.</p>
                 <UrlCopyBox />
                 </div>
-                <div className="w-full h-36 flex flex-col text-left">
-                <p>Explore More!</p>
-                <p>Consider learn more about daily moral decisions through searching and navigating Am I the Asshole (AITA) posts:</p>
-                <Button className="flex w-64 h-8 justify-center text-white text-[1.2vw] bg-[#FE5354] rounded-xl hover:bg-[#C62828] transition-colors duration-300"
+                <div className="w-full flex flex-col text-left mb-4">
+                <h2 className="text-xl font-optima font-bold mt-4 mb-2 text-[#507186]">Explore More!</h2>
+                <p className="text-base mb-4">Consider learn more about daily moral decisions through searching and navigating Am I the Asshole (AITA) posts:</p>
+                <Button className="flex w-64 h-10 justify-center items-center text-white text-base bg-[#69A8F3] rounded-xl hover:bg-[#619ADD] transition-colors duration-300"
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    setPage("game");{/* Change to survey page later */}
+                                    setPage("game");{/* Change to home page later */}
                                 }, 500);
                             }}
                         >

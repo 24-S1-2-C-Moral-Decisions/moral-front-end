@@ -11,6 +11,6 @@ interface PageStore{
 }
 
 export const usePage= create<PageStore>((set) => ({
-    page: "surveyFeedback",
+    page: "main",
     setPage: (newPage:PageType) => set({ page: newPage }),
   }))

@@ -51,15 +51,16 @@ export const FeedbackPage = ({ data }: { data: any }) => {
     return (
         <>
             <div className="w-full bg-[#fafafc]">
-                <div className="flex w-full h-12 items-center justify-center">
+                <div className="flex w-full h-[8vw] items-center justify-center">
                     {/*<h2>Feedback Results</h2>*/}
+                    <h2>banner</h2>
                 </div>
                 <DoughnutChartAndResult />
                 <div className="flex w-full items-center justify-center">
                 </div>
             </div>
             {/* <RadarChartAndAnalysis /> */}
-            <Banner />
+            <ScrollToSection id="bottom-banner" />
         </>
     )
 }
@@ -67,59 +68,39 @@ export const FeedbackPage = ({ data }: { data: any }) => {
 
 
 function DoughnutChartAndResult() {
-    const voteData = [result.assholeNumber, result.notAssholeNumber];
-    const labels = ['Asshole', 'Not Asshole'];
+
     return (
         <>
-            <div className="flex w-full mb-[4vw] ml-[2vw]">
-                <div className="w-[45%] justify-center bg-[#FFFFFF] p-[2vw]">
-                    <div className="relative w-[90%] items-center mx-auto h-[18vw]"> {/* Set a height for proper overlapping */}
-                        {/* left div */}
-                        <div className="absolute flex items-center justify-center w-[30%] h-full opacity-0 absolute h-full animate-dot-bg-fade-in-fast"
-                            style={{
-                                backgroundImage: "url('/imgs/notAssholeLine.png')",
-                                backgroundSize: '10vw auto',
-                                backgroundPosition: 'right center',
-                                backgroundRepeat: 'no-repeat',
-                                left: '0%',  // Align to the left edge
-                            }}>
-                            <h3 className="text-[3vw] text-[#8CC2FF] font-bold relative" style={{ right: '30%', top: '15%' }}>
-                                {result.notAssholeNumber}
-                            </h3>
+            <div className="flex flex-col w-full pl-[4vw]">
+                <div className="flex w-full">
+                    <div className="w-[50%] bg-[#FFFFFF]  mx-auto p-[2vw]">
+                        <div className="w-[90%] mx-auto">
+                            <DoughnutPanel />
+                            <AssholePanel />
                         </div>
-                        {/* right div */}
-                        <div className="absolute flex items-center justify-center w-[30%] h-full opacity-0 absolute h-full animate-dot-bg-fade-in-fast"
-                            style={{
-                                backgroundImage: "url('/imgs/assholeLine.png')",
-                                backgroundSize: '70% auto',
-                                backgroundPosition: 'left center',
-                                backgroundRepeat: 'no-repeat',
-                                right: '0%',  // Align to the right edge
-                            }}>
-                            <h3 className="text-[3vw] font-bold text-[#FFB8B8] relative" style={{ right: '-20%', top: '-15%' }}>
-                                {result.assholeNumber}
-                            </h3>
-                        </div>
-                        {/* middle DoughnutChart div */}
-                        <div className="absolute w-[50%] mx-auto h-[18vw]"
-                            style={{
-                                left: '25%',   // Start from 25%
-                                top: '0',      // Align to the top of the parent container
-                                bottom: '0',   // Align to the bottom of the parent container
-                            }}>
-                            <DoughnutChart labels={labels} voteData={voteData} />
-                        </div>
-
 
                     </div>
-
-                    <AssholePanel />
-
+                    <div className="w-[50%] flex flex-col justify-center">
+                        <div className="w-[80%] mx-auto">
+                            <Feedback />
+                        </div>
+                    </div>
                 </div>
-                <div className="w-[50%] flex flex-col justify-center">
-                    <div className="w-[80%] mx-auto">
-                        <Feedback />
-                    </div>
+
+                <div className="w-full flex items-center justify-center">
+                    <button
+                        className="flex flex-col items-center text-white mt-[1vw] mb-[1vw] bg-[#69A8F3] rounded-xl hover:bg-[#619ADD] transition-colors duration-300"
+                        onClick={() => {
+                            // Replace 'bottom-banner' with the actual ID of the target div
+                            const targetDiv = document.getElementById('bottom-banner');
+                            if (targetDiv) {
+                                targetDiv.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}
+                    >
+                        <p>arrow image</p>
+                        <p>click</p>
+                    </button>
                 </div>
             </div>
         </>
@@ -127,12 +108,64 @@ function DoughnutChartAndResult() {
 
 }
 
+function DoughnutPanel() {
+    const voteData = [result.assholeNumber, result.notAssholeNumber];
+    const labels = ['Asshole', 'Not Asshole'];
+    return (
+        <>
+            <div className="relative w-[90%] items-center mx-auto h-[18vw]">
+                {/* left div */}
+                <div
+                    className="absolute flex items-center justify-center w-[30%] h-full opacity-0 animate-dot-bg-fade-in-fast"
+                    style={{
+                        backgroundImage: "url('/imgs/notAssholeLine.png')",
+                        backgroundSize: '10vw auto',
+                        backgroundPosition: 'right center',
+                        backgroundRepeat: 'no-repeat',
+                        left: '0%', // Align to the left edge
+                    }}
+                >
+                    <h3 className="text-[3vw] text-[#8CC2FF] font-bold relative" style={{ right: '30%', top: '15%' }}>
+                        {result.notAssholeNumber}
+                    </h3>
+                </div>
+                {/* right div */}
+                <div
+                    className="absolute flex items-center justify-center w-[30%] h-full opacity-0 animate-dot-bg-fade-in-fast"
+                    style={{
+                        backgroundImage: "url('/imgs/assholeLine.png')",
+                        backgroundSize: '70% auto',
+                        backgroundPosition: 'left center',
+                        backgroundRepeat: 'no-repeat',
+                        right: '0%', // Align to the right edge
+                    }}
+                >
+                    <h3 className="text-[3vw] font-bold text-[#FFB8B8] relative" style={{ right: '-20%', top: '-15%' }}>
+                        {result.assholeNumber}
+                    </h3>
+                </div>
+                {/* middle DoughnutChart div */}
+                <div
+                    className="absolute w-[50%] mx-auto h-[18vw]"
+                    style={{
+                        left: '25%', // Start from 25%
+                        top: '0', // Align to the top of the parent container
+                        bottom: '0', // Align to the bottom of the parent container
+                    }}
+                >
+                    <DoughnutChart labels={labels} voteData={voteData} />
+                </div>
+            </div>
+        </>
+    )
+}
 
 function AssholePanel() {
     return (
         <>
             <div className="w-full flex mx-auto mt-[2vw]">
                 <SubAssholePanel backgroundImageUrl="/imgs/notAssholePanel.png" result={result} isAsshole={false} textColorClass="text-[#8CC2FF]" />
+                <div className="w-[2vw]"></div> 
                 <SubAssholePanel backgroundImageUrl="/imgs/assholePanel.png" result={result} isAsshole={true} textColorClass="text-[#FFB8B8]" />
             </div >
         </>
@@ -179,7 +212,7 @@ function Feedback() {
                     {/* rem: text-2xl */}
                     <br />
                     <p className="text-[1.4vw]">
-                    {/* rem: text-base */}    
+                        {/* rem: text-base */}
                         It could indicate that the user is confrontational or not afraid to engage in tit-for-tat banter.
                         This response may suggest a willingness to retaliate or use humor to deflect criticism, but it could
                         also be seen as insensitive or lacking empathy, especially in a sensitive context like body image.
@@ -250,12 +283,16 @@ function ResultAnalysisTexts() {
     )
 }
 
-function Banner() {
+interface ScrollToProps {
+    id?: string; // id is optional
+}
+
+function ScrollToSection({ id }: ScrollToProps) {
     const { setPage } = usePage();
     const [close, setClose] = useState("false");
     return (
         <>
-            <div className="w-full flex items-center justify-center">
+            <div id={id} className="w-full flex items-center justify-center">
                 <div
                     className="w-[80%] h-[30vw] bg-[#ffffff] flex justify-center items-center"
                     style={{
@@ -274,7 +311,7 @@ function Banner() {
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    setPage("game");{/* Change to survey page later */}
+                                    setPage("game"); {/* Change to survey page later */ }
                                 }, 500);
                             }}
                         >

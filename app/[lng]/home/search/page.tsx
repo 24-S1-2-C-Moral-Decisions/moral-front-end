@@ -51,16 +51,19 @@ const tags = [
 
 export default async function SearchPage() {
 
-    const { db } = await connectToDatabase();
+    const { cachedDb } = await connectToDatabase();
+    if (cachedDb === undefined) {
+        return <div>Cannot connect to databse</div>
+    }
 
-    const collections = await db.listCollections().toArray();
-    const all = await db.collection("all");
+    const collections = await cachedDb?.listCollections().toArray()??[];
+    const all = await cachedDb?.collection("all");
 
     const popularTopic = await Promise.all(collections.map(async (collection) => {
         const title = collection.name.charAt(0).toUpperCase() + collection.name.slice(1);
         const picUrl = `/imgs/tags/${collection.name.toLowerCase()}.svg`;
         const url = `/home/search/${collection.name.toLowerCase()}`;
-        const postsNum = await db.collection(collection.name).countDocuments();
+        const postsNum = await cachedDb?.collection(collection.name).countDocuments()??0;
 
         return {
             title: title,
@@ -70,10 +73,10 @@ export default async function SearchPage() {
         };
     }));
 
-    const top5Posts = await all.find({})
+    const top5Posts = await all?.find({})
         .sort({ clickcount: -1 })
         .limit(5)
-        .toArray();
+        .toArray()??[];
 
     const hotPosts = top5Posts.map((post) => ({
         id: post._id.toString(),

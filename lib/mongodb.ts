@@ -20,9 +20,6 @@ export async function connectToDatabase() {
     cachedClient = client;
     cachedDb = db;
 
-    return { client, db };
-  } else{
-    return null;
   }
-
+    return { cachedClient, cachedDb };
 }

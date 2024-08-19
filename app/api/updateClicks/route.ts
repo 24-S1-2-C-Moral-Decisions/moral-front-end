@@ -10,7 +10,7 @@ export async function POST(req: NextRequest){
     const { db } = await connectToDatabase();
 
     try {
-        await db.collection('all').updateOne(
+        await db?.collection('all').updateOne(
           { _id: postId },
           { $inc: { clickcount: 1 } }
         );

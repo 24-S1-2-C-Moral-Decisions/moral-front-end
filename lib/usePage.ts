@@ -3,7 +3,7 @@
 import {create} from "zustand";
 
 // could add more pages
-type PageType="main"|"game"|"feedback";
+type PageType="main"|"game"|"feedback"|"surveyFeedback";
 
 interface PageStore{
   page: PageType,

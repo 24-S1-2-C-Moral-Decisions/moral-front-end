@@ -126,14 +126,15 @@
   }
 
   100% {
-    opacity: 100;
+    opacity: 1;
   }
 }
 
 @keyframes fadeOut {
   0% {
-    opacity: 100;
+    opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
@@ -164,8 +165,20 @@
   }
 
   100% {
-    opacity: 100;
+    opacity: 1;
     transform: translateY(0px)
+  }
+}
+
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent
+  }
+
+  50% {
+    border-color: #4767E7;
   }
 }
 
@@ -185,15 +198,15 @@
   animation: fadeIn 0.5s ease-in forwards;
 }
 
-.animate-fade-in{
+.animate-fade-in {
   animation: fadeIn 0.5s ease-in forwards;
 }
 
-.animate-fade-out{
+.animate-fade-out {
   animation: fadeOut 0.5s ease-in forwards;
 }
 
-.animate-expand-circle{
+.animate-expand-circle {
   animation: expandCircle 1s ease-in-out 2s forwards;
 }
 
@@ -211,6 +224,10 @@
 
 .animate-dot-bg-fade-in-fast {
   animation: dotBgFadeIn 0.5s ease-in 1s forwards;
+}
+
+.animate-typing-effect {
+  animation: blink-caret 0.5s step-end infinite;
 }
 
 .common-bold-text {

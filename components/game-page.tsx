@@ -41,7 +41,11 @@ export const GamePage = ({ data }: { data: any }): JSX.Element => {
     const [isYesButtonHover, setIsYesButtonHover] = React.useState<boolean>(false);
     const [isNoButtonHover, setIsNoButtonHover] = React.useState<boolean>(false);
 
-    React.useEffect(() => {
+    /**
+     * The function used to update animation status.
+     * @returns Clear interval.
+     */
+    const updateAnimation = () => {
         setAnimationType('fade-in');
         const interval = setInterval(() => {
             if (currentDialogInfoIndex != talkDialog.length - 1) {
@@ -60,12 +64,26 @@ export const GamePage = ({ data }: { data: any }): JSX.Element => {
                         return nextIndex;
                     }
                 });
-            }, 500);
-        }, 1500);
-
+            }, 1500);
+        }, 2000);
         return () => clearInterval(interval);
-    }, [currentDialogInfoIndex]);
+    }
 
+    /**
+     * The function when user answer the yes and no.
+     * @param answer The user click yes or no.
+     */
+    const buttonClick = (answer: boolean) => {
+        answer ? setAnswer(true) : setAnswer(false);
+        setIsInteractiveDialogVisible(false);
+        setIsAnswerDialogVisible(true);
+        setTimeout(() => {
+            setPage("feedback");
+        }, 3000)
+    };
+
+    React.useEffect(() => updateAnimation(), [currentDialogInfoIndex]);
+    
     return (
         <div className={cn("flex flex-col h-full w-full transition-opacity opacity-0", { "animate-fade-in": page === "game" })} >
             <div className="w-full pt-10 pl-20  ">
@@ -122,11 +140,7 @@ export const GamePage = ({ data }: { data: any }): JSX.Element => {
                                 <div className="w-full flex justify-center items-center absolute bottom-[152px]" >
                                     <button
                                         className="mr-[28px]"
-                                        onClick={() => {
-                                            setAnswer(true);
-                                            setIsInteractiveDialogVisible(false);
-                                            setIsAnswerDialogVisible(true);
-                                        }}
+                                        onClick={() => buttonClick(true)}
                                         onMouseEnter={() => setIsYesButtonHover(true)}
                                         onMouseLeave={() => setIsYesButtonHover(false)}
                                     >
@@ -134,11 +148,7 @@ export const GamePage = ({ data }: { data: any }): JSX.Element => {
                                     </button>
                                     <button
                                         className="ml-[28px]"
-                                        onClick={() => {
-                                            setAnswer(false);
-                                            setIsInteractiveDialogVisible(false);
-                                            setIsAnswerDialogVisible(true);
-                                        }}
+                                        onClick={() => buttonClick(false)}
                                         onMouseEnter={() => setIsNoButtonHover(true)}
                                         onMouseLeave={() => setIsNoButtonHover(false)}
                                     >

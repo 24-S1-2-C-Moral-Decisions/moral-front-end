@@ -9,8 +9,8 @@ import { usePage } from "@/lib/usePage";
 
 
 export default function Page({ params: { lng } }: { params: { lng: string } }) {
-    const data=require(`@/locales/${lng}.json`);
-    const {page,setPage}= usePage();
+    const data = require(`@/locales/${lng}.json`);
+    const { page, setPage } = usePage();
 
     return (
         <div className="h-full w-full">

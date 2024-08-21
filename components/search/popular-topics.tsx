@@ -16,9 +16,9 @@ export const PopularTopics = ({topics}:{topics:Topics}) => {
     const router=useRouter();
 
     return (
-        <div className="w-[333px] h-[490px] rounded-[30px] bg-[#F9FAFA] p-5 space-y-5">
-            <h1 className="text-[#5C5C5C] text-sm">POPULAR TOPIC</h1>
-            <div className="h-[400px] flex flex-col justify-between overflow-scroll">
+        <div className="w-full h-[490px] flex flex-col rounded-[30px] bg-[#F9FAFA] p-5 space-y-4">
+            <h1 className="text-[#5C5C5C] text-sm">ALL TOPICS</h1>
+            <div className=" h-full flex flex-col justify-between overflow-scroll">
                 {topics.map((topic) => (
                     <button key={topic.title} className="flex space-x-3"
                     onClick={

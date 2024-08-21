@@ -61,7 +61,7 @@ export default async function SearchPage() {
 
     const popularTopic = await Promise.all(collections.map(async (collection) => {
         const title = collection.name.charAt(0).toUpperCase() + collection.name.slice(1);
-        const picUrl = `/imgs/tags/${collection.name.toLowerCase()}.svg`;
+        const picUrl = `/imgs/tags/ic-${collection.name.toLowerCase()}.svg`;
         const url = `/home/search/${collection.name.toLowerCase()}`;
         const postsNum = await db?.collection(collection.name).countDocuments()??0;
 
@@ -112,8 +112,12 @@ export default async function SearchPage() {
                     </div>
                     <hr className="w-full" />
                     <div className="w-full flex justify-between relative">
+                        <div className="w-[333px] h-[490px]">
                         <PopularTopics topics={popularTopic} />
+                        </div>
+                        <div className="w-[415px] h-[490px]">
                         <HotPosts posts={hotPosts} />
+                        </div>
                     </div>
                     <div className=" right-0 top-[100px] fixed">
                         <SurveyPopup />

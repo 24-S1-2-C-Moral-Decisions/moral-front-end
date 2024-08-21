@@ -17,7 +17,7 @@ export const HotPosts = ({ posts }: { posts: Posts }) => {
     const router=useRouter();
 
     return (
-        <div className="w-[415px] h-[490px] flex flex-col justify-between space-y-5">
+        <div className="w-full h-full flex flex-col justify-between space-y-5">
             <div className="flex items-center space-x-2">
                 <img src="/imgs/flame.svg" alt="flame" />
                 <h1 className="text-md text-[#4F4F4F] font-semibold">

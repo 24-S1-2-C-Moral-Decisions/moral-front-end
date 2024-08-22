@@ -1,41 +1,71 @@
 import { NavBar } from "@/components/home/nav-bar";
 import { PopularTopics } from "@/components/search/popular-topics";
 import { PostsList } from "@/components/search/posts-list";
-import { connectToDatabase } from "@/lib/mongodb";
 
 export default async function TopicPage({ params }: { params: { topic: string } }) {
-    const { db } = await connectToDatabase();
-    if (db === undefined) {
-        return <div>Cannot connect to databse</div>
-    }
 
-    const collections = await db?.listCollections().toArray() ?? [];
-    const popularTopic = await Promise.all(collections.map(async (collection) => {
-        const title = collection.name.charAt(0).toUpperCase() + collection.name.slice(1);
-        const picUrl = `/imgs/tags/ic-${collection.name.toLowerCase()}.svg`;
-        const url = `/home/search/${collection.name.toLowerCase()}`;
-        const postsNum = await db?.collection(collection.name).countDocuments() ?? 0;
+    const popularTopic = [
 
-        return {
-            title: title,
-            picUrl: picUrl,
-            url: url,
-            postsNum: postsNum,
-        };
-    }));
+        {
+            title: "appearance",
+            picUrl: "/imgs/tags/ic-appearance.svg",
+            url: "/home/search/appearance",
+            postsNum: 20,
+        },
+        {
+            title: "babies",
+            picUrl: "/imgs/tags/ic-babies.svg",
+            url: "/home/search/babies",
+            postsNum: 20,
+        },
+        {
+            title: "children",
+            picUrl: "/imgs/tags/ic-children.svg",
+            url: "/home/search/children",
+            postsNum: 20,
+        },
+        {
+            title: "death",
+            picUrl: "/imgs/tags/ic-death.svg",
+            url: "/home/search/death",
+            postsNum: 20,
+        },
+        {
+            title: "food",
+            picUrl: "/imgs/tags/ic-food.svg",
+            url: "/home/search/food",
+            postsNum: 20,
+        },
+        {
+            title: "jokes",
+            picUrl: "/imgs/tags/ic-jokes.svg",
+            url: "/home/search/jokes",
+            postsNum: 20,
+        },
 
-    const collection = db.collection(params.topic.toLocaleLowerCase()); 
-    const data = await collection.find({}, { projection: { title: 1, selftext: 1, _id: 0 } }).toArray();
-    const posts = await Promise.all(data.map(async (post) => {
-        const title = post.title;
-        const selftext= post.selftext;
-
-        return {
-            title: title,
-            selftext: selftext,
+    ]
+    const posts = [
+        {
+            title: "test title 1",
+            selftext: "test text 1",
             isExpand: false
-        };
-    }));
+        },
+        {
+            title: "test title 2",
+            selftext: "test text 2",
+            isExpand: false
+        },
+        {
+            title: "test title 3",
+            selftext: "test text 3",
+            isExpand: false
+        },
+        {
+            title: "test title 4",
+            selftext: "test text 4",
+            isExpand: false
+        },
+    ]
 
 
     return (

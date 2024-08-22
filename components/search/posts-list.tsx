@@ -16,7 +16,6 @@ export const PostsList = ({ posts }: { posts: Posts }) => {
 
     const [expandedPosts, setExpandedPosts] = useState<{ [key: string]: boolean }>({});
 
-    // toggleExpand 函数用于切换特定 post 的展开状态
     const toggleExpand = (title: string) => {
         setExpandedPosts((prevState) => ({
             ...prevState,

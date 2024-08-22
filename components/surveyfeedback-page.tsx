@@ -166,7 +166,7 @@ function Share() {
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    setPage("game");{/* Change to home page later */}
+                                    setPage("feedback");{/* Change to home page later */}
                                 }, 500);
                             }}
                         >

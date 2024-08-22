@@ -73,7 +73,7 @@ function DoughnutChartAndResult() {
         <>
             <div className="flex flex-col w-full pl-[4vw]">
                 <div className="flex w-full">
-                    <div className="w-[50%] bg-[#FFFFFF]  mx-auto p-[2vw]">
+                    <div className="w-[50%] bg-[#FFFFFF] rounded-3xl mx-auto p-[2vw]">
                         <div className="w-[90%] mx-auto">
                             <DoughnutPanel />
                             <AssholePanel />
@@ -89,7 +89,7 @@ function DoughnutChartAndResult() {
 
                 <div className="w-full flex items-center justify-center">
                     <button
-                        className="flex flex-col items-center text-white mt-[1vw] mb-[1vw] bg-[#69A8F3] rounded-xl hover:bg-[#619ADD] transition-colors duration-300"
+                        className="flex flex-col items-center text-white mt-[1vw] mb-[1vw]"
                         onClick={() => {
                             // Replace 'bottom-banner' with the actual ID of the target div
                             const targetDiv = document.getElementById('bottom-banner');
@@ -98,8 +98,11 @@ function DoughnutChartAndResult() {
                             }
                         }}
                     >
-                        <p>arrow image</p>
-                        <p>click</p>
+                        <img
+        src="/imgs/feedback-page-flow.gif"
+        alt="Scroll Down"
+        className="w-[8vw] h-[6vw]" // Adjust the width, height, and margin as needed
+    />
                     </button>
                 </div>
             </div>

@@ -3,6 +3,7 @@ import { Button } from "./ui/button"
 import { useState } from "react";
 import { DoughnutChart } from './ui/chart';
 import { RadarChart } from "./ui/chart";
+import { NavBar } from "@/components/home/nav-bar";
 
 interface SubAssholePanelProps {
     backgroundImageUrl: string;
@@ -51,9 +52,9 @@ export const FeedbackPage = ({ data }: { data: any }) => {
     return (
         <>
             <div className="w-full bg-[#fafafc]">
-                <div className="flex w-full h-[8vw] items-center justify-center">
+                <div className="flex flex-col relative w-full h-full mb-10">
                     {/*<h2>Feedback Results</h2>*/}
-                    <h2>banner</h2>
+                    <NavBar/>
                 </div>
                 <DoughnutChartAndResult />
                 <div className="flex w-full items-center justify-center">
@@ -99,10 +100,10 @@ function DoughnutChartAndResult() {
                         }}
                     >
                         <img
-        src="/imgs/feedback-page-flow.gif"
-        alt="Scroll Down"
-        className="w-[8vw] h-[6vw]" // Adjust the width, height, and margin as needed
-    />
+                            src="/imgs/feedback-page-flow.gif"
+                            alt="Scroll Down"
+                            className="w-[8vw] h-[6vw] opacity-70"
+                        />
                     </button>
                 </div>
             </div>

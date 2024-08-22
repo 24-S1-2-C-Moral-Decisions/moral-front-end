@@ -3,6 +3,7 @@ import { Button } from "./ui/button"
 import { useState } from "react";
 import { RadarChart } from "./ui/chart";
 import UrlCopyBox from "./ui/url-copy-box"
+import { NavBar } from "@/components/home/nav-bar";
 
 
 const radarResult = {
@@ -40,7 +41,10 @@ export const SurveyFeedbackPage = ({ data }: { data: any }) => {
     return (
         <>
             <div className="w-[80%] mx-auto bg-[#ffffff]">
-                <div className="flex w-full mb-8 bg-gray-500 h-16 justify-center">banner</div>
+            <div className="flex flex-col relative w-full h-full mb-10">
+                    {/*<h2>Feedback Results</h2>*/}
+                    <NavBar/>
+                </div>
                 <RadarChartAndResult />
                 <ImpactResult />
                 <div className="flex mb-8">
@@ -106,7 +110,7 @@ function ImpactResult() {
     return (
         <>
             <div className="flex w-full items-center justify-center">
-                <h2 className="text-2xl font-optima font-bold mb-8 text-[#507186]">The Impact of Others on Your Moral Decision</h2>
+                <h2 className="text-2xl font-optima font-bold mt-8 mb-8 text-[#507186]">The Impact of Others on Your Moral Decision</h2>
             </div>
             <div className="flex flex-col items-center">
                 {/* human icon */}

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { RadarChart } from "./ui/chart";
 import UrlCopyBox from "./ui/url-copy-box"
 import { NavBar } from "@/components/home/nav-bar";
+import '../app/globals.css';
 
 
 const radarResult = {
@@ -39,12 +40,12 @@ const selectedChangeAnalysisTexts = {
 
 export const SurveyFeedbackPage = ({ data }: { data: any }) => {
     return (
-        <>
+        <><div className="flex flex-col relative w-full mb-10">
+            {/*<h2>Feedback Results</h2>*/}
+            <NavBar />
+        </div>
             <div className="w-[80%] mx-auto bg-[#ffffff]">
-            <div className="flex flex-col relative w-full h-full mb-10">
-                    {/*<h2>Feedback Results</h2>*/}
-                    <NavBar/>
-                </div>
+
                 <RadarChartAndResult />
                 <ImpactResult />
                 <div className="flex mb-8">
@@ -64,7 +65,7 @@ function RadarChartAndResult() {
     return (
         <>
             <div className="w-full text-center bg-[#FFFFFF]">
-                <h2 className="text-2xl font-optima font-bold mb-8 text-[#507186]">Here Are Your Result</h2>
+                <h2 className="text-2xl mb-8 text-[#507186]" style={{ fontFamily: 'optima'}}>Here Are Your Result</h2>
             </div>
             <div className="flex w-full items-stretch justify-center mb-8 bg-[#FFFFFF]">
                 <div className="w-[50%] flex items-center justify-center">
@@ -110,7 +111,7 @@ function ImpactResult() {
     return (
         <>
             <div className="flex w-full items-center justify-center">
-                <h2 className="text-2xl font-optima font-bold mt-8 mb-8 text-[#507186]">The Impact of Others on Your Moral Decision</h2>
+                <h2 className="text-2xl font-kanitBlack font-bold mt-8 mb-8 text-[#507186]">The Impact of Others on Your Moral Decision</h2>
             </div>
             <div className="flex flex-col items-center">
                 {/* human icon */}
@@ -159,24 +160,24 @@ function Share() {
         <>
             <div className="w-full bg-[#F5F5F5] items-center justify-center mb-16 p-8">
                 <div className="w-full flex flex-col text-left">
-                <h2 className="text-xl font-optima font-bold mb-2 text-[#507186]">Share Your Result!</h2>
-                <p className="text-base mb-4">Let someone else glimpse into your result by sharing your encrypted profile link.</p>
-                <UrlCopyBox />
+                    <h2 className="text-xl font-optima font-bold mb-2 text-[#507186]">Share Your Result!</h2>
+                    <p className="text-base mb-4">Let someone else glimpse into your result by sharing your encrypted profile link.</p>
+                    <UrlCopyBox />
                 </div>
                 <div className="w-full flex flex-col text-left mb-4">
-                <h2 className="text-xl font-optima font-bold mt-4 mb-2 text-[#507186]">Explore More!</h2>
-                <p className="text-base mb-4">Consider learn more about daily moral decisions through searching and navigating Am I the Asshole (AITA) posts:</p>
-                <Button className="flex w-64 h-10 justify-center items-center text-white text-base bg-[#69A8F3] rounded-xl hover:bg-[#619ADD] transition-colors duration-300"
-                            onClick={() => {
-                                setClose("true");
-                                setTimeout(() => {
-                                    setPage("feedback");{/* Change to home page later */}
-                                }, 500);
-                            }}
-                        >
-                            <span>Home Page exploration</span>
-                            <img src="/imgs/Arrow-Right.png" alt="arrow" className="w-4 justify-center ml-auto" />
-                        </Button>
+                    <h2 className="text-xl font-optima font-bold mt-4 mb-2 text-[#507186]">Explore More!</h2>
+                    <p className="text-base mb-4">Consider learn more about daily moral decisions through searching and navigating Am I the Asshole (AITA) posts:</p>
+                    <Button className="flex w-64 h-10 justify-center items-center text-white text-base bg-[#69A8F3] rounded-xl hover:bg-[#619ADD] transition-colors duration-300"
+                        onClick={() => {
+                            setClose("true");
+                            setTimeout(() => {
+                                setPage("feedback"); {/* Change to home page later */ }
+                            }, 500);
+                        }}
+                    >
+                        <span>Home Page exploration</span>
+                        <img src="/imgs/Arrow-Right.png" alt="arrow" className="w-4 justify-center ml-auto" />
+                    </Button>
                 </div>
             </div>
         </>

@@ -19,6 +19,12 @@ const config = {
     },
     extend: {
       fontFamily: {
+        'optima': ['optima', 'sans-serif'],
+        'optimab': ['optimab', 'sans-serif'],
+        'lato': ['lato', 'sans-serif'],
+        'kanit': ['kanit', 'sans-serif'],
+        'inter': ['inter', 'sans-serif']
+        
       },
       colors: {
         border: "hsl(var(--border))",

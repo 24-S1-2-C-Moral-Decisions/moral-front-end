@@ -2,8 +2,8 @@ import { usePage } from "@/lib/usePage"
 import { Button } from "./ui/button"
 import { useState } from "react";
 import { RadarChart } from "./ui/chart";
-import UrlCopyBox from "./ui/url-copy-box"
-import { NavBar } from "./home/nav-bar";
+import UrlCopyBox from "./ui/url-copy-box";
+import { NavBar } from './home/nav-bar';
 
 
 const radarResult = {

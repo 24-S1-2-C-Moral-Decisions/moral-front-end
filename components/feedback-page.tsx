@@ -2,8 +2,8 @@ import { usePage } from "@/lib/usePage"
 import { Button } from "./ui/button"
 import { useState } from "react";
 import { DoughnutChart } from './ui/chart';
-import { RadarChart } from "./ui/chart";
-import { NavBar } from "@/components/home/nav-bar";
+import { RadarChart } from './ui/chart';
+import { NavBar } from './home/nav-bar';
 
 interface SubAssholePanelProps {
     backgroundImageUrl: string;

@@ -315,7 +315,7 @@ function ScrollToSection({ id }: ScrollToProps) {
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    setPage("game"); {/* Change to survey page later */ }
+                                    setPage("surveyFeedback"); {/* Change to survey page later */ }
                                 }, 500);
                             }}
                         >

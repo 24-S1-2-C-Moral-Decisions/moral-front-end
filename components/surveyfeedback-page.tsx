@@ -170,7 +170,7 @@ function Share() {
                         onClick={() => {
                             setClose("true");
                             setTimeout(() => {
-                                setPage("feedback"); {/* Change to home page later */ }
+                                setPage("main"); {/* Change to home page later */ }
                             }, 500);
                         }}
                     >

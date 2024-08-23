@@ -42,6 +42,36 @@ export default async function TopicPage({ params }: { params: { topic: string } 
             url: "/home/search/jokes",
             postsNum: 20,
         },
+        {
+            title: "living",
+            picUrl: "/imgs/tags/ic-living.svg",
+            url: "/home/search/living",
+            postsNum: 20,
+        },
+        {
+            title: "music",
+            picUrl: "/imgs/tags/ic-music.svg",
+            url: "/home/search/music",
+            postsNum: 20,
+        },
+        {
+            title: "pets",
+            picUrl: "/imgs/tags/ic-pets.svg",
+            url: "/home/search/pets",
+            postsNum: 20,
+        },
+        {
+            title: "religion",
+            picUrl: "/imgs/tags/ic-religion.svg",
+            url: "/home/search/religion",
+            postsNum: 20,
+        },
+        {
+            title: "safety",
+            picUrl: "/imgs/tags/ic-safety.svg",
+            url: "/home/search/safety",
+            postsNum: 20,
+        },
 
     ]
     const posts = [

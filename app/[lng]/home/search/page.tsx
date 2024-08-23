@@ -6,42 +6,42 @@ import { SurveyPopup } from "@/components/search/survey-popup";
 const tags = [
     {
         title: "Communication",
-        picUrl: "/imgs/tags/communication.svg",
+        picUrl: "/imgs/tags/ic-communication.svg",
         url: ""
     },
     {
         title: "Family",
-        picUrl: "/imgs/tags/family.svg",
+        picUrl: "/imgs/tags/ic-family.svg",
         url: ""
     },
     {
         title: "Friend",
-        picUrl: "/imgs/tags/friend.svg",
+        picUrl: "/imgs/tags/ic-friends.svg",
         url: ""
     },
     {
         title: "Manner",
-        picUrl: "/imgs/tags/manner.svg",
+        picUrl: "/imgs/tags/ic-manners.svg",
         url: ""
     },
     {
         title: "Money",
-        picUrl: "/imgs/tags/money.svg",
+        picUrl: "/imgs/tags/ic-money.svg",
         url: ""
     },
     {
         title: "Time",
-        picUrl: "/imgs/tags/time.svg",
+        picUrl: "/imgs/tags/ic-time.svg",
         url: ""
     },
     {
         title: "Work",
-        picUrl: "/imgs/tags/work.svg",
+        picUrl: "/imgs/tags/ic-work.svg",
         url: ""
     },
     {
         title: "More",
-        picUrl: "/imgs/tags/more.svg",
+        picUrl: "/imgs/tags/ic-more.svg",
         url: ""
     }
 ]
@@ -86,6 +86,36 @@ export default async function SearchPage() {
             title: "jokes",
             picUrl: "/imgs/tags/ic-jokes.svg",
             url: "/home/search/jokes",
+            postsNum: 20,
+        },
+        {
+            title: "living",
+            picUrl: "/imgs/tags/ic-living.svg",
+            url: "/home/search/living",
+            postsNum: 20,
+        },
+        {
+            title: "music",
+            picUrl: "/imgs/tags/ic-music.svg",
+            url: "/home/search/music",
+            postsNum: 20,
+        },
+        {
+            title: "pets",
+            picUrl: "/imgs/tags/ic-pets.svg",
+            url: "/home/search/pets",
+            postsNum: 20,
+        },
+        {
+            title: "religion",
+            picUrl: "/imgs/tags/ic-religion.svg",
+            url: "/home/search/religion",
+            postsNum: 20,
+        },
+        {
+            title: "safety",
+            picUrl: "/imgs/tags/ic-safety.svg",
+            url: "/home/search/safety",
             postsNum: 20,
         },
 

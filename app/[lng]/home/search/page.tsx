@@ -2,47 +2,46 @@ import { NavBar } from "@/components/home/nav-bar";
 import { HotPosts } from "@/components/search/hot-posts";
 import { PopularTopics } from "@/components/search/popular-topics";
 import { SurveyPopup } from "@/components/search/survey-popup";
-import { connectToDatabase } from "@/lib/mongodb";
 
 const tags = [
     {
         title: "Communication",
-        picUrl: "/imgs/tags/communication.svg",
+        picUrl: "/imgs/tags/ic-communication.svg",
         url: ""
     },
     {
         title: "Family",
-        picUrl: "/imgs/tags/family.svg",
+        picUrl: "/imgs/tags/ic-family.svg",
         url: ""
     },
     {
         title: "Friend",
-        picUrl: "/imgs/tags/friend.svg",
+        picUrl: "/imgs/tags/ic-friends.svg",
         url: ""
     },
     {
         title: "Manner",
-        picUrl: "/imgs/tags/manner.svg",
+        picUrl: "/imgs/tags/ic-manners.svg",
         url: ""
     },
     {
         title: "Money",
-        picUrl: "/imgs/tags/money.svg",
+        picUrl: "/imgs/tags/ic-money.svg",
         url: ""
     },
     {
         title: "Time",
-        picUrl: "/imgs/tags/time.svg",
+        picUrl: "/imgs/tags/ic-time.svg",
         url: ""
     },
     {
         title: "Work",
-        picUrl: "/imgs/tags/work.svg",
+        picUrl: "/imgs/tags/ic-work.svg",
         url: ""
     },
     {
         title: "More",
-        picUrl: "/imgs/tags/more.svg",
+        picUrl: "/imgs/tags/ic-more.svg",
         url: ""
     }
 ]
@@ -51,39 +50,110 @@ const tags = [
 
 export default async function SearchPage() {
 
-    const { db } = await connectToDatabase();
-    if (db === undefined) {
-        return <div>Cannot connect to databse</div>
-    }
+    const popularTopic = [
 
-    const collections = await db?.listCollections().toArray()??[];
-    const all = await db?.collection("all");
+        {
+            title: "appearance",
+            picUrl: "/imgs/tags/ic-appearance.svg",
+            url: "/home/search/appearance",
+            postsNum: 20,
+        },
+        {
+            title: "babies",
+            picUrl: "/imgs/tags/ic-babies.svg",
+            url: "/home/search/babies",
+            postsNum: 20,
+        },
+        {
+            title: "children",
+            picUrl: "/imgs/tags/ic-children.svg",
+            url: "/home/search/children",
+            postsNum: 20,
+        },
+        {
+            title: "death",
+            picUrl: "/imgs/tags/ic-death.svg",
+            url: "/home/search/death",
+            postsNum: 20,
+        },
+        {
+            title: "food",
+            picUrl: "/imgs/tags/ic-food.svg",
+            url: "/home/search/food",
+            postsNum: 20,
+        },
+        {
+            title: "jokes",
+            picUrl: "/imgs/tags/ic-jokes.svg",
+            url: "/home/search/jokes",
+            postsNum: 20,
+        },
+        {
+            title: "living",
+            picUrl: "/imgs/tags/ic-living.svg",
+            url: "/home/search/living",
+            postsNum: 20,
+        },
+        {
+            title: "music",
+            picUrl: "/imgs/tags/ic-music.svg",
+            url: "/home/search/music",
+            postsNum: 20,
+        },
+        {
+            title: "pets",
+            picUrl: "/imgs/tags/ic-pets.svg",
+            url: "/home/search/pets",
+            postsNum: 20,
+        },
+        {
+            title: "religion",
+            picUrl: "/imgs/tags/ic-religion.svg",
+            url: "/home/search/religion",
+            postsNum: 20,
+        },
+        {
+            title: "safety",
+            picUrl: "/imgs/tags/ic-safety.svg",
+            url: "/home/search/safety",
+            postsNum: 20,
+        },
 
-    const popularTopic = await Promise.all(collections.map(async (collection) => {
-        const title = collection.name.charAt(0).toUpperCase() + collection.name.slice(1);
-        const picUrl = `/imgs/tags/ic-${collection.name.toLowerCase()}.svg`;
-        const url = `/home/search/${collection.name.toLowerCase()}`;
-        const postsNum = await db?.collection(collection.name).countDocuments()??0;
+    ]
 
-        return {
-            title: title,
-            picUrl: picUrl,
-            url: url,
-            postsNum: postsNum,
-        };
-    }));
 
-    const top5Posts = await all?.find({})
-        .sort({ clickcount: -1 })
-        .limit(5)
-        .toArray()??[];
-
-    const hotPosts = top5Posts.map((post) => ({
-        id: post._id.toString(),
-        title: post.title,
-        selftext: post.selftext,
-        url: `/posts/${post._id}`,
-    }));
+    const hotPosts = [
+        {
+            id: "id 1",
+            title: "hot post 1",
+            selftext: "hot post text 1",
+            url: ``,
+        },
+        {
+            id: "id 2",
+            title: "hot post 2",
+            selftext: "hot post text 2",
+            url: ``,
+        },
+        {
+            id: "id 3",
+            title: "hot post 3",
+            selftext: "hot post text 3",
+            url: ``,
+        },
+        {
+            id: "id 4",
+            title: "hot post 4",
+            selftext: "hot post text 4",
+            url: ``,
+        },
+        {
+            id: "id 5",
+            title: "hot post 5",
+            selftext: "hot post text 5",
+            url: ``,
+        },
+    ]
 
 
     return (

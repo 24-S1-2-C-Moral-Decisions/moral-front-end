@@ -1,7 +1,18 @@
+"use client";
+import { CircleOff, LucideMessageCircleX, LucideXCircle, MessageCircleX } from "lucide-react"
+import { useState } from "react"
+
 
 export const SurveyPopup = () => {
+
+    const [hide,setHide]=useState(false);
+
     return (
-        <div className="p-4 w-[382px] h-[425px] flex flex-col items-center rounded-[15px] bg-[#F9FAFa]">
+        !hide&&<div className="p-4 w-[382px] h-[425px] flex flex-col items-center rounded-[15px] bg-[#F9FAFa]">
+            <button className="absolute left-1 top-1"
+            onClick={()=>setHide(true)}>
+                <LucideXCircle/>
+            </button>
             <img src="/imgs/am-i-the-asshole.jpg" alt="am-i-the-asshole" width="342px" height="131px" />
             <div className="w-full my-4">
                 <h1 className="font-semibold left-0">

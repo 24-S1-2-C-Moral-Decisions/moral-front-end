@@ -2,7 +2,8 @@ import { usePage } from "@/lib/usePage"
 import { Button } from "./ui/button"
 import { useState } from "react";
 import { DoughnutChart } from './ui/chart';
-import { RadarChart } from "./ui/chart";
+import { RadarChart } from './ui/chart';
+import { NavBar } from './home/nav-bar';
 
 interface SubAssholePanelProps {
     backgroundImageUrl: string;
@@ -51,9 +52,9 @@ export const FeedbackPage = ({ data }: { data: any }) => {
     return (
         <>
             <div className="w-full bg-[#fafafc]">
-                <div className="flex w-full h-[8vw] items-center justify-center">
+                <div className="flex flex-col relative w-full h-full mb-10">
                     {/*<h2>Feedback Results</h2>*/}
-                    <h2>banner</h2>
+                    <NavBar/>
                 </div>
                 <DoughnutChartAndResult />
                 <div className="flex w-full items-center justify-center">
@@ -71,9 +72,9 @@ function DoughnutChartAndResult() {
 
     return (
         <>
-            <div className="flex flex-col w-full pl-[4vw]">
+            <div className="flex flex-col w-full pl-[4vw] font-kanit">
                 <div className="flex w-full">
-                    <div className="w-[50%] bg-[#FFFFFF]  mx-auto p-[2vw]">
+                    <div className="w-[50%] bg-[#FFFFFF] rounded-3xl mx-auto p-[2vw]">
                         <div className="w-[90%] mx-auto">
                             <DoughnutPanel />
                             <AssholePanel />
@@ -89,7 +90,7 @@ function DoughnutChartAndResult() {
 
                 <div className="w-full flex items-center justify-center">
                     <button
-                        className="flex flex-col items-center text-white mt-[1vw] mb-[1vw] bg-[#69A8F3] rounded-xl hover:bg-[#619ADD] transition-colors duration-300"
+                        className="flex flex-col items-center text-white mt-[1vw] mb-[1vw]"
                         onClick={() => {
                             // Replace 'bottom-banner' with the actual ID of the target div
                             const targetDiv = document.getElementById('bottom-banner');
@@ -98,8 +99,11 @@ function DoughnutChartAndResult() {
                             }
                         }}
                     >
-                        <p>arrow image</p>
-                        <p>click</p>
+                        <img
+                            src="/imgs/feedback-page-flow.gif"
+                            alt="Scroll Down"
+                            className="w-[8vw] h-[6vw] opacity-70"
+                        />
                     </button>
                 </div>
             </div>
@@ -175,7 +179,7 @@ function AssholePanel() {
 function SubAssholePanel({ backgroundImageUrl, result, isAsshole, textColorClass }: SubAssholePanelProps) {
     return (
         <div
-            className="relative w-[45%] mx-auto"
+            className="relative w-[45%] mx-auto font-kanit"
             style={{
                 backgroundImage: `url(${backgroundImageUrl})`,
                 backgroundSize: '100% auto',
@@ -191,7 +195,7 @@ function SubAssholePanel({ backgroundImageUrl, result, isAsshole, textColorClass
             </div>
             <div className="absolute bottom-[1.3vw] left-0 right-0 flex flex-col items-center text-center">
                 <p className="text-[1.3vw] font-bold">You Are {!isAsshole && <span>Not</span>} The Asshole</p>
-                <p className="text-[1vw] text-gray-500">
+                <p className="text-[1vw] text-gray-500 font-lato">
                     The number of people out of {result.totalNumber} <br /> who think you are {!isAsshole && <span>not</span>} the asshole
                 </p>
             </div>
@@ -202,7 +206,7 @@ function SubAssholePanel({ backgroundImageUrl, result, isAsshole, textColorClass
 function Feedback() {
     return (
         <>
-            <div className="w-full flex flex-col mx-auto p-[1vw]">
+            <div className="w-full flex flex-col mx-auto p-[1vw] font-kanit">
                 <div className="mb-[0.5vw]">
                     <h3 className="text-[1.4vw] text-blue-600 font-bold">What You Chose</h3>
                     {/* rem: text-base */}
@@ -211,7 +215,7 @@ function Feedback() {
                     <h1 className="text-[2.3vw] font-bold mb-[0.5vw]">Option A – Call Your Friend Fat</h1>
                     {/* rem: text-2xl */}
                     <br />
-                    <p className="text-[1.4vw]">
+                    <p className="text-[1.4vw] font-lato">
                         {/* rem: text-base */}
                         It could indicate that the user is confrontational or not afraid to engage in tit-for-tat banter.
                         This response may suggest a willingness to retaliate or use humor to deflect criticism, but it could
@@ -229,7 +233,7 @@ function RadarChartAndAnalysis() {
     return (
         <>
             <div className="flex w-full h-[12vw] items-center justify-center bg-[#ffffff]">
-                <h2 className="text-[2.5vw] font-bold">Your Result Analysis</h2>
+                <h2 className="text-[2.5vw] font-bold font-kanit">Your Result Analysis</h2>
             </div>
             <div className="flex w-full items-stretch">
                 <div className="w-[50%] flex items-center justify-center">
@@ -302,7 +306,7 @@ function ScrollToSection({ id }: ScrollToProps) {
                         backgroundRepeat: 'no-repeat',
                     }}
                 >
-                    <div className="w-[60%] flex flex-col justify-start items-start">
+                    <div className="w-[60%] flex flex-col justify-start items-start font-lato">
                         <p className="text-[#FE5354] text-[1.2vw] font-bold mb-[0.5vw]">Unlock deeper insights and shape the future of AI ethics!</p>
                         <p className="text-white text-[2.6vw] font-bold">Share Your Voice in Our Survey.</p>
                     </div>
@@ -311,7 +315,7 @@ function ScrollToSection({ id }: ScrollToProps) {
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    setPage("game"); {/* Change to survey page later */ }
+                                    setPage("surveyFeedback"); {/* Change to survey page later */ }
                                 }, 500);
                             }}
                         >

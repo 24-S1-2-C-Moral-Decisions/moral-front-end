@@ -2,7 +2,8 @@ import { usePage } from "@/lib/usePage"
 import { Button } from "./ui/button"
 import { useState } from "react";
 import { RadarChart } from "./ui/chart";
-import UrlCopyBox from "./ui/url-copy-box"
+import UrlCopyBox from "./ui/url-copy-box";
+import { NavBar } from './home/nav-bar';
 
 
 const radarResult = {
@@ -38,9 +39,12 @@ const selectedChangeAnalysisTexts = {
 
 export const SurveyFeedbackPage = ({ data }: { data: any }) => {
     return (
-        <>
+        <><div className="flex flex-col relative w-full mb-10">
+            {/*<h2>Feedback Results</h2>*/}
+            <NavBar />
+        </div>
             <div className="w-[80%] mx-auto bg-[#ffffff]">
-                <div className="flex w-full mb-8 bg-gray-500 h-16 justify-center">banner</div>
+
                 <RadarChartAndResult />
                 <ImpactResult />
                 <div className="flex mb-8">
@@ -60,7 +64,7 @@ function RadarChartAndResult() {
     return (
         <>
             <div className="w-full text-center bg-[#FFFFFF]">
-                <h2 className="text-2xl font-optima font-bold mb-8 text-[#507186]">Here Are Your Result</h2>
+                <h2 className="text-2xl mb-8 font-optimab text-[#507186]">Here Are Your Result</h2>
             </div>
             <div className="flex w-full items-stretch justify-center mb-8 bg-[#FFFFFF]">
                 <div className="w-[50%] flex items-center justify-center">
@@ -81,7 +85,7 @@ function ResultAnalysisTexts() {
     return (
         <>
             <div className="w-full">
-                <article className="text-sm space-y-2">
+                <article className="text-sm space-y-2 font-inter">
 
                     <p>Your moral decision-making style appears to lean towards Care and Sanctity.</p>
 
@@ -105,17 +109,17 @@ function ResultAnalysisTexts() {
 function ImpactResult() {
     return (
         <>
-            <div className="flex w-full items-center justify-center">
-                <h2 className="text-2xl font-optima font-bold mb-8 text-[#507186]">The Impact of Others on Your Moral Decision</h2>
+            <div className="flex w-full items-center justify-center font-inter">
+                <h2 className="text-2xl font-optimab mt-8 mb-8 text-[#507186]">The Impact of Others on Your Moral Decision</h2>
             </div>
             <div className="flex flex-col items-center">
                 {/* human icon */}
                 <div className={`flex mb-2 w-[45%] mx-auto ${selectedChange ? 'justify-start' : 'justify-end'}`}>
                     <img src="/imgs/icon-human.png" alt="Icon" width="32" />
                 </div>
-                <div className="w-[80%] mb-2 flex items-center justify-center">
+                <div className="w-[80%] mb-2 flex items-center justify-center font-optimab">
                     {/* left text */}
-                    <div className="w-[15%] text-right text-base font-optima font-bold">
+                    <div className="w-[15%] text-right text-base">
                         Change
                     </div>
 
@@ -123,7 +127,7 @@ function ImpactResult() {
                     <div className="w-[70%] h-10 bg-gradient-to-r ml-4 mr-4 from-[#0957B4] to-[#F0EBFE] border-4 border-[#AECEF6]"></div>
 
                     {/* right text */}
-                    <div className="w-[15%] text-base font-optima font-bold">
+                    <div className="w-[15%] text-base">
                         Stay Firm
                     </div>
                 </div>
@@ -153,26 +157,26 @@ function Share() {
     const [close, setClose] = useState("false");
     return (
         <>
-            <div className="w-full bg-[#F5F5F5] items-center justify-center mb-16 p-8">
+            <div className="w-full bg-[#F5F5F5] items-center justify-center mb-16 p-8 font-inter">
                 <div className="w-full flex flex-col text-left">
-                <h2 className="text-xl font-optima font-bold mb-2 text-[#507186]">Share Your Result!</h2>
-                <p className="text-base mb-4">Let someone else glimpse into your result by sharing your encrypted profile link.</p>
-                <UrlCopyBox />
+                    <h2 className="text-xl font-bold mb-2 text-[#507186]">Share Your Result!</h2>
+                    <p className="text-base mb-4">Let someone else glimpse into your result by sharing your encrypted profile link.</p>
+                    <UrlCopyBox />
                 </div>
                 <div className="w-full flex flex-col text-left mb-4">
-                <h2 className="text-xl font-optima font-bold mt-4 mb-2 text-[#507186]">Explore More!</h2>
-                <p className="text-base mb-4">Consider learn more about daily moral decisions through searching and navigating Am I the Asshole (AITA) posts:</p>
-                <Button className="flex w-64 h-10 justify-center items-center text-white text-base bg-[#69A8F3] rounded-xl hover:bg-[#619ADD] transition-colors duration-300"
-                            onClick={() => {
-                                setClose("true");
-                                setTimeout(() => {
-                                    setPage("game");{/* Change to home page later */}
-                                }, 500);
-                            }}
-                        >
-                            <span>Home Page exploration</span>
-                            <img src="/imgs/Arrow-Right.png" alt="arrow" className="w-4 justify-center ml-auto" />
-                        </Button>
+                    <h2 className="text-xl font-bold mt-4 mb-2 text-[#507186]">Explore More!</h2>
+                    <p className="text-base mb-4 ">Consider learn more about daily moral decisions through searching and navigating Am I the Asshole (AITA) posts:</p>
+                    <Button className="flex w-64 h-10 justify-center items-center text-white text-base bg-[#69A8F3] rounded-xl hover:bg-[#619ADD] transition-colors duration-300"
+                        onClick={() => {
+                            setClose("true");
+                            setTimeout(() => {
+                                setPage("main"); {/* Change to home page later */ }
+                            }, 500);
+                        }}
+                    >
+                        <span>Home Page exploration</span>
+                        <img src="/imgs/Arrow-Right.png" alt="arrow" className="w-4 justify-center ml-auto" />
+                    </Button>
                 </div>
             </div>
         </>

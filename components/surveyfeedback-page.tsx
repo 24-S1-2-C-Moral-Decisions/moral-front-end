@@ -4,7 +4,8 @@ import { useState } from "react";
 import { RadarChart } from "./ui/chart";
 import UrlCopyBox from "./ui/url-copy-box";
 import { NavBar } from './home/nav-bar';
-
+import { decisionStyles } from './survey/decisionMakingResult';
+import { personalityBigFive } from './survey/personalityResult';
 
 const radarResult = {
     Authority: 4,
@@ -20,23 +21,6 @@ const radarPostData = {
     Sanctity: 1,
     Fairness: 2,
     Loyalty: 4
-}
-
-const personalityResult = {
-    
-    Conscientiousness: 2,
-    Openness: 4,
-    Extraversion: 2,
-    Agreeableness: 1,
-    Neuroticism: 3
-}
-
-const decisionMakingResult = {
-    Rational: 4,
-    Intuitive: 2,
-    Dependent: 2,
-    Avoidant: 1,
-    Spontaneous: 3
 }
 
 
@@ -82,12 +66,15 @@ function RadarChartAndResult() {
             const postDataPoints = Object.values(radarPostData);
 
         */}
-    const personalityLabels = Object.keys(personalityResult);
-    const decisionMakingLabels = Object.keys(decisionMakingResult);
+// Extract labels and data points
+const personalityLabels = Object.keys(personalityBigFive);
+const decisionMakingLabels = Object.keys(decisionStyles);
 
-    const personalityDataPoints = Object.values(personalityResult);
-    const decisionMakingDataPoints = Object.values(decisionMakingResult);
-
+// Values should be numbers, including decimal points
+const personalityDataPoints = Object.values(personalityBigFive);
+const decisionMakingDataPoints = Object.values(decisionStyles);
+console.log('Personality Data Points:', personalityDataPoints);
+    console.log('Decision Making Data Points:', decisionMakingDataPoints);
     return (
         <>
             <div className="w-full text-center bg-[#FFFFFF]">
@@ -97,7 +84,7 @@ function RadarChartAndResult() {
                 <div className="w-[50%] flex items-center justify-center">
                     <div className="w-[80%]  h-full">
                         {/* <RadarChart labels={labels} dataPoints1={userDataPoints} dataPoints2={postDataPoints} />*/}
-                        <RadarChart labels={personalityLabels} dataPoints1={personalityDataPoints} />
+                        <RadarChart labels={personalityLabels} dataPoints1 ={personalityDataPoints} />
                     </div>
                 </div>
                 <div className="w-[50%] flex flex-col justify-center mb-8">

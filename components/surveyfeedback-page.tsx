@@ -22,6 +22,24 @@ const radarPostData = {
     Loyalty: 4
 }
 
+const personalityResult = {
+    
+    Conscientiousness: 2,
+    Openness: 4,
+    Extraversion: 2,
+    Agreeableness: 1,
+    Neuroticism: 3
+}
+
+const decisionMakingResult = {
+    Rational: 4,
+    Intuitive: 2,
+    Dependent: 2,
+    Avoidant: 1,
+    Spontaneous: 3
+}
+
+
 const resultAnalysisTexts = {
     AUTHORITY: "You show a moderate inclination towards respecting authority and established norms, balancing the need for order and structure with a healthy skepticism towards unchecked authority.",
     CARE: "Your moral decision-making style emphasizes empathy, compassion, and concern for the well-being of others. You prioritize the consideration of the impact of your actions on individuals and communities.",
@@ -58,9 +76,18 @@ export const SurveyFeedbackPage = ({ data }: { data: any }) => {
 
 
 function RadarChartAndResult() {
-    const labels = Object.keys(radarResult);
-    const userDataPoints = Object.values(radarResult);
-    const postDataPoints = Object.values(radarPostData);
+    {/*
+        const labels = Object.keys(radarResult);
+        const userDataPoints = Object.values(radarResult);
+            const postDataPoints = Object.values(radarPostData);
+
+        */}
+    const personalityLabels = Object.keys(personalityResult);
+    const decisionMakingLabels = Object.keys(decisionMakingResult);
+
+    const personalityDataPoints = Object.values(personalityResult);
+    const decisionMakingDataPoints = Object.values(decisionMakingResult);
+
     return (
         <>
             <div className="w-full text-center bg-[#FFFFFF]">
@@ -69,11 +96,22 @@ function RadarChartAndResult() {
             <div className="flex w-full items-stretch justify-center mb-8 bg-[#FFFFFF]">
                 <div className="w-[50%] flex items-center justify-center">
                     <div className="w-[80%]  h-full">
-                        <RadarChart labels={labels} dataPoints1={userDataPoints} dataPoints2={postDataPoints} />
+                        {/* <RadarChart labels={labels} dataPoints1={userDataPoints} dataPoints2={postDataPoints} />*/}
+                        <RadarChart labels={personalityLabels} dataPoints1={personalityDataPoints} />
                     </div>
                 </div>
                 <div className="w-[50%] flex flex-col justify-center mb-8">
-                    <ResultAnalysisTexts />
+                    <PersonalityAnalysis />
+                </div>
+            </div>
+            <div className="flex w-full items-stretch justify-center mb-8 bg-[#FFFFFF]">
+                <div className="w-[50%] flex items-center justify-center">
+                    <div className="w-[80%]  h-full">
+                        <RadarChart labels={decisionMakingLabels} dataPoints1={decisionMakingDataPoints}/>
+                    </div>
+                </div>
+                <div className="w-[50%] flex flex-col justify-center mb-8">
+                    <DecisionMakingAnalysis />
                 </div>
             </div>
 
@@ -81,7 +119,57 @@ function RadarChartAndResult() {
     )
 }
 
-function ResultAnalysisTexts() {
+function PersonalityAnalysis() {
+    return (
+        <>
+            <div className="w-full">
+                <article className="text-sm space-y-2 font-inter">
+
+                    <p>Your moral decision-making style appears to lean towards Care and Sanctity.</p>
+
+                    <p>In comparison to the average population, based on our sample statistics, you tend to emphasize the care dimensionality.</p>
+
+                    <p ><span className="font-bold">Conscientiousness: </span>{resultAnalysisTexts['AUTHORITY']}</p>
+
+                    <p><span className="font-bold">Openness: </span>{resultAnalysisTexts['CARE']}</p>
+
+                    <p><span className="font-bold">Agreeableness: </span>{resultAnalysisTexts['SANCTITY']}</p>
+
+                    <p><span className="font-bold">Fairness: </span>{resultAnalysisTexts['FAIRNESS']}</p>
+
+                    <p><span className="font-bold">Neuroticism: </span>{resultAnalysisTexts['LOYALTY']}</p>
+                </article>
+            </div>
+        </>
+    )
+}
+
+function DecisionMakingAnalysis() {
+    return (
+        <>
+            <div className="w-full">
+                <article className="text-sm space-y-2 font-inter">
+
+                    <p>Your moral decision-making style appears to lean towards Care and Sanctity.</p>
+
+                    <p>In comparison to the average population, based on our sample statistics, you tend to emphasize the care dimensionality.</p>
+
+                    <p ><span className="font-bold">Rational: </span>{resultAnalysisTexts['AUTHORITY']}</p>
+
+                    <p><span className="font-bold">Intuitive: </span>{resultAnalysisTexts['CARE']}</p>
+
+                    <p><span className="font-bold">Dependent: </span>{resultAnalysisTexts['SANCTITY']}</p>
+
+                    <p><span className="font-bold">Avoidant: </span>{resultAnalysisTexts['FAIRNESS']}</p>
+
+                    <p><span className="font-bold">Spontaneous: </span>{resultAnalysisTexts['LOYALTY']}</p>
+                </article>
+            </div>
+        </>
+    )
+}
+
+function ResultAnalysis() {
     return (
         <>
             <div className="w-full">

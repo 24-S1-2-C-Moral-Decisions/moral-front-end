@@ -63,8 +63,8 @@ const calculateBigFive = () => {
   const Neuroticism = (mappedData['Q7.2_1'] + mappedData['Q7.2_2'] + mappedData['Q7.2_3']) / 3;
 
   return {
-    Openness,
     Conscientiousness,
+    Openness,
     Extraversion,
     Agreeableness,
     Neuroticism

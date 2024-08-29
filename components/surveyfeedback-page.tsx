@@ -114,8 +114,6 @@ function PersonalityAnalysis() {
 
                     <p>Your moral decision-making style appears to lean towards Care and Sanctity.</p>
 
-                    <p>In comparison to the average population, based on our sample statistics, you tend to emphasize the care dimensionality.</p>
-
                     <p ><span className="font-bold">Conscientiousness: </span>{resultAnalysisTexts['AUTHORITY']}</p>
 
                     <p><span className="font-bold">Openness: </span>{resultAnalysisTexts['CARE']}</p>
@@ -138,8 +136,6 @@ function DecisionMakingAnalysis() {
                 <article className="text-sm space-y-2 font-inter">
 
                     <p>Your moral decision-making style appears to lean towards Care and Sanctity.</p>
-
-                    <p>In comparison to the average population, based on our sample statistics, you tend to emphasize the care dimensionality.</p>
 
                     <p ><span className="font-bold">Rational: </span>{resultAnalysisTexts['AUTHORITY']}</p>
 

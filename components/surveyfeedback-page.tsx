@@ -7,37 +7,12 @@ import { NavBar } from './home/nav-bar';
 import { decisionStyles } from './survey/decisionMakingResult';
 import { personalityBigFive } from './survey/personalityResult';
 
-const radarResult = {
-    Authority: 4,
-    Care: 2,
-    Sanctity: 2,
-    Fairness: 1,
-    Loyalty: 3
-}
-
-const radarPostData = {
-    Authority: 3,
-    Care: 1,
-    Sanctity: 1,
-    Fairness: 2,
-    Loyalty: 4
-}
-
-
-const resultAnalysisTexts = {
-    AUTHORITY: "You show a moderate inclination towards respecting authority and established norms, balancing the need for order and structure with a healthy skepticism towards unchecked authority.",
-    CARE: "Your moral decision-making style emphasizes empathy, compassion, and concern for the well-being of others. You prioritize the consideration of the impact of your actions on individuals and communities.",
-    SANCTITY: "You exhibit a moderate consideration for the sacred or transcendent aspects of life, valuing traditions and rituals that imbue certain actions or objects with moral significance.",
-    FAIRNESS: "Your approach to morality reflects a commitment to principles of justice, equality, and fairness. You strive to ensure equitable treatment and opportunities for all individuals, advocating for fairness in social, political, and economic contexts.",
-    LOYALTY: "You demonstrate a moderate inclination towards loyalty to groups, institutions, or individuals, valuing relationships and commitments while also recognizing the importance of individual autonomy and integrity."
-};
 const selectedChange = true;
 
 const selectedChangeAnalysisTexts = {
     true: "You are open to new perspectives and possibly values social harmony or consensus. You hold strong to your principles and show strength in maintaining your stance under social pressure.",
     false: "You remain steadfast in your beliefs, showing confidence in your moral compass. You value consistency and resilience, remaining steadfast despite others' opinions.",
 };
-
 
 export const SurveyFeedbackPage = ({ data }: { data: any }) => {
     return (
@@ -66,15 +41,13 @@ function RadarChartAndResult() {
             const postDataPoints = Object.values(radarPostData);
 
         */}
-// Extract labels and data points
-const personalityLabels = Object.keys(personalityBigFive);
-const decisionMakingLabels = Object.keys(decisionStyles);
+    // Extract labels and data points
+    const personalityLabels = Object.keys(personalityBigFive);
+    const decisionMakingLabels = Object.keys(decisionStyles);
 
-// Values should be numbers, including decimal points
-const personalityDataPoints = Object.values(personalityBigFive);
-const decisionMakingDataPoints = Object.values(decisionStyles);
-console.log('Personality Data Points:', personalityDataPoints);
-    console.log('Decision Making Data Points:', decisionMakingDataPoints);
+    // Values should be numbers, including decimal points
+    const personalityDataPoints = Object.values(personalityBigFive);
+    const decisionMakingDataPoints = Object.values(decisionStyles);
     return (
         <>
             <div className="w-full text-center bg-[#FFFFFF]">
@@ -84,7 +57,7 @@ console.log('Personality Data Points:', personalityDataPoints);
                 <div className="w-[50%] flex items-center justify-center">
                     <div className="w-[80%]  h-full">
                         {/* <RadarChart labels={labels} dataPoints1={userDataPoints} dataPoints2={postDataPoints} />*/}
-                        <RadarChart labels={personalityLabels} dataPoints1 ={personalityDataPoints} />
+                        <RadarChart labels={personalityLabels} dataPoints1={personalityDataPoints} />
                     </div>
                 </div>
                 <div className="w-[50%] flex flex-col justify-center mb-8">
@@ -94,7 +67,7 @@ console.log('Personality Data Points:', personalityDataPoints);
             <div className="flex w-full items-stretch justify-center mb-8 bg-[#FFFFFF]">
                 <div className="w-[50%] flex items-center justify-center">
                     <div className="w-[80%]  h-full">
-                        <RadarChart labels={decisionMakingLabels} dataPoints1={decisionMakingDataPoints}/>
+                        <RadarChart labels={decisionMakingLabels} dataPoints1={decisionMakingDataPoints} />
                     </div>
                 </div>
                 <div className="w-[50%] flex flex-col justify-center mb-8">
@@ -107,22 +80,39 @@ console.log('Personality Data Points:', personalityDataPoints);
 }
 
 function PersonalityAnalysis() {
+    const personalityAnalysisTexts = {
+        Openness: "This trait features characteristics like imagination, creativity, and curiosity. People high in openness tend to be more adventurous and open to new experiences, ideas, and unconventional values.",
+        Conscientiousness: "This trait is associated with being disciplined, organized, and goal-oriented. Individuals who score high in conscientiousness are often reliable, responsible, and tend to plan ahead.",
+        Extraversion: "This trait includes qualities such as sociability, assertiveness, and high levels of emotional expressiveness. Extraverted people tend to be outgoing, energetic, and enjoy social interactions.",
+        Agreeableness: "This trait reflects attributes such as trust, altruism, kindness, and affection. Highly agreeable people are often cooperative, compassionate, and get along well with others.",
+        Neuroticism: "This trait involves emotional instability and the tendency to experience negative emotions such as anxiety, anger, or depression. Individuals high in neuroticism are more prone to stress and mood swings."
+
+    };
+    const filteredPersonalityBigFive = Object.entries(personalityBigFive)
+        .filter(([_, score]) => score >= 5)
+        .reduce((acc, [trait, score]) => {
+            acc[trait] = score;
+            return acc;
+        }, {} as { [key: string]: number });
+
+    const pOrientation = Object.keys(filteredPersonalityBigFive);
+
     return (
         <>
             <div className="w-full">
                 <article className="text-sm space-y-2 font-inter">
 
-                    <p>Your moral decision-making style appears to lean towards Care and Sanctity.</p>
+                    <p>Your <b>Personality</b> appears to lean towards: {pOrientation.length > 0 ? pOrientation.join(', ') : 'none'}</p>
 
-                    <p ><span className="font-bold">Conscientiousness: </span>{resultAnalysisTexts['AUTHORITY']}</p>
+                    <p ><span className="font-bold">Conscientiousness: </span>{personalityAnalysisTexts['Conscientiousness']}</p>
 
-                    <p><span className="font-bold">Openness: </span>{resultAnalysisTexts['CARE']}</p>
+                    <p><span className="font-bold">Openness: </span>{personalityAnalysisTexts['Openness']}</p>
 
-                    <p><span className="font-bold">Agreeableness: </span>{resultAnalysisTexts['SANCTITY']}</p>
+                    <p><span className="font-bold">Extraversion: </span>{personalityAnalysisTexts['Extraversion']}</p>
 
-                    <p><span className="font-bold">Fairness: </span>{resultAnalysisTexts['FAIRNESS']}</p>
+                    <p><span className="font-bold">Agreeableness: </span>{personalityAnalysisTexts['Agreeableness']}</p>
 
-                    <p><span className="font-bold">Neuroticism: </span>{resultAnalysisTexts['LOYALTY']}</p>
+                    <p><span className="font-bold">Neuroticism: </span>{personalityAnalysisTexts['Neuroticism']}</p>
                 </article>
             </div>
         </>
@@ -130,47 +120,38 @@ function PersonalityAnalysis() {
 }
 
 function DecisionMakingAnalysis() {
+    const decisionMakingAnalysisTexts = {
+        Rational: " Rational decision-makers rely on logic and data. They thoroughly analyze options and carefully weigh the pros and cons before making a decision. This style is ideal for complex decisions that require detailed consideration.",
+        Intuitive: "Intuitive decision-makers rely on instincts and past experiences rather than detailed analysis. They make quick decisions based on what feels right, which works well in fast-paced or uncertain situations.",
+        Dependent: "Dependent decision-makers seek advice and reassurance from others before deciding. They prefer guidance and input from others, making this style useful when facing uncertainty or when decisions impact others.",
+        Avoidant: "Avoidant decision-makers tend to delay or avoid making decisions, especially when the choices are difficult or stressful. This style can lead to procrastination or missed opportunities.",
+        Spontaneous: "Spontaneous decision-makers prefer to make quick, impulsive decisions with little planning. They thrive in dynamic situations where immediate action is needed but may overlook long-term consequences."
+
+    };
+    const filteredDecisionStyles = Object.entries(decisionStyles)
+        .filter(([_, score]) => score >= 3.5)
+        .reduce((acc, [trait, score]) => {
+            acc[trait] = score;
+            return acc;
+        }, {} as { [key: string]: number });
+
+    const dOrientation = Object.keys(filteredDecisionStyles);
     return (
         <>
             <div className="w-full">
                 <article className="text-sm space-y-2 font-inter">
 
-                    <p>Your moral decision-making style appears to lean towards Care and Sanctity.</p>
+                    <p>Your <b>Decision Making</b> appears to lean towards: {dOrientation.length > 0 ? dOrientation.join(', ') : 'none'}</p>
 
-                    <p ><span className="font-bold">Rational: </span>{resultAnalysisTexts['AUTHORITY']}</p>
+                    <p ><span className="font-bold">Rational: </span>{decisionMakingAnalysisTexts['Rational']}</p>
 
-                    <p><span className="font-bold">Intuitive: </span>{resultAnalysisTexts['CARE']}</p>
+                    <p><span className="font-bold">Intuitive: </span>{decisionMakingAnalysisTexts['Intuitive']}</p>
 
-                    <p><span className="font-bold">Dependent: </span>{resultAnalysisTexts['SANCTITY']}</p>
+                    <p><span className="font-bold">Dependent: </span>{decisionMakingAnalysisTexts['Dependent']}</p>
 
-                    <p><span className="font-bold">Avoidant: </span>{resultAnalysisTexts['FAIRNESS']}</p>
+                    <p><span className="font-bold">Avoidant: </span>{decisionMakingAnalysisTexts['Avoidant']}</p>
 
-                    <p><span className="font-bold">Spontaneous: </span>{resultAnalysisTexts['LOYALTY']}</p>
-                </article>
-            </div>
-        </>
-    )
-}
-
-function ResultAnalysis() {
-    return (
-        <>
-            <div className="w-full">
-                <article className="text-sm space-y-2 font-inter">
-
-                    <p>Your moral decision-making style appears to lean towards Care and Sanctity.</p>
-
-                    <p>In comparison to the average population, based on our sample statistics, you tend to emphasize the care dimensionality.</p>
-
-                    <p ><span className="font-bold">Authority: </span>{resultAnalysisTexts['AUTHORITY']}</p>
-
-                    <p><span className="font-bold">Care: </span>{resultAnalysisTexts['CARE']}</p>
-
-                    <p><span className="font-bold">Sanctity: </span>{resultAnalysisTexts['SANCTITY']}</p>
-
-                    <p><span className="font-bold">Fairness: </span>{resultAnalysisTexts['FAIRNESS']}</p>
-
-                    <p><span className="font-bold">Loyalty: </span>{resultAnalysisTexts['LOYALTY']}</p>
+                    <p><span className="font-bold">Spontaneous: </span>{decisionMakingAnalysisTexts['Spontaneous']}</p>
                 </article>
             </div>
         </>

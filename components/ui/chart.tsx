@@ -156,6 +156,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints
       title: {
         display: false,
         text: 'Radar Chart Example',
+        
       },
     },
   };

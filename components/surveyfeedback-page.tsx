@@ -102,17 +102,16 @@ function PersonalityAnalysis() {
             <div className="w-full">
                 <article className="text-sm space-y-2 font-inter">
 
-                    <p>Your <b>Personality</b> appears to lean towards: {pOrientation.length > 0 ? pOrientation.join(', ') : 'none'}</p>
+                    <p>Your <b className="font-bold">Personality</b> appears to lean towards: <b>{pOrientation.length > 0 ? pOrientation.join(', ') : 'None'}</b></p>
+                    <p><span className="text-[#65BEFF] font-bold">Conscientiousness: </span>{personalityAnalysisTexts['Conscientiousness']}</p>
 
-                    <p ><span className="font-bold">Conscientiousness: </span>{personalityAnalysisTexts['Conscientiousness']}</p>
+                    <p><span className="text-[#FBA9D5] font-bold">Openness: </span>{personalityAnalysisTexts['Openness']}</p>
 
-                    <p><span className="font-bold">Openness: </span>{personalityAnalysisTexts['Openness']}</p>
+                    <p><span className="text-[#F5C569] font-bold">Extraversion: </span>{personalityAnalysisTexts['Extraversion']}</p>
 
-                    <p><span className="font-bold">Extraversion: </span>{personalityAnalysisTexts['Extraversion']}</p>
+                    <p><span className="text-[#DAABFF] font-bold">Agreeableness: </span>{personalityAnalysisTexts['Agreeableness']}</p>
 
-                    <p><span className="font-bold">Agreeableness: </span>{personalityAnalysisTexts['Agreeableness']}</p>
-
-                    <p><span className="font-bold">Neuroticism: </span>{personalityAnalysisTexts['Neuroticism']}</p>
+                    <p><span className="text-[#8ED082] font-bold">Neuroticism: </span>{personalityAnalysisTexts['Neuroticism']}</p>
                 </article>
             </div>
         </>
@@ -141,17 +140,17 @@ function DecisionMakingAnalysis() {
             <div className="w-full">
                 <article className="text-sm space-y-2 font-inter">
 
-                    <p>Your <b>Decision Making</b> appears to lean towards: {dOrientation.length > 0 ? dOrientation.join(', ') : 'none'}</p>
+                    <p>Your <b className="font-bold">Decision Making</b> appears to lean towards: <b>{dOrientation.length > 0 ? dOrientation.join(', ') : 'None'}</b></p>
 
-                    <p ><span className="font-bold">Rational: </span>{decisionMakingAnalysisTexts['Rational']}</p>
+                    <p ><span className="text-[#65BEFF] font-bold">Rational: </span>{decisionMakingAnalysisTexts['Rational']}</p>
 
-                    <p><span className="font-bold">Intuitive: </span>{decisionMakingAnalysisTexts['Intuitive']}</p>
+                    <p><span className="text-[#FBA9D5] font-bold">Intuitive: </span>{decisionMakingAnalysisTexts['Intuitive']}</p>
 
-                    <p><span className="font-bold">Dependent: </span>{decisionMakingAnalysisTexts['Dependent']}</p>
+                    <p><span className="text-[#F5C569] font-bold">Dependent: </span>{decisionMakingAnalysisTexts['Dependent']}</p>
 
-                    <p><span className="font-bold">Avoidant: </span>{decisionMakingAnalysisTexts['Avoidant']}</p>
+                    <p><span className="text-[#DAABFF] font-bold">Avoidant: </span>{decisionMakingAnalysisTexts['Avoidant']}</p>
 
-                    <p><span className="font-bold">Spontaneous: </span>{decisionMakingAnalysisTexts['Spontaneous']}</p>
+                    <p><span className="text-[#8ED082] font-bold">Spontaneous: </span>{decisionMakingAnalysisTexts['Spontaneous']}</p>
                 </article>
             </div>
         </>

@@ -135,6 +135,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints
           display: true,
           font: {
             weight: 'bold',
+            size:12,
           },
           padding: 10,
         },

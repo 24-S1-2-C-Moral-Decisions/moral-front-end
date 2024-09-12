@@ -55,7 +55,7 @@ function RadarChartAndResult() {
             </div>
             <div className="flex w-full items-stretch justify-center mb-8 bg-[#FFFFFF]">
                 <div className="w-[50%] flex items-center justify-center">
-                <div className="w-[70%] h-full flex items-center justify-center">
+                <div className="w-[80%] h-full flex items-center justify-center">
                 {/* <RadarChart labels={labels} dataPoints1={userDataPoints} dataPoints2={postDataPoints} />*/}
                         <RadarChart labels={personalityLabels} dataPoints1={personalityDataPoints} />
                     </div>
@@ -66,7 +66,7 @@ function RadarChartAndResult() {
             </div>
             <div className="flex w-full items-stretch justify-center mb-8 bg-[#FFFFFF]">
                 <div className="w-[50%] flex items-center justify-center">
-                    <div className="w-[70%] h-full flex items-center justify-center">
+                    <div className="w-[80%] h-full flex items-center justify-center">
                         <RadarChart labels={decisionMakingLabels} dataPoints1={decisionMakingDataPoints} />
                     </div>
                 </div>

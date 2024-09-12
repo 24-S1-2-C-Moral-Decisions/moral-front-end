@@ -57,6 +57,8 @@ export const FeedbackPage = ({ data }: { data: any }) => {
                 <div className="flex flex-col relative w-full h-full mb-10">
                     {/*<h2>Feedback Results</h2>*/}
                     <NavBar />
+                    {/*<DoughnutChartPanel result={result} />*/}
+                    
                 </div>
                 <DoughnutChartAndResult />
                 <div className="flex w-full items-center justify-center">
@@ -76,7 +78,7 @@ function DoughnutChartAndResult() {
             <div className="flex flex-col w-full pl-[4vw] font-kanit">
                 <div className="flex w-full">
                     <div className="w-[50%] bg-[#FFFFFF] rounded-3xl mx-auto p-[2vw]">
-                        <div className="w-[90%] mx-auto">
+                        <div className="w-[90%] mx-auto flex-col">
                             <></>
                             <DoughnutChartPanel result={result} />
                             <AssholeVotePanel result={result} />

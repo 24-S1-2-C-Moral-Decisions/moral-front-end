@@ -4,6 +4,8 @@ import { useState } from "react";
 import { DoughnutChart } from './ui/chart';
 import { RadarChart } from './ui/chart';
 import { NavBar } from './home/nav-bar';
+import AssholeVotePanel from './ui/assholePanel';
+import DoughnutChartPanel from './ui/doughnutChartPanel'; 
 
 interface SubAssholePanelProps {
     backgroundImageUrl: string;
@@ -54,7 +56,7 @@ export const FeedbackPage = ({ data }: { data: any }) => {
             <div className="w-full bg-[#fafafc]">
                 <div className="flex flex-col relative w-full h-full mb-10">
                     {/*<h2>Feedback Results</h2>*/}
-                    <NavBar/>
+                    <NavBar />
                 </div>
                 <DoughnutChartAndResult />
                 <div className="flex w-full items-center justify-center">
@@ -69,15 +71,19 @@ export const FeedbackPage = ({ data }: { data: any }) => {
 
 
 function DoughnutChartAndResult() {
-
     return (
         <>
             <div className="flex flex-col w-full pl-[4vw] font-kanit">
                 <div className="flex w-full">
                     <div className="w-[50%] bg-[#FFFFFF] rounded-3xl mx-auto p-[2vw]">
                         <div className="w-[90%] mx-auto">
+                            <></>
+                            <DoughnutChartPanel result={result} />
+                            <AssholeVotePanel result={result} />
+                            {/* 
                             <DoughnutPanel />
                             <AssholePanel />
+                            */}
                         </div>
 
                     </div>
@@ -129,7 +135,7 @@ function DoughnutPanel() {
                         left: '0%', // Align to the left edge
                     }}
                 >
-                    <h3 className="text-[3vw] text-[#8CC2FF] font-bold relative" style={{ right: '30%', top: '15%' }}>
+                    <h3 className="text-[3vw] text-[#8CC2FF] font-bold relative" style={{ right: '40%', top: '15%' }}>
                         {result.notAssholeNumber}
                     </h3>
                 </div>
@@ -138,13 +144,13 @@ function DoughnutPanel() {
                     className="absolute flex items-center justify-center w-[30%] h-full opacity-0 animate-dot-bg-fade-in-fast"
                     style={{
                         backgroundImage: "url('/imgs/assholeLine.png')",
-                        backgroundSize: '70% auto',
+                        backgroundSize: '10vw auto',
                         backgroundPosition: 'left center',
                         backgroundRepeat: 'no-repeat',
                         right: '0%', // Align to the right edge
                     }}
                 >
-                    <h3 className="text-[3vw] font-bold text-[#FFB8B8] relative" style={{ right: '-20%', top: '-15%' }}>
+                    <h3 className="text-[3vw] font-bold text-[#FFB8B8] relative" style={{ right: '-40%', top: '-15%' }}>
                         {result.assholeNumber}
                     </h3>
                 </div>
@@ -167,11 +173,13 @@ function DoughnutPanel() {
 function AssholePanel() {
     return (
         <>
+
             <div className="w-full flex mx-auto mt-[2vw]">
                 <SubAssholePanel backgroundImageUrl="/imgs/notAssholePanel.png" result={result} isAsshole={false} textColorClass="text-[#8CC2FF]" />
-                <div className="w-[2vw]"></div> 
+                <div className="w-[2vw]"></div>
                 <SubAssholePanel backgroundImageUrl="/imgs/assholePanel.png" result={result} isAsshole={true} textColorClass="text-[#FFB8B8]" />
             </div >
+
         </>
     )
 }

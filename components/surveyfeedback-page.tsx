@@ -20,7 +20,7 @@ export const SurveyFeedbackPage = ({ data }: { data: any }) => {
             {/*<h2>Feedback Results</h2>*/}
             <NavBar />
         </div>
-            <div className="w-[80%] mx-auto bg-[#ffffff]">
+            <div className="w-[90%] mx-auto bg-[#ffffff]">
 
                 <RadarChartAndResult />
                 <ImpactResult />
@@ -55,8 +55,8 @@ function RadarChartAndResult() {
             </div>
             <div className="flex w-full items-stretch justify-center mb-8 bg-[#FFFFFF]">
                 <div className="w-[50%] flex items-center justify-center">
-                    <div className="w-[80%]  h-full">
-                        {/* <RadarChart labels={labels} dataPoints1={userDataPoints} dataPoints2={postDataPoints} />*/}
+                <div className="w-[70%] h-full flex items-center justify-center">
+                {/* <RadarChart labels={labels} dataPoints1={userDataPoints} dataPoints2={postDataPoints} />*/}
                         <RadarChart labels={personalityLabels} dataPoints1={personalityDataPoints} />
                     </div>
                 </div>
@@ -66,7 +66,7 @@ function RadarChartAndResult() {
             </div>
             <div className="flex w-full items-stretch justify-center mb-8 bg-[#FFFFFF]">
                 <div className="w-[50%] flex items-center justify-center">
-                    <div className="w-[80%]  h-full">
+                    <div className="w-[70%] h-full flex items-center justify-center">
                         <RadarChart labels={decisionMakingLabels} dataPoints1={decisionMakingDataPoints} />
                     </div>
                 </div>
@@ -102,16 +102,16 @@ function PersonalityAnalysis() {
             <div className="w-full">
                 <article className="text-sm space-y-2 font-inter">
 
-                    <p>Your <b className="font-bold">Personality</b> appears to lean towards: <b>{pOrientation.length > 0 ? pOrientation.join(', ') : 'None'}</b></p>
-                    <p><span className="text-[#65BEFF] font-bold">Conscientiousness: </span>{personalityAnalysisTexts['Conscientiousness']}</p>
+                    <p >Your <b className="font-bold ">Personality</b> appears to lean towards: <b>{pOrientation.length > 0 ? pOrientation.join(', ') : 'None'}</b>.</p>
+                    <p><span className="text-[#65BEFF] font-bold">Conscientiousness </span><br/>{personalityAnalysisTexts['Conscientiousness']}</p>
 
-                    <p><span className="text-[#FBA9D5] font-bold">Openness: </span>{personalityAnalysisTexts['Openness']}</p>
+                    <p><span className="text-[#FBA9D5] font-bold">Openness </span><br/>{personalityAnalysisTexts['Openness']}</p>
 
-                    <p><span className="text-[#F5C569] font-bold">Extraversion: </span>{personalityAnalysisTexts['Extraversion']}</p>
+                    <p><span className="text-[#F5C569] font-bold">Extraversion </span><br/>{personalityAnalysisTexts['Extraversion']}</p>
 
-                    <p><span className="text-[#DAABFF] font-bold">Agreeableness: </span>{personalityAnalysisTexts['Agreeableness']}</p>
+                    <p><span className="text-[#DAABFF] font-bold">Agreeableness </span><br/>{personalityAnalysisTexts['Agreeableness']}</p>
 
-                    <p><span className="text-[#8ED082] font-bold">Neuroticism: </span>{personalityAnalysisTexts['Neuroticism']}</p>
+                    <p><span className="text-[#8ED082] font-bold">Neuroticism </span><br/>{personalityAnalysisTexts['Neuroticism']}</p>
                 </article>
             </div>
         </>
@@ -140,17 +140,17 @@ function DecisionMakingAnalysis() {
             <div className="w-full">
                 <article className="text-sm space-y-2 font-inter">
 
-                    <p>Your <b className="font-bold">Decision Making</b> appears to lean towards: <b>{dOrientation.length > 0 ? dOrientation.join(', ') : 'None'}</b></p>
+                    <p>Your <b className="font-bold">Decision Making</b> appears to lean towards: <b>{dOrientation.length > 0 ? dOrientation.join(', ') : 'None'}</b>.</p>
 
-                    <p ><span className="text-[#65BEFF] font-bold">Rational: </span>{decisionMakingAnalysisTexts['Rational']}</p>
+                    <p ><span className="text-[#65BEFF] font-bold">Rational </span><br/>{decisionMakingAnalysisTexts['Rational']}</p>
 
-                    <p><span className="text-[#FBA9D5] font-bold">Intuitive: </span>{decisionMakingAnalysisTexts['Intuitive']}</p>
+                    <p><span className="text-[#FBA9D5] font-bold">Intuitive </span><br/>{decisionMakingAnalysisTexts['Intuitive']}</p>
 
-                    <p><span className="text-[#F5C569] font-bold">Dependent: </span>{decisionMakingAnalysisTexts['Dependent']}</p>
-
-                    <p><span className="text-[#DAABFF] font-bold">Avoidant: </span>{decisionMakingAnalysisTexts['Avoidant']}</p>
-
-                    <p><span className="text-[#8ED082] font-bold">Spontaneous: </span>{decisionMakingAnalysisTexts['Spontaneous']}</p>
+                    <p><span className="text-[#F5C569] font-bold">Dependent </span><br/>{decisionMakingAnalysisTexts['Dependent']}</p>
+                    
+                    <p><span className="text-[#DAABFF] font-bold">Avoidant </span><br/>{decisionMakingAnalysisTexts['Avoidant']}</p>
+                    
+                    <p><span className="text-[#8ED082] font-bold">Spontaneous </span><br/>{decisionMakingAnalysisTexts['Spontaneous']}</p>
                 </article>
             </div>
         </>

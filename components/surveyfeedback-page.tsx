@@ -78,8 +78,9 @@ function RadarChartAndResult() {
         </>
     )
 }
-
+const colorful = true;
 function PersonalityAnalysis() {
+    
     const personalityAnalysisTexts = {
         Openness: "This trait features characteristics like imagination, creativity, and curiosity. People high in openness tend to be more adventurous and open to new experiences, ideas, and unconventional values.",
         Conscientiousness: "This trait is associated with being disciplined, organized, and goal-oriented. Individuals who score high in conscientiousness are often reliable, responsible, and tend to plan ahead.",
@@ -102,16 +103,16 @@ function PersonalityAnalysis() {
             <div className="w-full">
                 <article className="text-sm space-y-2 font-inter">
 
-                    <p >Your <b className="font-bold ">Personality</b> appears to lean towards: <b>{pOrientation.length > 0 ? pOrientation.join(', ') : 'None'}</b>.</p>
-                    <p><span className="text-[#65BEFF] font-bold">Conscientiousness </span><br/>{personalityAnalysisTexts['Conscientiousness']}</p>
+                    <p >Your <b className="font-bold ">Personality</b> appears to lean towards: <b className="">{pOrientation.length > 0 ? pOrientation.join(', ') : 'None'}</b>.</p>
+                    <p><span className={`font-bold ${colorful ? 'text-[#65BEFF]' : 'text-black'}`}>Conscientiousness </span><br/>{personalityAnalysisTexts['Conscientiousness']}</p>
 
-                    <p><span className="text-[#FBA9D5] font-bold">Openness </span><br/>{personalityAnalysisTexts['Openness']}</p>
+                    <p><span className={`font-bold ${colorful ? 'text-[#FBA9D5]' : 'text-black'}`}>Openness </span><br/>{personalityAnalysisTexts['Openness']}</p>
 
-                    <p><span className="text-[#F5C569] font-bold">Extraversion </span><br/>{personalityAnalysisTexts['Extraversion']}</p>
+                    <p><span className={`font-bold ${colorful ? 'text-[#F5C569]' : 'text-black'}`}>Extraversion </span><br/>{personalityAnalysisTexts['Extraversion']}</p>
 
-                    <p><span className="text-[#DAABFF] font-bold">Agreeableness </span><br/>{personalityAnalysisTexts['Agreeableness']}</p>
+                    <p><span className={`font-bold ${colorful ? 'text-[#DAABFF]' : 'text-black'}`}>Agreeableness </span><br/>{personalityAnalysisTexts['Agreeableness']}</p>
 
-                    <p><span className="text-[#8ED082] font-bold">Neuroticism </span><br/>{personalityAnalysisTexts['Neuroticism']}</p>
+                    <p><span className={`font-bold ${colorful ? 'text-[#8ED082]' : 'text-black'}`}>Neuroticism </span><br/>{personalityAnalysisTexts['Neuroticism']}</p>
                 </article>
             </div>
         </>
@@ -141,16 +142,17 @@ function DecisionMakingAnalysis() {
                 <article className="text-sm space-y-2 font-inter">
 
                     <p>Your <b className="font-bold">Decision Making</b> appears to lean towards: <b>{dOrientation.length > 0 ? dOrientation.join(', ') : 'None'}</b>.</p>
+                   
+                    <p><span className={`font-bold ${colorful ? 'text-[#65BEFF]' : 'text-black'}`}>Intuitive </span><br/>{decisionMakingAnalysisTexts['Intuitive']}</p>
 
-                    <p ><span className="text-[#65BEFF] font-bold">Rational </span><br/>{decisionMakingAnalysisTexts['Rational']}</p>
+                    <p><span className={`font-bold ${colorful ? 'text-[#FBA9D5]' : 'text-black'}`}>Dependent </span><br/>{decisionMakingAnalysisTexts['Dependent']}</p>
 
-                    <p><span className="text-[#FBA9D5] font-bold">Intuitive </span><br/>{decisionMakingAnalysisTexts['Intuitive']}</p>
+                    <p ><span className={`font-bold ${colorful ? 'text-[#F5C569]' : 'text-black'}`}>Rational </span><br/>{decisionMakingAnalysisTexts['Rational']}</p>
 
-                    <p><span className="text-[#F5C569] font-bold">Dependent </span><br/>{decisionMakingAnalysisTexts['Dependent']}</p>
                     
-                    <p><span className="text-[#DAABFF] font-bold">Avoidant </span><br/>{decisionMakingAnalysisTexts['Avoidant']}</p>
+                    <p><span className={`font-bold ${colorful ? 'text-[#DAABFF]' : 'text-black'}`}>Avoidant </span><br/>{decisionMakingAnalysisTexts['Avoidant']}</p>
                     
-                    <p><span className="text-[#8ED082] font-bold">Spontaneous </span><br/>{decisionMakingAnalysisTexts['Spontaneous']}</p>
+                    <p><span className={`font-bold ${colorful ? 'text-[#8ED082]' : 'text-black'}`}>Spontaneous </span><br/>{decisionMakingAnalysisTexts['Spontaneous']}</p>
                 </article>
             </div>
         </>

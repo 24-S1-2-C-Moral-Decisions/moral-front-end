@@ -135,8 +135,14 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints
           display: true,
           font: {
             weight: 'bold',
-            size:12,
+            size:13,
           },
+
+          color: (context) => {
+            const colors = ['#65BEFF', '#FBA9D5', '#F5C569', '#DAABFF', '#8ED082'];
+            return colors[context.index % colors.length];
+          },
+          
           padding: 10,
         },
         ticks: {
@@ -161,6 +167,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints
       },
     },
   };
+  
 
   return <Radar data={data} options={options} />;
 };

@@ -1,6 +1,7 @@
-import { usePage } from "@/lib/usePage"
-import { Button } from "./ui/button"
 import { useState } from "react";
+import { useRouter } from 'next/navigation'
+
+import { Button } from "./ui/button"
 import { RadarChart } from "./ui/chart";
 import UrlCopyBox from "./ui/url-copy-box";
 import { NavBar } from './home/nav-bar';
@@ -39,18 +40,17 @@ const selectedChangeAnalysisTexts = {
 
 export const SurveyFeedbackPage = ({ data }: { data: any }) => {
     return (
-        <><div className="flex flex-col relative w-full mb-10">
+        <>
+        <div className="flex flex-col relative w-full mb-10">
             {/*<h2>Feedback Results</h2>*/}
             <NavBar />
         </div>
             <div className="w-[80%] mx-auto bg-[#ffffff]">
-
                 <RadarChartAndResult />
                 <ImpactResult />
                 <div className="flex mb-8">
                     <Share />
                 </div>
-
             </div>
         </>
     )
@@ -153,8 +153,9 @@ function ImpactResult() {
 }
 
 function Share() {
-    const { setPage } = usePage();
     const [close, setClose] = useState("false");
+    const router = useRouter();
+
     return (
         <>
             <div className="w-full bg-[#F5F5F5] items-center justify-center mb-16 p-8 font-inter">
@@ -170,7 +171,8 @@ function Share() {
                         onClick={() => {
                             setClose("true");
                             setTimeout(() => {
-                                setPage("main"); {/* Change to home page later */ }
+                                router.push("/home/search");
+                                // setPage("main"); {/* Change to home page later */ }
                             }, 500);
                         }}
                     >

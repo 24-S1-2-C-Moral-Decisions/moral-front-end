@@ -1,12 +1,16 @@
+'use client'
 import * as React from "react";
-import { usePage } from "@/lib/usePage"
+import { useRouter } from 'next/navigation'
+
 import { cn } from "@/lib/utils";
+
 import { Button } from "./ui/button"
 
 export const MainPage = ({ data }: { data: any }) => {
-    const { setPage } = usePage();
 
     const situationStr = "Situation";
+
+    const router = useRouter()
 
     const [close, setClose] = React.useState("false");
     const [dispalyInfo, setDisplayInfo] = React.useState<String>("");
@@ -66,7 +70,7 @@ export const MainPage = ({ data }: { data: any }) => {
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    setPage("game");
+                                    router.push("/game")
                                 }, 500);
                             }}
                         >

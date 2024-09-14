@@ -1,8 +1,9 @@
-import { usePage } from "@/lib/usePage"
-import { Button } from "./ui/button"
 import { useState } from "react";
+import { useRouter } from 'next/navigation'
+
 import { DoughnutChart } from './ui/chart';
 import { RadarChart } from './ui/chart';
+import { Button } from "./ui/button"
 import { NavBar } from './home/nav-bar';
 
 interface SubAssholePanelProps {
@@ -292,8 +293,11 @@ interface ScrollToProps {
 }
 
 function ScrollToSection({ id }: ScrollToProps) {
-    const { setPage } = usePage();
+    // const { setPage } = usePage();
     const [close, setClose] = useState("false");
+
+    const router = useRouter();
+
     return (
         <>
             <div id={id} className="w-full flex items-center justify-center">
@@ -315,7 +319,8 @@ function ScrollToSection({ id }: ScrollToProps) {
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    setPage("surveyFeedback"); {/* Change to survey page later */ }
+                                    router.push("/surveyfeedback")
+                                    // setPage("surveyFeedback"); {/* Change to survey page later */ }
                                 }, 500);
                             }}
                         >

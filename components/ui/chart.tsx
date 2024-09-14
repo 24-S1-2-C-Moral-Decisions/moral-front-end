@@ -99,8 +99,8 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints
     {
       label: 'Your test data',
       data: dataPoints1,
-      backgroundColor: 'rgba(208,21,21, 0.2)',
-      borderColor: 'rgba(208,21,21, 1)',
+      backgroundColor: 'rgba(31,95,209, 0.2)',
+      borderColor: 'rgba(31,95,209, 1)',
       borderWidth: 3,
     }
   ];
@@ -109,8 +109,8 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints
     datasets.push({
       label: 'Post test data',
       data: dataPoints2,
-      backgroundColor: 'rgba(31,95,209, 0.2)',
-      borderColor: 'rgba(31,95,209, 1)',
+      backgroundColor: 'rgba(208,21,21, 0.2)',
+      borderColor: 'rgba(208,21,21, 1)',
       borderWidth: 3,
     });
   }
@@ -135,7 +135,14 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints
           display: true,
           font: {
             weight: 'bold',
+            size:13,
           },
+
+          color: (context) => {
+            const colors = ['#65BEFF', '#FBA9D5', '#F5C569', '#DAABFF', '#8ED082'];
+            return colors[context.index % colors.length];
+          },
+          
           padding: 10,
         },
         ticks: {
@@ -156,9 +163,11 @@ const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints
       title: {
         display: false,
         text: 'Radar Chart Example',
+        
       },
     },
   };
+  
 
   return <Radar data={data} options={options} />;
 };

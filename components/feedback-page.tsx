@@ -4,6 +4,8 @@ import { useState } from "react";
 import { DoughnutChart } from './ui/chart';
 import { RadarChart } from './ui/chart';
 import { NavBar } from './home/nav-bar';
+import AssholeVotePanel from './ui/assholePanel';
+import DoughnutChartPanel from './ui/doughnutChartPanel';
 
 interface SubAssholePanelProps {
     backgroundImageUrl: string;
@@ -54,7 +56,8 @@ export const FeedbackPage = ({ data }: { data: any }) => {
             <div className="w-full bg-[#fafafc]">
                 <div className="flex flex-col relative w-full h-full mb-10">
                     {/*<h2>Feedback Results</h2>*/}
-                    <NavBar/>
+                    <NavBar />
+                    {/*<DoughnutChartPanel result={result} />*/}
                 </div>
                 <DoughnutChartAndResult />
                 <div className="flex w-full items-center justify-center">
@@ -69,15 +72,19 @@ export const FeedbackPage = ({ data }: { data: any }) => {
 
 
 function DoughnutChartAndResult() {
-
     return (
         <>
             <div className="flex flex-col w-full pl-[4vw] font-kanit">
                 <div className="flex w-full">
                     <div className="w-[50%] bg-[#FFFFFF] rounded-3xl mx-auto p-[2vw]">
-                        <div className="w-[90%] mx-auto">
+                        <div className="w-[90%] mx-auto flex-col">
+                            <></>
+                            <DoughnutChartPanel result={result} />
+                            <AssholeVotePanel result={result} />
+                            {/* 
                             <DoughnutPanel />
                             <AssholePanel />
+                            */}
                         </div>
 
                     </div>
@@ -117,47 +124,40 @@ function DoughnutPanel() {
     const labels = ['Asshole', 'Not Asshole'];
     return (
         <>
-            <div className="relative w-[90%] items-center mx-auto h-[18vw]">
-                {/* left div */}
+            <div className="relative w-[90%] mx-auto h-[18vw] flex items-center justify-center">
+                {/* Left div */}
                 <div
-                    className="absolute flex items-center justify-center w-[30%] h-full opacity-0 animate-dot-bg-fade-in-fast"
+                    className="relative flex items-center justify-center w-[10vw] h-full opacity-0 animate-dot-bg-fade-in-fast"
                     style={{
                         backgroundImage: "url('/imgs/notAssholeLine.png')",
-                        backgroundSize: '10vw auto',
+                        backgroundSize: '90% auto',
                         backgroundPosition: 'right center',
                         backgroundRepeat: 'no-repeat',
-                        left: '0%', // Align to the left edge
                     }}
                 >
-                    <h3 className="text-[3vw] text-[#8CC2FF] font-bold relative" style={{ right: '30%', top: '15%' }}>
+                    <h3 className="text-[3vw] text-[#8CC2FF] font-bold absolute left-0 mt-[5vw]">
                         {result.notAssholeNumber}
                     </h3>
                 </div>
-                {/* right div */}
+                {/* Middle DoughnutChart div */}
                 <div
-                    className="absolute flex items-center justify-center w-[30%] h-full opacity-0 animate-dot-bg-fade-in-fast"
-                    style={{
-                        backgroundImage: "url('/imgs/assholeLine.png')",
-                        backgroundSize: '70% auto',
-                        backgroundPosition: 'left center',
-                        backgroundRepeat: 'no-repeat',
-                        right: '0%', // Align to the right edge
-                    }}
-                >
-                    <h3 className="text-[3vw] font-bold text-[#FFB8B8] relative" style={{ right: '-20%', top: '-15%' }}>
-                        {result.assholeNumber}
-                    </h3>
-                </div>
-                {/* middle DoughnutChart div */}
-                <div
-                    className="absolute w-[50%] mx-auto h-[18vw]"
-                    style={{
-                        left: '25%', // Start from 25%
-                        top: '0', // Align to the top of the parent container
-                        bottom: '0', // Align to the bottom of the parent container
-                    }}
+                    className="w-[18vw] h-[18vw] flex items-center justify-center"
                 >
                     <DoughnutChart labels={labels} voteData={voteData} />
+                </div>
+                {/* Right div */}
+                <div
+                    className="relative flex items-center justify-center w-[10vw] h-full opacity-0 animate-dot-bg-fade-in-fast"
+                    style={{
+                        backgroundImage: "url('/imgs/assholeLine.png')",
+                        backgroundSize: '90% auto',
+                        backgroundPosition: 'left center',
+                        backgroundRepeat: 'no-repeat',
+                    }}
+                >
+                    <h3 className="text-[3vw] font-bold text-[#FFB8B8] absolute right-0 mt-[-5vw]">
+                        {result.assholeNumber}
+                    </h3>
                 </div>
             </div>
         </>
@@ -167,11 +167,13 @@ function DoughnutPanel() {
 function AssholePanel() {
     return (
         <>
-            <div className="w-full flex mx-auto mt-[2vw]">
+
+            <div className="w-full flex justify-center items-center mx-auto mt-[2vw]">
                 <SubAssholePanel backgroundImageUrl="/imgs/notAssholePanel.png" result={result} isAsshole={false} textColorClass="text-[#8CC2FF]" />
-                <div className="w-[2vw]"></div> 
+                <div className="w-[2vw]"></div>
                 <SubAssholePanel backgroundImageUrl="/imgs/assholePanel.png" result={result} isAsshole={true} textColorClass="text-[#FFB8B8]" />
             </div >
+
         </>
     )
 }
@@ -179,24 +181,28 @@ function AssholePanel() {
 function SubAssholePanel({ backgroundImageUrl, result, isAsshole, textColorClass }: SubAssholePanelProps) {
     return (
         <div
-            className="relative w-[45%] mx-auto font-kanit"
+            className="relative w-[18vw] h-[18vw] font-kanit"
             style={{
                 backgroundImage: `url(${backgroundImageUrl})`,
-                backgroundSize: '100% auto',
+                backgroundSize: '100% auto', // Changed to cover to ensure the background image covers the entire div
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                paddingBottom: '45%',
             }}
         >
-            <div className="absolute inset-0 bottom-[2vw] flex flex-col items-center justify-center">
-                <div className={`text-[5.5vw] ${textColorClass} font-bold`}>
+            {/* Centered number div */}
+            <div className="absolute inset-0 flex items-center justify-center">
+                <div className={`text-[5vw] ${textColorClass} font-bold`}>
                     {isAsshole ? result.assholeNumber : result.notAssholeNumber}
                 </div>
             </div>
-            <div className="absolute bottom-[1.3vw] left-0 right-0 flex flex-col items-center text-center">
-                <p className="text-[1.3vw] font-bold">You Are {!isAsshole && <span>Not</span>} The Asshole</p>
-                <p className="text-[1vw] text-gray-500 font-lato">
-                    The number of people out of {result.totalNumber} <br /> who think you are {!isAsshole && <span>not</span>} the asshole
+            {/* Centered text div */}
+            <div className="absolute bottom-[1vw] left-0 right-0 flex flex-col items-center text-center">
+                <p className="text-[1.3vw] font-bold">
+                    You Are {!isAsshole && <span>Not</span>} The Asshole
+                </p>
+                <p className="text-[1vw] text-gray-500 font-lato mt-2">
+                    The number of people out of {result.totalNumber} <br />
+                    who think you are {!isAsshole && <span>not</span>} the asshole
                 </p>
             </div>
         </div>

@@ -46,6 +46,29 @@ const tags = [
     }
 ]
 
+const mdTags = [
+    {
+        title: "Communication",
+        picUrl: "/imgs/tags/ic-communication.svg",
+        url: ""
+    },
+    {
+        title: "Family",
+        picUrl: "/imgs/tags/ic-family.svg",
+        url: ""
+    },
+    {
+        title: "Friend",
+        picUrl: "/imgs/tags/ic-friends.svg",
+        url: ""
+    },
+    {
+        title: "More",
+        picUrl: "/imgs/tags/ic-more.svg",
+        url: ""
+    }
+]
+
 
 
 export default async function SearchPage() {
@@ -160,14 +183,15 @@ export default async function SearchPage() {
         <div className="w-full h-full flex flex-col relative">
             <NavBar />
             <div className="mt-5 w-full flex justify-center">
-                <div className=" w-[798px] h-[758px] flex flex-col items-center space-y-5">
-                    <div className="flex rounded-[25px] shadow-lg">
-                        <input className="w-[700px] h-[80px] rounded-l-[25px]" />
+                <div className=" md:w-[798px] w-full md:px-0 px-4 h-[758px] flex flex-col items-center space-y-5">
+                    <div className="w-full flex rounded-[25px] shadow-lg">
+                        <input className="w-full h-[80px] rounded-l-[25px]" />
                         <button className="w-[75px] h-[80px] rounded-r-[25px] bg-[#EBEEFC] flex justify-center items-center">
                             <img src="/imgs/search-icon.svg" alt="search" />
                         </button>
                     </div>
-                    <div className="w-full flex items-center justify-between px-5">
+
+                    <div className="w-full md:flex items-center justify-between px-5 hidden">
                         {tags.map((tag) => (
                             <button key={tag.title} className="w-[77px] h-[79px] flex flex-col justify-between items-center">
                                 <div className="w-[57px] h-[57px] rounded-full border-[0.5px] border-[#B2B2B2] flex justify-center items-center">
@@ -180,16 +204,32 @@ export default async function SearchPage() {
                             </button>
                         ))}
                     </div>
+
+                    <div className="w-full flex items-center justify-between px-5 md:hidden">
+                        {mdTags.map((tag) => (
+                            <button key={tag.title} className="w-[77px] h-[79px] flex flex-col justify-between items-center">
+                                <div className="w-[57px] h-[57px] rounded-full border-[0.5px] border-[#B2B2B2] flex justify-center items-center">
+                                    <img src={tag.picUrl} alt={tag.title} width="20px" height="20px" />
+                                </div>
+
+                                <p className=" text-[#7C7C7C] text-sm">
+                                    {tag.title}
+                                </p>
+                            </button>
+                        ))}
+                    </div>
+
                     <hr className="w-full" />
+
                     <div className="w-full flex justify-between relative">
-                        <div className="w-[333px] h-[490px]">
-                        <PopularTopics topics={popularTopic} />
+                        <div className="w-[333px] h-[490px] md:flex hidden">
+                            <PopularTopics topics={popularTopic} />
                         </div>
                         <div className="w-[415px] h-[490px]">
-                        <HotPosts posts={hotPosts} />
+                            <HotPosts posts={hotPosts} />
                         </div>
                     </div>
-                    <div className=" right-0 top-[100px] fixed">
+                    <div className="2xl:fixed 2xl:block 2xl:right-0 2xl:top-[100px] hidden">
                         <SurveyPopup />
                     </div>
                 </div>

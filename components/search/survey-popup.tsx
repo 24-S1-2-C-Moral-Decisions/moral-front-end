@@ -8,12 +8,12 @@ export const SurveyPopup = () => {
     const [hide,setHide]=useState(false);
 
     return (
-        !hide&&<div className="p-4 w-[382px] h-[425px] flex flex-col items-center rounded-[15px] bg-[#F9FAFa]">
+        !hide&&<div className="p-4 w-[288px] h-[425px] flex flex-col items-center rounded-[15px] bg-[#F9FAFa]">
             <button className="absolute left-1 top-1"
             onClick={()=>setHide(true)}>
                 <LucideXCircle/>
             </button>
-            <img src="/imgs/am-i-the-asshole.jpg" alt="am-i-the-asshole" width="342px" height="131px" />
+            <img src="/imgs/am-i-the-asshole.jpg" alt="am-i-the-asshole" width="288px" />
             <div className="w-full my-4">
                 <h1 className="font-semibold left-0">
                     Am I The Asshole?

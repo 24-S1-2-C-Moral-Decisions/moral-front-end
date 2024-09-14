@@ -2,7 +2,10 @@ import { usePage } from "@/lib/usePage"
 import { Button } from "./ui/button"
 import { useState } from "react";
 import { DoughnutChart } from './ui/chart';
-import { RadarChart } from "./ui/chart";
+import { RadarChart } from './ui/chart';
+import { NavBar } from './home/nav-bar';
+import AssholeVotePanel from './ui/assholePanel';
+import DoughnutChartPanel from './ui/doughnutChartPanel';
 
 interface SubAssholePanelProps {
     backgroundImageUrl: string;
@@ -51,17 +54,17 @@ export const FeedbackPage = ({ data }: { data: any }) => {
     return (
         <>
             <div className="w-full bg-[#fafafc]">
-                <div className="flex w-full h-12 items-center justify-center">
+                <div className="flex flex-col relative w-full h-full mb-10">
                     {/*<h2>Feedback Results</h2>*/}
+                    <NavBar />
+                    {/*<DoughnutChartPanel result={result} />*/}
                 </div>
                 <DoughnutChartAndResult />
                 <div className="flex w-full items-center justify-center">
                 </div>
             </div>
-            <RadarChartAndAnalysis />
-            <div className="flex w-full items-center justify-center">
-            </div>
-            <Banner />
+            {/* <RadarChartAndAnalysis /> */}
+            <ScrollToSection id="bottom-banner" />
         </>
     )
 }
@@ -69,59 +72,46 @@ export const FeedbackPage = ({ data }: { data: any }) => {
 
 
 function DoughnutChartAndResult() {
-    const voteData = [result.assholeNumber, result.notAssholeNumber];
-    const labels = ['Asshole', 'Not Asshole'];
     return (
         <>
-            <div className="flex w-full mb-[4vw]">
-                <div className="w-[50%] justify-center bg-[#FFFFFF] p-[2vw]">
-                    <div className="relative w-[90%] mx-auto h-[18vw]"> {/* Set a height for proper overlapping */}
-                        {/* left div */}
-                        <div className="absolute flex items-center justify-center w-[30%] h-full opacity-0 absolute h-full animate-dot-bg-fade-in-fast"
-                            style={{
-                                backgroundImage: "url('/imgs/notAssholeLine.png')",
-                                backgroundSize: '10vw auto',
-                                backgroundPosition: 'right center',
-                                backgroundRepeat: 'no-repeat',
-                                left: '0%',  // Align to the left edge
-                            }}>
-                            <h3 className="text-[3vw] text-[#8CC2FF] relative" style={{ right: '30%', top: '15%' }}>
-                                {result.notAssholeNumber}
-                            </h3>
+            <div className="flex flex-col w-full pl-[4vw] font-kanit">
+                <div className="flex w-full">
+                    <div className="w-[50%] bg-[#FFFFFF] rounded-3xl mx-auto p-[2vw]">
+                        <div className="w-[90%] mx-auto flex-col">
+                            <></>
+                            <DoughnutChartPanel result={result} />
+                            <AssholeVotePanel result={result} />
+                            {/* 
+                            <DoughnutPanel />
+                            <AssholePanel />
+                            */}
                         </div>
-                        {/* right div */}
-                        <div className="absolute flex items-center justify-center w-[30%] h-full opacity-0 absolute h-full animate-dot-bg-fade-in-fast"
-                            style={{
-                                backgroundImage: "url('/imgs/assholeLine.png')",
-                                backgroundSize: '70% auto',
-                                backgroundPosition: 'left center',
-                                backgroundRepeat: 'no-repeat',
-                                right: '0%',  // Align to the right edge
-                            }}>
-                            <h3 className="text-[3vw] text-[#FFB8B8] relative" style={{ right: '-20%', top: '-15%' }}>
-                                {result.assholeNumber}
-                            </h3>
-                        </div>
-                        {/* middle DoughnutChart div */}
-                        <div className="absolute w-[50%] mx-auto h-[18vw]"
-                            style={{
-                                left: '25%',   // Start from 25%
-                                top: '0',      // Align to the top of the parent container
-                                bottom: '0',   // Align to the bottom of the parent container
-                            }}>
-                            <DoughnutChart labels={labels} voteData={voteData} />
-                        </div>
-
 
                     </div>
-
-                    <AssholePanel />
-
+                    <div className="w-[50%] flex flex-col justify-center">
+                        <div className="w-[80%] mx-auto">
+                            <Feedback />
+                        </div>
+                    </div>
                 </div>
-                <div className="w-[50%] flex flex-col justify-center">
-                    <div className="w-[80%] mx-auto">
-                        <Feedback />
-                    </div>
+
+                <div className="w-full flex items-center justify-center">
+                    <button
+                        className="flex flex-col items-center text-white mt-[1vw] mb-[1vw]"
+                        onClick={() => {
+                            // Replace 'bottom-banner' with the actual ID of the target div
+                            const targetDiv = document.getElementById('bottom-banner');
+                            if (targetDiv) {
+                                targetDiv.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}
+                    >
+                        <img
+                            src="/imgs/feedback-page-flow.gif"
+                            alt="Scroll Down"
+                            className="w-[8vw] h-[6vw] opacity-70"
+                        />
+                    </button>
                 </div>
             </div>
         </>
@@ -129,14 +119,61 @@ function DoughnutChartAndResult() {
 
 }
 
+function DoughnutPanel() {
+    const voteData = [result.assholeNumber, result.notAssholeNumber];
+    const labels = ['Asshole', 'Not Asshole'];
+    return (
+        <>
+            <div className="relative w-[90%] mx-auto h-[18vw] flex items-center justify-center">
+                {/* Left div */}
+                <div
+                    className="relative flex items-center justify-center w-[10vw] h-full opacity-0 animate-dot-bg-fade-in-fast"
+                    style={{
+                        backgroundImage: "url('/imgs/notAssholeLine.png')",
+                        backgroundSize: '90% auto',
+                        backgroundPosition: 'right center',
+                        backgroundRepeat: 'no-repeat',
+                    }}
+                >
+                    <h3 className="text-[3vw] text-[#8CC2FF] font-bold absolute left-0 mt-[5vw]">
+                        {result.notAssholeNumber}
+                    </h3>
+                </div>
+                {/* Middle DoughnutChart div */}
+                <div
+                    className="w-[18vw] h-[18vw] flex items-center justify-center"
+                >
+                    <DoughnutChart labels={labels} voteData={voteData} />
+                </div>
+                {/* Right div */}
+                <div
+                    className="relative flex items-center justify-center w-[10vw] h-full opacity-0 animate-dot-bg-fade-in-fast"
+                    style={{
+                        backgroundImage: "url('/imgs/assholeLine.png')",
+                        backgroundSize: '90% auto',
+                        backgroundPosition: 'left center',
+                        backgroundRepeat: 'no-repeat',
+                    }}
+                >
+                    <h3 className="text-[3vw] font-bold text-[#FFB8B8] absolute right-0 mt-[-5vw]">
+                        {result.assholeNumber}
+                    </h3>
+                </div>
+            </div>
+        </>
+    )
+}
 
 function AssholePanel() {
     return (
         <>
-            <div className="w-full flex mx-auto mt-[2vw]">
+
+            <div className="w-full flex justify-center items-center mx-auto mt-[2vw]">
                 <SubAssholePanel backgroundImageUrl="/imgs/notAssholePanel.png" result={result} isAsshole={false} textColorClass="text-[#8CC2FF]" />
+                <div className="w-[2vw]"></div>
                 <SubAssholePanel backgroundImageUrl="/imgs/assholePanel.png" result={result} isAsshole={true} textColorClass="text-[#FFB8B8]" />
             </div >
+
         </>
     )
 }
@@ -144,24 +181,28 @@ function AssholePanel() {
 function SubAssholePanel({ backgroundImageUrl, result, isAsshole, textColorClass }: SubAssholePanelProps) {
     return (
         <div
-            className="relative w-[45%] mx-auto"
+            className="relative w-[18vw] h-[18vw] font-kanit"
             style={{
                 backgroundImage: `url(${backgroundImageUrl})`,
-                backgroundSize: '100% auto',
+                backgroundSize: '100% auto', // Changed to cover to ensure the background image covers the entire div
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                paddingBottom: '45%',
             }}
         >
-            <div className="absolute inset-0 bottom-[2vw] flex flex-col items-center justify-center">
-                <div className={`text-[5.5vw] ${textColorClass} font-bold`}>
+            {/* Centered number div */}
+            <div className="absolute inset-0 flex items-center justify-center">
+                <div className={`text-[5vw] ${textColorClass} font-bold`}>
                     {isAsshole ? result.assholeNumber : result.notAssholeNumber}
                 </div>
             </div>
-            <div className="absolute bottom-[1.3vw] left-0 right-0 flex flex-col items-center text-center">
-                <p className="text-[1.3vw] font-bold">You Are {!isAsshole && <span>Not</span>} The Asshole</p>
-                <p className="text-[1vw] text-gray-500">
-                    The number of people out of {result.totalNumber} <br /> who think you are {!isAsshole && <span>not</span>} the asshole
+            {/* Centered text div */}
+            <div className="absolute bottom-[1vw] left-0 right-0 flex flex-col items-center text-center">
+                <p className="text-[1.3vw] font-bold">
+                    You Are {!isAsshole && <span>Not</span>} The Asshole
+                </p>
+                <p className="text-[1vw] text-gray-500 font-lato mt-2">
+                    The number of people out of {result.totalNumber} <br />
+                    who think you are {!isAsshole && <span>not</span>} the asshole
                 </p>
             </div>
         </div>
@@ -171,14 +212,17 @@ function SubAssholePanel({ backgroundImageUrl, result, isAsshole, textColorClass
 function Feedback() {
     return (
         <>
-            <div className="w-full flex flex-col mx-auto p-[1vw]">
+            <div className="w-full flex flex-col mx-auto p-[1vw] font-kanit">
                 <div className="mb-[0.5vw]">
-                    <h3 className="text-[1.3vw] text-blue-600 font-bold">What Did You Choose</h3>
+                    <h3 className="text-[1.4vw] text-blue-600 font-bold">What You Chose</h3>
+                    {/* rem: text-base */}
                 </div>
                 <div>
-                    <h1 className="text-[2.2vw] font-bold mb-[0.5vw] text-2xl">Option A – Call Your Friend Fat</h1>
+                    <h1 className="text-[2.3vw] font-bold mb-[0.5vw]">Option A – Call Your Friend Fat</h1>
+                    {/* rem: text-2xl */}
                     <br />
-                    <p className="text-[1.3vw]">
+                    <p className="text-[1.4vw] font-lato">
+                        {/* rem: text-base */}
                         It could indicate that the user is confrontational or not afraid to engage in tit-for-tat banter.
                         This response may suggest a willingness to retaliate or use humor to deflect criticism, but it could
                         also be seen as insensitive or lacking empathy, especially in a sensitive context like body image.
@@ -195,12 +239,12 @@ function RadarChartAndAnalysis() {
     return (
         <>
             <div className="flex w-full h-[12vw] items-center justify-center bg-[#ffffff]">
-                <h2 className="text-[2.5vw] font-bold">Your Result Analysis</h2>
+                <h2 className="text-[2.5vw] font-bold font-kanit">Your Result Analysis</h2>
             </div>
             <div className="flex w-full items-stretch">
                 <div className="w-[50%] flex items-center justify-center">
                     <div className="w-[70%] bg-[#FFFFFF] h-full rounded-lg p-[2vw]">
-                        <RadarChart labels={labels} dataPoints={dataPoints} />
+                        <RadarChart labels={labels} dataPoints1={dataPoints} />
                     </div>
                 </div>
                 <div className="w-[50%] flex flex-col justify-center">
@@ -249,12 +293,16 @@ function ResultAnalysisTexts() {
     )
 }
 
-function Banner() {
+interface ScrollToProps {
+    id?: string; // id is optional
+}
+
+function ScrollToSection({ id }: ScrollToProps) {
     const { setPage } = usePage();
     const [close, setClose] = useState("false");
     return (
         <>
-            <div className="w-full flex items-center justify-center">
+            <div id={id} className="w-full flex items-center justify-center">
                 <div
                     className="w-[80%] h-[30vw] bg-[#ffffff] flex justify-center items-center"
                     style={{
@@ -264,7 +312,7 @@ function Banner() {
                         backgroundRepeat: 'no-repeat',
                     }}
                 >
-                    <div className="w-[60%] flex flex-col justify-start items-start">
+                    <div className="w-[60%] flex flex-col justify-start items-start font-lato">
                         <p className="text-[#FE5354] text-[1.2vw] font-bold mb-[0.5vw]">Unlock deeper insights and shape the future of AI ethics!</p>
                         <p className="text-white text-[2.6vw] font-bold">Share Your Voice in Our Survey.</p>
                     </div>
@@ -273,7 +321,7 @@ function Banner() {
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    setPage("game");{/* Change to survey page later */}
+                                    setPage("surveyFeedback"); {/* Change to survey page later */ }
                                 }, 500);
                             }}
                         >

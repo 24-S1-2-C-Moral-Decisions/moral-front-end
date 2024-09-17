@@ -5,6 +5,7 @@ import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMe
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { HotPosts } from "../search/hot-posts";
+import { cn } from "@/lib/utils";
 
 const hotPosts = [
     {
@@ -142,11 +143,14 @@ export const NavBar = () => {
     const router = useRouter();
 
     const [selectedTopic, setSelectedTopic] = useState("All");
+    const [expandMap, setExpandMap] = useState(false);
+    const [expandTopics, setExpandTopics] = useState(false);
 
     return (
         <div className="w-full md:h-[120px] h-[50px] flex items-center justify-between px-5 border-b-2 ">
             <img className="md:block hidden" src="/imgs/Logo-3.svg" alt="Logo" height="65px" />
 
+            {/* topic select menu for mobile */}
             <div className="md:hidden flex space-x-2">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -155,15 +159,45 @@ export const NavBar = () => {
                         </button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-[300px] max-h-[600px] overflow-scroll">
-                        <DropdownMenuLabel>Topics</DropdownMenuLabel>
+
+                        <DropdownMenuLabel className="flex justify-between text-lg tracking-widest">
+                            MAP
+                            <button onClick={() => { setExpandMap(!expandMap) }}>
+                                <img src={"/imgs/nav-expand-arrow-" + (expandMap === true ? "up" : "down") + ".svg"} alt="expand" width="15px" />
+                            </button>
+                        </DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        {topics.map((topic) => (
-                            <DropdownMenuCheckboxItem key={topic.title}
-                                onSelect={() => router.push(topic.url)}
+
+                        <div className={cn({ "max-h-[300px]": expandMap, "max-h-0": !expandMap }, "overflow-scroll")}>
+                            <DropdownMenuCheckboxItem onSelect={() => router.push("")}
                             >
-                                {topic.title}
+                                <nav className="">Survey</nav>
                             </DropdownMenuCheckboxItem>
-                        ))}
+                            <DropdownMenuCheckboxItem onSelect={() => router.push("/home")}
+                            >
+                                <nav>Home</nav>
+                            </DropdownMenuCheckboxItem>
+                        </div>
+
+                        <DropdownMenuLabel className="flex justify-between text-lg tracking-widest">Topics
+                            <button onClick={() => { setExpandTopics(!expandTopics) }}>
+                                <img src={"/imgs/nav-expand-arrow-" + (expandTopics === true ? "up" : "down") + ".svg"} alt="expand" width="15px" />
+                            </button>
+                        </DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <div className={cn({ "max-h-[300px]": expandTopics, "max-h-0": !expandTopics }, "overflow-scroll")}>
+                            {topics.map((topic) => (
+                                <DropdownMenuCheckboxItem key={topic.title}
+                                    onSelect={() => router.push(topic.url)}
+                                >
+                                    <img src={topic.picUrl} alt="topic-icon" width="15px" />
+                                    <nav className="ml-2">
+                                        {topic.title}
+                                    </nav>
+                                </DropdownMenuCheckboxItem>
+                            ))}
+                        </div>
+
                     </DropdownMenuContent>
                 </DropdownMenu>
 
@@ -176,8 +210,11 @@ export const NavBar = () => {
                         {item.title}
                     </button>
                 ))} */}
-                <button className="w-[158px] h-[65px] flex items-center justify-center space-x-2 rounded-[30px] bg-[#D9D9D9]">
-                    <img src="/imgs/home-icon.svg" alt="home" width="36px"/>
+                <button className="w-[158px] h-[65px] flex items-center justify-center space-x-2 rounded-[30px] bg-[#D9D9D9]"
+                    onClick={() => {
+                        router.push("/home")
+                    }}>
+                    <img src="/imgs/home-icon.svg" alt="home" width="36px" />
                     <nav className=" text-2xl">
                         Home
                     </nav>
@@ -215,6 +252,7 @@ export const NavBar = () => {
                 <input className="ml-3 w-[250px] h-[32px] bg-transparent" type="text" name="" id="" />
             </div> */}
 
+            {/* search icon for mobile */}
             <div className="h-full flex items-center justify-center space-x-2 md:hidden">
 
                 <DropdownMenu>
@@ -255,7 +293,7 @@ export const NavBar = () => {
                     </DropdownMenuContent>
                 </DropdownMenu>
 
-                <Drawer direction="right">
+                {/* <Drawer direction="right">
                     <DrawerTrigger asChild>
                         <button>
                             <ListCollapse className="h-[25px]" />
@@ -270,7 +308,7 @@ export const NavBar = () => {
                             ))}
                         </div>
                     </DrawerContent>
-                </Drawer>
+                </Drawer> */}
             </div>
 
 

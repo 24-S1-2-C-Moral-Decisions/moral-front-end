@@ -49,17 +49,18 @@ const similarPosts = [
 
 export default function ResultPage(){
     return(
-        <div className="p-5 w-full h-full flex flex-col overflow-scroll">
+        <div className="md:p-5 p-3 w-full h-full flex flex-col overflow-scroll">
             <div className="w-full flex flex-col">
-                <h1 className="mb-2 font-semibold font-kanit text-5xl text-[#222222] tracking-wider">RESULT</h1>
+                <h1 className="mb-2 font-semibold font-kanit md:text-5xl text-2xl text-[#222222] tracking-wider">RESULT</h1>
                 <PostsList posts={posts}/>
             </div>
             <div className="mt-8 w-full">
-                <h1 className="text-3xl font-kanit text-[#515151] tracking-wider">SIMILAR POSTS</h1>
-                <div className="mt-5 flex flex-col w-full space-y-5">
+                <h1 className="md:text-3xl text-xl font-kanit text-[#515151] tracking-wider">SIMILAR POSTS</h1>
+                <div className="mt-5 flex flex-col w-full overflow-scroll space-y-5">
                     {similarPosts.map((post)=>(
                         <div key={post.title} className="pt-4 w-full flex items-center border-t border-[#CCCCCC]">
                             <div className={cn("ml-5 w-[60px] h-[30px] bg-gray-500 rounded-[30px] flex items-center justify-center text-white text-sm font-bold",{"bg-[#5E7BFE]":post.verdict==="NTA","bg-[#A80018]":post.verdict==="YTA"})}>
+                                {post.verdict}
                             </div>
                             <p className="ml-3 font-semibold">
                                 {post.title}

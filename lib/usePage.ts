@@ -3,7 +3,7 @@
 import {create} from "zustand";
 
 // could add more pages
-type PageType="main"|"game"|"feedback";
+type PageType="main"|"game"|"feedback"|"surveyFeedback";
 
 interface PageStore{
   page: PageType,
@@ -11,6 +11,6 @@ interface PageStore{
 }
 
 export const usePage= create<PageStore>((set) => ({
-    page: "main",
+    page: "surveyFeedback",
     setPage: (newPage:PageType) => set({ page: newPage }),
   }))

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '../public/font.css';
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -231,6 +233,6 @@
 }
 
 .common-bold-text {
-  font-size: 1.5vw;
+  font-size: 16px;
   font-weight: bold;
 }

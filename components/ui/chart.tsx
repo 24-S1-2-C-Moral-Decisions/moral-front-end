@@ -90,55 +90,84 @@ const DoughnutChart: React.FC<DoughnutChartProps> = ({ labels, voteData }) => {
 
 interface RadarChartProps {
   labels: string[];
-  dataPoints: number[];
+  dataPoints1: number[];
+  dataPoints2?: number[]; // second data set is optional
 }
 
-const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints }) => {
+const RadarChart: React.FC<RadarChartProps> = ({ labels, dataPoints1, dataPoints2 }) => {
+  const datasets = [
+    {
+      label: 'Your test data',
+      data: dataPoints1,
+      backgroundColor: 'rgba(31,95,209, 0.2)',
+      borderColor: 'rgba(31,95,209, 1)',
+      borderWidth: 3,
+    }
+  ];
+
+  if (dataPoints2 && dataPoints2.length > 0) {
+    datasets.push({
+      label: 'Post test data',
+      data: dataPoints2,
+      backgroundColor: 'rgba(208,21,21, 0.2)',
+      borderColor: 'rgba(208,21,21, 1)',
+      borderWidth: 3,
+    });
+  }
+
   const data: ChartData<'radar'> = {
     labels: labels,
-    datasets: [
-      {
-        /*label: 'Work Personality',*/
-        data: dataPoints,
-        backgroundColor: 'rgba(34, 202, 236, 0.2)',
-        borderColor: 'rgba(34, 202, 236, 1)',
-        borderWidth: 2,
-      },
-    ],
+    datasets: datasets,
   };
 
   const options: ChartOptions<'radar'> = {
     scales: {
       r: {
         beginAtZero: true,
-        angleLines: { display: false },
+        angleLines: {
+          display: true, // Show lines from each point to the center
+          color: 'rgba(183,183,183, 1)', // Customize the color of the lines
+          lineWidth: 1.5, // Customize the width of the lines
+        },
         suggestedMin: 0,
         suggestedMax: 5,
         pointLabels: {
           display: true,
           font: {
-            weight: 'bold', 
-            
+            weight: 'bold',
+            size:13,
           },
-          padding: 10, 
+
+          color: (context) => {
+            const colors = ['#65BEFF', '#FBA9D5', '#F5C569', '#DAABFF', '#8ED082'];
+            return colors[context.index % colors.length];
+          },
+          
+          padding: 10,
         },
         ticks: {
           stepSize: 1,
-          display: false // hide ticks
+          display: false, // hide ticks
+        },
+        grid: {
+          color: 'rgba(183,183,183,0.8)', // Customize the color of the grid lines
+          lineWidth: 1, // Customize the width of the grid lines
         },
       },
     },
     plugins: {
       legend: {
-        position: 'top',
-        display: false
+        position: 'bottom',
+        display: datasets.length > 1, // Display legend when having more than one data sets
       },
       title: {
         display: false,
         text: 'Radar Chart Example',
+        
       },
     },
   };
+  
 
   return <Radar data={data} options={options} />;
 };

@@ -77,7 +77,7 @@ const DoughnutChart: React.FC<DoughnutChartProps> = ({ labels, voteData }) => {
     },
 
     cutout: '45%', // control the size of the inner circle
-    rotation: 50,
+    rotation: 90-voteData[0]/(voteData[0]+voteData[1])/2*360,
     circumference: 365,
   };
 

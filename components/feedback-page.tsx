@@ -25,11 +25,6 @@ const result = {
 };
 
 
-const optionAnalysisTexts = {
-    A: "Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...Calling someone fat can be seen as insensitive...",
-    B: "Another option description here..."
-};
-
 const radarResult = {
     Authority: 0,
     Care: 1,
@@ -38,13 +33,6 @@ const radarResult = {
     Loyalty: 5
 }
 
-const resultAnalysisTexts = {
-    AUTHORITY: "sanity sanity sanity sanity sanity sanity sanity sanity sanity sanity sanity sanity sanity sanity sanity sanity.",
-    CARE: "care care care care care care care care care care care care care care care care care care care care care care care care.",
-    SANCTITY: "sanctity sanctity sanctity sanctity sanctity sanctity sanctity sanctity sanctity sanctity sanctity sanctity sanctity sanctity sanctity.",
-    FAIRNESS: "fairness fairness fairness fairness fairness fairness fairness fairness fairness fairness fairness fairness",
-    LOYALTY: "loyalty loyalty loyalty loyalty loyalty loyalty loyalty loyalty loyalty loyalty loyalty loyalty loyalty loyalty loyalty"
-};
 
 const userChoice = 'A';
 
@@ -210,6 +198,21 @@ function SubAssholePanel({ backgroundImageUrl, result, isAsshole, textColorClass
 }
 
 function Feedback() {
+    const optionAnalysisTexts = {
+        A : "Choosing to call your friend fat could indicate that the user is confrontational or not afraid to engage in tit-for-tat banter. This response may suggest a willingness to retaliate or use humor to deflect criticism, but it could also be seen as insensitive or lacking empathy, especially in a sensitive context like body image",
+        B: "Choosing not to call your friend fat shows a considerate and empathetic approach. This response suggests you value maintaining a positive relationship and avoid potentially hurtful comments. By refraining from insensitive remarks about body image, you demonstrate respect for your friend’s feelings and promote constructive communication, aiming to preserve harmony and avoid conflict."
+    };
+
+    const headings = {
+        A: "Option A – Call Your Friend Fat",
+        B: "Option B – Not To Call Your Friend Fat"
+    };
+
+    const userChoice = 'B';  // or 'B'
+
+    const heading = headings[userChoice];
+    const analysisText = optionAnalysisTexts[userChoice];
+    
     return (
         <>
             <div className="w-full flex flex-col mx-auto p-[1vw] font-kanit">
@@ -218,14 +221,11 @@ function Feedback() {
                     {/* rem: text-base */}
                 </div>
                 <div>
-                    <h1 className="text-[2.3vw] font-bold mb-[0.5vw]">Option A – Call Your Friend Fat</h1>
+                    <h1 className="text-[2.3vw] font-bold mb-[0.5vw]">{heading}</h1>
                     {/* rem: text-2xl */}
                     <br />
                     <p className="text-[1.4vw] font-lato">
-                        {/* rem: text-base */}
-                        It could indicate that the user is confrontational or not afraid to engage in tit-for-tat banter.
-                        This response may suggest a willingness to retaliate or use humor to deflect criticism, but it could
-                        also be seen as insensitive or lacking empathy, especially in a sensitive context like body image.
+                        {analysisText}
                     </p>
                 </div>
             </div>
@@ -233,65 +233,6 @@ function Feedback() {
     )
 }
 
-function RadarChartAndAnalysis() {
-    const labels = Object.keys(radarResult);
-    const dataPoints = Object.values(radarResult);
-    return (
-        <>
-            <div className="flex w-full h-[12vw] items-center justify-center bg-[#ffffff]">
-                <h2 className="text-[2.5vw] font-bold font-kanit">Your Result Analysis</h2>
-            </div>
-            <div className="flex w-full items-stretch">
-                <div className="w-[50%] flex items-center justify-center">
-                    <div className="w-[70%] bg-[#FFFFFF] h-full rounded-lg p-[2vw]">
-                        <RadarChart labels={labels} dataPoints1={dataPoints} />
-                    </div>
-                </div>
-                <div className="w-[50%] flex flex-col justify-center">
-                    <div className="w-[80%] mx-auto">
-                        <ResultAnalysisTexts />
-                    </div>
-                </div>
-            </div>
-
-        </>
-    )
-}
-
-function ResultAnalysisTexts() {
-    return (
-        <>
-            <article className="text-[1.3vw]">
-                <section>
-                    <h3 className="text-[#65BEFF] common-bold-text">AUTHORITY</h3>
-                    <p >{resultAnalysisTexts['AUTHORITY']}</p>
-                    <br />
-                </section>
-                <section>
-                    <h3 className="text-[#FBA9D5] common-bold-text">CARE</h3>
-                    <p>{resultAnalysisTexts['CARE']}</p>
-                    <br />
-                </section>
-                <section>
-                    <h3 className="text-[#F5C569] common-bold-text">SANCTITY</h3>
-                    <p>{resultAnalysisTexts['SANCTITY']}</p>
-                    <br />
-                </section>
-                <section>
-                    <h3 className="text-[#DAABFF] common-bold-text">FAIRNESS</h3>
-                    <p>{resultAnalysisTexts['FAIRNESS']}</p>
-                    <br />
-                </section>
-                <section>
-                    <h3 className="text-[#8ED082] common-bold-text">LOYALTY</h3>
-                    <p>{resultAnalysisTexts['LOYALTY']}</p>
-                    <br />
-                </section>
-            </article>
-
-        </>
-    )
-}
 
 interface ScrollToProps {
     id?: string; // id is optional

@@ -83,14 +83,7 @@ export const MainPage = ({ data }: { data: any }) => {
                         >
                             Start Game
                         </Button>
-                        <Button className="opacity-0 w-[40%] h-[48px] bg-white text-black rounded-3xl animate-button-fade-in"
-                            onClick={() => {
-                                setClose("true");
-                                setTimeout(() => {
-                                    router.push("/game")
-                                }, 500);
-                            }}
-                        >Skip Game</Button>
+                        <Button className="opacity-0 w-[40%] h-[48px] bg-white text-black rounded-3xl animate-button-fade-in">Skip Game</Button>
                     </div>
                 </div>
                 <div className="relative flex w-[50%] justify-center items-center">

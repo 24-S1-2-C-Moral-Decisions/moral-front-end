@@ -87,7 +87,7 @@ export const GamePage = ({ data }: { data: any }) => {
 
     return (
         <div className={cn("flex flex-col h-full w-full transition-opacity opacity-0", "animate-fade-in")} >
-            <div className="flex ">
+            <div className="flex">
                 <div className="w-full pt-10 pl-20">
                     <img src="../imgs/Logo-3.svg" alt="Logo" width="240px" height="61px" />
                 </div>

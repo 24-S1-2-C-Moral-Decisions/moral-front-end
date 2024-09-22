@@ -1,4 +1,5 @@
 import { NavBar } from "@/components/home/nav-bar";
+import { TagList } from "@/components/home/tag-list";
 import { HotPosts } from "@/components/search/hot-posts";
 import { PopularTopics } from "@/components/search/popular-topics";
 import { SurveyPopup } from "@/components/search/survey-popup";
@@ -37,29 +38,6 @@ const tags = [
     {
         title: "Work",
         picUrl: "/imgs/tags/ic-work.svg",
-        url: ""
-    },
-    {
-        title: "More",
-        picUrl: "/imgs/tags/ic-more.svg",
-        url: ""
-    }
-]
-
-const mdTags = [
-    {
-        title: "Communication",
-        picUrl: "/imgs/tags/ic-communication.svg",
-        url: ""
-    },
-    {
-        title: "Family",
-        picUrl: "/imgs/tags/ic-family.svg",
-        url: ""
-    },
-    {
-        title: "Friend",
-        picUrl: "/imgs/tags/ic-friends.svg",
         url: ""
     },
     {
@@ -193,18 +171,8 @@ export default async function SearchPage() {
                     </button>
                 </div>
 
-                <div className="w-full flex flex-wrap items-center md:justify-between px-5">
-                    {tags.map((tag) => (
-                        <button key={tag.title} className="mx-2 w-[77px] max-h-[79px] flex flex-col justify-between items-center">
-                            <div className="w-[57px] h-[57px] rounded-full border-[0.5px] border-[#B2B2B2] flex justify-center items-center">
-                                <img src={tag.picUrl} alt={tag.title} width="20px" height="20px" />
-                            </div>
-
-                            <p className=" text-[#7C7C7C] text-sm">
-                                {tag.title}
-                            </p>
-                        </button>
-                    ))}
+                <div>
+                    <TagList/>
                 </div>
 
                 {/* <div className="w-full flex items-center justify-between px-5 md:hidden">

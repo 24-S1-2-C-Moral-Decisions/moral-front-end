@@ -145,12 +145,12 @@ export const NavBar = () => {
     const [selectedTopic, setSelectedTopic] = useState("All");
     const [expandMap, setExpandMap] = useState(false);
     const [expandTopics, setExpandTopics] = useState(false);
-    const [openSearchDrawer,setOpenSearchDrawer]=useState(false);
+    const [openSearchDrawer, setOpenSearchDrawer] = useState(false);
 
     return (
         <div className="w-full md:h-[120px] h-[50px] flex items-center justify-between px-5 border-b-2 ">
-            <button onClick={()=>router.push("/home")}>
-            <img className="md:block hidden" src="/imgs/Logo-3.svg" alt="Logo" height="65px" />
+            <button className="md:block hidden" onClick={() => router.push("/home")}>
+                <img src="/imgs/Logo-3.svg" alt="Logo" height="65px" />
             </button>
 
             {/* topic select menu for mobile */}
@@ -243,7 +243,7 @@ export const NavBar = () => {
                     <DrawerContent className="w-full h-full">
                         <div className="flex px-5 mt-3 space-x-5">
                             <button className="w-[17px]"
-                            onClick={()=>{setOpenSearchDrawer(false)}}>
+                                onClick={() => { setOpenSearchDrawer(false) }}>
                                 <img src="/imgs/icon-back.svg" height="11px" />
                             </button>
                             <div className="h-[35px] w-full flex items-center px-2 bg-[#EBEDEF] rounded-[30px]">

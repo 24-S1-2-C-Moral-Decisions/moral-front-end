@@ -42,10 +42,10 @@ export const MainPage = ({ data }: { data: any }) => {
 
     return (
         <div className={cn("relative flex flex-col h-full w-full overflow-hidden", { "animate-shrink": close === "true" })}>
-            <div className="absolute z-[-2] bg-[#2B2B2B] w-full h-full clip-circle-3-30-35 animate-expand-circle" />
+            <div className="absolute z-[-2] bg-[#2B2B2B] w-full h-full clip-circle-3-30-35 animate-expand-circle pointer-events-none" />
             <img src="imgs/bg-dot.png" alt="bg-dot" className="opacity-0 absolute h-full animate-dot-bg-fade-in" />
-            <div className="w-full pt-10 pl-20">
-                <img src={"imgs/Logo-3-2.svg"} alt="Logo" width="240px" height="61px" />
+            <div className="w-full pt-10 pl-20  z-10">
+                <img className="cursor-pointer" src={"imgs/Logo-3-2.svg"} alt="Logo" width="240px" height="61px" onClick={()=>router.push("/home")}/>
             </div>
             <div className="flex w-full flex-grow items-center ">
                 <div className="pl-20 pb-20 flex flex-col w-[50%]">
@@ -80,7 +80,7 @@ export const MainPage = ({ data }: { data: any }) => {
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    router.push("/home/search")
+                                    router.push("/home")
                                 }, 500);
                             }}
                         >Skip Game</Button>

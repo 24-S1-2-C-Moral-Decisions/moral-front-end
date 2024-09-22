@@ -117,11 +117,11 @@ export const NavBar = () => {
     const [selectedTopic, setSelectedTopic] = useState("All");
     const [expandMap, setExpandMap] = useState(false);
     const [expandTopics, setExpandTopics] = useState(false);
+    const [openSearchDrawer, setOpenSearchDrawer] = useState(false);
 
     return (
         <div className="w-full md:h-[120px] h-[50px] flex items-center justify-between px-5 border-b-2 ">
             <img className="md:block hidden cursor-pointer" src="/imgs/Logo-3.svg" alt="Logo" height="65px" onClick={() => router.push("/home")} />
-
             {/* topic select menu for mobile */}
             <div className="md:hidden flex space-x-2">
                 <DropdownMenu>
@@ -176,6 +176,7 @@ export const NavBar = () => {
                 <img src="/imgs/logo-sm.svg" alt="Logo" height="30" />
             </div>
 
+            {/* navigation bar for desktop */}
             <div className="h-full pr-10 md:flex items-center space-x-5 hidden">
                 {/* {navList.map((item) => (
                     <button key={item.title} className=" px-2 text-sm font-semibold h-full text-gray-500 hover:bg-gray-800 hover:text-white rounded-lg transition-all duration-500 ">
@@ -199,35 +200,54 @@ export const NavBar = () => {
             </div>
 
 
-            {/* <div className="h-[35px] w-[225px] md:hidden flex items-center px-2 bg-[#EBEDEF] rounded-[30px]">
-                <img src="/imgs/search-icon-black.svg" width="20px" alt="search-icon" />
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <button className="ml-2 px-2 w-[100px] h-[30px] flex items-center rounded-[30px] bg-[#D9D9D9]">
-                            <div className="w-[19px] h-[19px] bg-white rounded-full" />
-                            <p className="ml-2 max-w-[50px] overflow-scroll">{selectedTopic}</p>
-                        </button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-[200px] max-h-[400px] overflow-scroll">
-                        <DropdownMenuLabel>Topics</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        {topics.map((topic) => (
-                            <DropdownMenuCheckboxItem key={topic.title}
-                                onSelect={() => { setSelectedTopic(topic.title) }}
-                            >
-                                {topic.title}
-                            </DropdownMenuCheckboxItem>
-                        ))}
-                    </DropdownMenuContent>
-                </DropdownMenu>
-
-                <input className="ml-3 w-[250px] h-[32px] bg-transparent" type="text" name="" id="" />
-            </div> */}
-
             {/* search icon for mobile */}
             <div className="h-full flex items-center justify-center space-x-2 md:hidden">
 
-                <DropdownMenu>
+                <Drawer direction="right" open={openSearchDrawer} onOpenChange={setOpenSearchDrawer}>
+                    <DrawerTrigger asChild>
+                        <button>
+                            <img src="/imgs/search-icon-black.svg" height="25px" alt="search-icon" />
+                        </button>
+                    </DrawerTrigger>
+                    <DrawerContent className="w-full h-full">
+                        <div className="flex px-5 mt-3 space-x-5">
+                            <button className="w-[17px]"
+                                onClick={() => { setOpenSearchDrawer(false) }}>
+                                <img src="/imgs/icon-back.svg" height="11px" />
+                            </button>
+                            <div className="h-[35px] w-full flex items-center px-2 bg-[#EBEDEF] rounded-[30px]">
+                                <img src="/imgs/search-icon-black.svg" width="20px" alt="search-icon" />
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <button className="ml-2 px-2 w-[100px] h-[25px] flex items-center rounded-[30px] bg-[#D9D9D9]">
+                                            <div className="w-[15px] h-[15px] bg-white rounded-full" />
+                                            <p className="ml-2 w-[50px] overflow-scroll">{selectedTopic}</p>
+                                        </button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent className="w-[200px] max-h-[400px] overflow-scroll">
+                                        <DropdownMenuLabel>Topics</DropdownMenuLabel>
+                                        <DropdownMenuSeparator />
+                                        {topics.map((topic) => (
+                                            <DropdownMenuCheckboxItem key={topic.title}
+                                                onSelect={() => { setSelectedTopic(topic.title) }}
+                                            >
+                                                {topic.title}
+                                            </DropdownMenuCheckboxItem>
+                                        ))}
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+
+                                <input className="ml-3 w-full h-[32px] bg-transparent" type="text" name="" id="" />
+                            </div>
+                        </div>
+                        <DropdownMenuSeparator className="my-4" />
+                        <div className="px-3">
+                            <HotPosts posts={hotPosts} />
+                        </div>
+                    </DrawerContent>
+                </Drawer>
+
+                {/* <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <img src="/imgs/search-icon-black.svg" height="25px" alt="search-icon" />
                     </DropdownMenuTrigger>
@@ -263,24 +283,7 @@ export const NavBar = () => {
                             <HotPosts posts={hotPosts} />
                         </div>
                     </DropdownMenuContent>
-                </DropdownMenu>
-
-                {/* <Drawer direction="right">
-                    <DrawerTrigger asChild>
-                        <button>
-                            <ListCollapse className="h-[25px]" />
-                        </button>
-                    </DrawerTrigger>
-                    <DrawerContent className=" mt-[75px] top-0">
-                        <div className="flex flex-col w-full">
-                            {navList.map((item) => (
-                                <button key={item.title} className="py-4 w-full text-gray-500 text-left text-lg p-2 pl-5 rounded-md hover:bg-gray-700 hover:text-white transition-all duration-500">
-                                    {item.title}
-                                </button>
-                            ))}
-                        </div>
-                    </DrawerContent>
-                </Drawer> */}
+                </DropdownMenu> */}
             </div>
 
 

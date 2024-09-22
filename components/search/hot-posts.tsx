@@ -1,6 +1,5 @@
 "use client";
 
-import { HandlePostClick } from "@/lib/handle-post-click";
 import { useRouter } from "next/navigation";
 
 type Post = {
@@ -26,11 +25,7 @@ export const HotPosts = ({ posts }: { posts: Posts }) => {
             </div>
             <div className="px-2 h-full flex flex-col md:justify-between">
                 {posts.map((post, index) => (
-                    <button key={post.title} className="md:h-[85px] h-[60px] flex space-x-5"
-                    onClick={()=>{
-                        HandlePostClick(post.id);
-                        router.push(post.url);
-                        }}>
+                    <button key={post.title} className="md:h-[85px] h-[60px] flex space-x-5">
                         <h1 className="md:w-[46px] w-[30px] md:text-4xl text-2xl text-[#D9D7D9] font-extrabold">{"0" + (index + 1)}</h1>
                         <p className="text-black text-left text-sm font-bold">
                             {post.title}

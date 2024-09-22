@@ -1,4 +1,5 @@
 import { NavBar } from "@/components/home/nav-bar";
+import { TagList } from "@/components/home/tag-list";
 import { HotPosts } from "@/components/search/hot-posts";
 import { PopularTopics } from "@/components/search/popular-topics";
 import { SurveyPopup } from "@/components/search/survey-popup";
@@ -37,29 +38,6 @@ const tags = [
     {
         title: "Work",
         picUrl: "/imgs/tags/ic-work.svg",
-        url: ""
-    },
-    {
-        title: "More",
-        picUrl: "/imgs/tags/ic-more.svg",
-        url: ""
-    }
-]
-
-const mdTags = [
-    {
-        title: "Communication",
-        picUrl: "/imgs/tags/ic-communication.svg",
-        url: ""
-    },
-    {
-        title: "Family",
-        picUrl: "/imgs/tags/ic-family.svg",
-        url: ""
-    },
-    {
-        title: "Friend",
-        picUrl: "/imgs/tags/ic-friends.svg",
         url: ""
     },
     {
@@ -180,36 +158,24 @@ export default async function SearchPage() {
 
 
     return (
-        <div className="w-full h-full flex flex-col relative">
-            <NavBar />
-            <div className="md:mt-5 w-full flex justify-center">
+        <div className="md:mt-5 w-full flex justify-center">
 
-                <div className="w-[288px] xl:block hidden" />
+            <div className="w-[288px] xl:block hidden" />
 
-                <div className="px-2 md:w-[798px] w-full md:px-0 h-[758px] flex flex-col items-center space-y-5">
+            <div className="px-2 md:w-[798px] w-full md:px-0 h-[758px] flex flex-col items-center space-y-5">
 
-                    <div className="w-full md:flex rounded-[25px] shadow-lg hidden">
-                        <input className="w-full h-[80px] rounded-l-[25px]" />
-                        <button className="w-[75px] h-[80px] rounded-r-[25px] bg-[#EBEEFC] flex justify-center items-center">
-                            <img src="/imgs/search-icon.svg" alt="search" />
-                        </button>
-                    </div>
+                <div className="w-full md:flex rounded-[25px] shadow-lg hidden">
+                    <input className="w-full h-[80px] rounded-l-[25px]" />
+                    <button className="w-[75px] h-[80px] rounded-r-[25px] bg-[#EBEEFC] flex justify-center items-center">
+                        <img src="/imgs/search-icon.svg" alt="search" />
+                    </button>
+                </div>
 
-                    <div className="w-full flex flex-wrap items-center md:justify-between px-5">
-                        {tags.map((tag) => (
-                            <button key={tag.title} className="mx-2 w-[77px] max-h-[79px] flex flex-col justify-between items-center">
-                                <div className="w-[57px] h-[57px] rounded-full border-[0.5px] border-[#B2B2B2] flex justify-center items-center">
-                                    <img src={tag.picUrl} alt={tag.title} width="20px" height="20px" />
-                                </div>
+                <div>
+                    <TagList/>
+                </div>
 
-                                <p className=" text-[#7C7C7C] text-sm">
-                                    {tag.title}
-                                </p>
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* <div className="w-full flex items-center justify-between px-5 md:hidden">
+                {/* <div className="w-full flex items-center justify-between px-5 md:hidden">
                         {mdTags.map((tag) => (
                             <button key={tag.title} className="w-[77px] h-[79px] flex flex-col justify-between items-center">
                                 <div className="w-[57px] h-[57px] rounded-full border-[0.5px] border-[#B2B2B2] flex justify-center items-center">
@@ -223,22 +189,21 @@ export default async function SearchPage() {
                         ))}
                     </div> */}
 
-                    <hr className="w-full" />
-                    <div className="w-full flex justify-between">
-                        <div className="w-[333px] h-[490px] md:flex hidden">
-                            <PopularTopics topics={popularTopic} />
-                        </div>
-                        <div className="w-[415px] h-[490px]">
-                            <HotPosts posts={hotPosts} />
-                        </div>
+                <hr className="w-full" />
+                <div className="w-full flex justify-between">
+                    <div className="w-[333px] h-[490px] md:flex hidden">
+                        <PopularTopics topics={popularTopic} />
+                    </div>
+                    <div className="md:px-0 px-3 w-[415px] h-[490px]">
+                        <HotPosts posts={hotPosts} />
                     </div>
                 </div>
-
-                <div className="lg:block hidden">
-                    <SurveyPopup />
-                </div>
-
             </div>
+
+            <div className="lg:block hidden">
+                <SurveyPopup />
+            </div>
+
         </div>
     )
 }

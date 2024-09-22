@@ -1,5 +1,6 @@
 import * as React from "react";
-import { usePage } from "@/lib/usePage"
+import { useRouter } from 'next/navigation'
+
 import { cn } from "@/lib/utils"
 
 /**
@@ -23,7 +24,7 @@ type TalkDialog = {
  * @param data The data used for the game page.
  * @returns The game page.
  */
-export const GamePage = ({ data }: { data: any }): JSX.Element => {
+export const GamePage = ({ data }: { data: any }) => {
     const talkDialog: TalkDialog[] = [
         { gender: "", src: "" },
         { gender: "male", src: "../imgs/eat-dialog.png" },
@@ -31,7 +32,7 @@ export const GamePage = ({ data }: { data: any }): JSX.Element => {
         { gender: "male", src: "../imgs/twig-dialog.png" },
     ]
 
-    const { page, setPage } = usePage();
+    const router = useRouter();
 
     const [currentDialogInfoIndex, setCurrentDialogInfoIndex] = React.useState<number>(0);
     const [animationType, setAnimationType] = React.useState<string>("fade-in");
@@ -78,14 +79,14 @@ export const GamePage = ({ data }: { data: any }): JSX.Element => {
         setIsInteractiveDialogVisible(false);
         setIsAnswerDialogVisible(true);
         setTimeout(() => {
-            setPage("feedback");
+           router.push("/feedback");
         }, 3000)
     };
 
     React.useEffect(() => updateAnimation(), [currentDialogInfoIndex]);
 
     return (
-        <div className={cn("flex flex-col h-full w-full transition-opacity opacity-0", { "animate-fade-in": page === "game" })} >
+        <div className={cn("flex flex-col h-full w-full transition-opacity opacity-0", "animate-fade-in")} >
             <div className="flex ">
                 <div className="w-full pt-10 pl-20">
                     <img src="../imgs/Logo-3.svg" alt="Logo" width="240px" height="61px" />

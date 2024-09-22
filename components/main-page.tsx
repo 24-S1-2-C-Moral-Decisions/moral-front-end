@@ -1,12 +1,16 @@
+'use client'
 import * as React from "react";
-import { usePage } from "@/lib/usePage"
+import { useRouter } from 'next/navigation'
+
 import { cn } from "@/lib/utils";
+
 import { Button } from "./ui/button"
 
 export const MainPage = ({ data }: { data: any }) => {
-    const { setPage } = usePage();
 
     const situationStr = "Situation";
+
+    const router = useRouter()
 
     const [close, setClose] = React.useState("false");
     const [dispalyInfo, setDisplayInfo] = React.useState<String>("");
@@ -40,7 +44,7 @@ export const MainPage = ({ data }: { data: any }) => {
     React.useEffect(() => {
         setTimeout(() => {
             setLogo("imgs/logo-3-2.svg")
-        }, 2000)
+        }, 2100)
     }, [])
 
     return (
@@ -73,13 +77,20 @@ export const MainPage = ({ data }: { data: any }) => {
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    setPage("game");
+                                    router.push("/game")
                                 }, 500);
                             }}
                         >
                             Start Game
                         </Button>
-                        <Button className="opacity-0 w-[40%] h-[48px] bg-white text-black rounded-3xl animate-button-fade-in">Skip Game</Button>
+                        <Button className="opacity-0 w-[40%] h-[48px] bg-white text-black rounded-3xl animate-button-fade-in"
+                            onClick={() => {
+                                setClose("true");
+                                setTimeout(() => {
+                                    router.push("/game")
+                                }, 500);
+                            }}
+                        >Skip Game</Button>
                     </div>
                 </div>
                 <div className="relative flex w-[50%] justify-center items-center">

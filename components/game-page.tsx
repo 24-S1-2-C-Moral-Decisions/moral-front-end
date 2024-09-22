@@ -65,8 +65,8 @@ export const GamePage = ({ data }: { data: any }) => {
                         return nextIndex;
                     }
                 });
-            }, 1500);
-        }, 2000);
+            }, 150);
+        }, 200);
         return () => clearInterval(interval);
     }
 

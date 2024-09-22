@@ -1,5 +1,3 @@
-import { NavBar } from "@/components/home/nav-bar";
-import { PopularTopics } from "@/components/search/popular-topics";
 import { PostsList } from "@/components/search/posts-list";
 
 export default async function TopicPage({ params }: { params: { topic: string } }) {
@@ -99,6 +97,60 @@ export default async function TopicPage({ params }: { params: { topic: string } 
             verdict: "INFO",
             isExpand: false
         },
+        {
+            title: "test title 22",
+            selftext: "test text 2",
+            verdict: "YTA",
+            isExpand: false
+        },
+        {
+            title: "test title 32",
+            selftext: "test text 3",
+            verdict: "NAH",
+            isExpand: false
+        },
+        {
+            title: "test title 42",
+            selftext: "test text 4",
+            verdict: "INFO",
+            isExpand: false
+        },
+        {
+            title: "test title 23",
+            selftext: "test text 2",
+            verdict: "YTA",
+            isExpand: false
+        },
+        {
+            title: "test title 33",
+            selftext: "test text 3",
+            verdict: "NAH",
+            isExpand: false
+        },
+        {
+            title: "test title 43",
+            selftext: "test text 4",
+            verdict: "INFO",
+            isExpand: false
+        },
+        {
+            title: "test title 24",
+            selftext: "test text 2",
+            verdict: "YTA",
+            isExpand: false
+        },
+        {
+            title: "test title 35",
+            selftext: "test text 3",
+            verdict: "NAH",
+            isExpand: false
+        },
+        {
+            title: "test title 46",
+            selftext: "test text 4",
+            verdict: "INFO",
+            isExpand: false
+        },
     ]
 
 
@@ -115,7 +167,7 @@ export default async function TopicPage({ params }: { params: { topic: string } 
                 </div>
             </div>
 
-            <div className="h-full overflow-auto">
+            <div className="h-full bg-slate-100 overflow-auto">
                 <PostsList posts={posts} />
             </div>
         </div>

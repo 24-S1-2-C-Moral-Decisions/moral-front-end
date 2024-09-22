@@ -6,7 +6,6 @@ type Post = {
     id: string,
     title: string,
     selftext: string,
-    url: string
 }
 
 type Posts = Post[];

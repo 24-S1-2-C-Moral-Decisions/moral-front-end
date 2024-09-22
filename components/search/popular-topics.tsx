@@ -1,5 +1,5 @@
 "use client";
-
+import { connectToDatabase } from "@/lib/connectDB";
 import { useRouter } from "next/navigation";
 
 type Topic = {
@@ -10,6 +10,7 @@ type Topic = {
 };
 
 type Topics = Topic[];
+
 
 export const PopularTopics = ({ topics }: { topics: Topics }) => {
 

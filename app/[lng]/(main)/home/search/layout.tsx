@@ -3,9 +3,6 @@ import { connectToDatabase } from "@/lib/connectDB";
 import api from "../../../../../lib/utils";
 
 export default async function SearchLayout({ children }: { children: React.ReactNode }) {
-
-    const { db } = await connectToDatabase();
-
     // fetch topics list
     const topicsList = (await api.get('/post/topics')).data;
     const topics = await Promise.all(topicsList.map((topic: { name: string; count:number }) => {

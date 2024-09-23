@@ -1,18 +1,23 @@
 import { NavBar } from "@/components/home/nav-bar";
 import { connectToDatabase } from "@/lib/connectDB";
+import api from "../../../lib/utils";
 
+type Topic = { 
+    title: string; 
+    picUrl: string; 
+    url: string; 
+};
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
 
     const { db } = await connectToDatabase()
-    const collections = await db?.listCollections().toArray() ?? [];
-    collections.sort((a, b) => a.name.localeCompare(b.name));
     
     // fetch topics list
-    const topics = await Promise.all(collections.map(async (collection) => {
-        const title = collection.name.charAt(0).toUpperCase() + collection.name.slice(1);
-        const picUrl = `/imgs/tags/ic-${collection.name.toLowerCase()}.svg`;
-        const url = `/home/search/${collection.name.toLowerCase()}`;
+    const topicsList = (await api.get('/post/topics')).data;
+    const topics = await Promise.all(topicsList.map(async (topic: { name: string; count: number}) => {
+        const title = topic.name.charAt(0).toUpperCase() + topic.name.slice(1);
+        const picUrl = `/imgs/tags/ic-${topic.name.toLowerCase()}.svg`;
+        const url = `/home/search/${topic.name.toLowerCase()}`;
 
         return {
             title: title,

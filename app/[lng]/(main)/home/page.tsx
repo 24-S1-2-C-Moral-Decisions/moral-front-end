@@ -4,6 +4,7 @@ import { HotPosts } from "@/components/search/hot-posts";
 import { PopularTopics } from "@/components/search/popular-topics";
 import { SurveyPopup } from "@/components/search/survey-popup";
 import { connectToDatabase } from "@/lib/connectDB";
+import api from "../../../../lib/utils";
 
 const tags = [
     {
@@ -64,13 +65,12 @@ export default async function SearchPage() {
     const { db } = await connectToDatabase()
 
     // fetch topics list
-    const collections = await db?.listCollections().toArray() ?? [];
-    collections.sort((a, b) => a.name.localeCompare(b.name));
-    const topics = await Promise.all(collections.map(async (collection) => {
-        const title = collection.name.charAt(0).toUpperCase() + collection.name.slice(1);
-        const picUrl = `/imgs/tags/ic-${collection.name.toLowerCase()}.svg`;
-        const url = `/home/search/${collection.name.toLowerCase()}`;
-        const postsNum = await db?.collection(collection.name).countDocuments() ?? 0;
+    const topicsList = (await api.get('/post/topics')).data;
+    const topics = await Promise.all(topicsList.map((topic: { name: string; count:number }) => {
+        const title = topic.name.charAt(0).toUpperCase() + topic.name.slice(1);
+        const picUrl = `/imgs/tags/ic-${topic.name.toLowerCase()}.svg`;
+        const url = `/home/search/${topic.name.toLowerCase()}`;
+        const postsNum = topic.count;
 
         return {
             title: title,

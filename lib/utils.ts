@@ -6,5 +6,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getSurveyURL(): string {
-  return process.env.NEXT_PUBLIC_SURVEY_URL || '/default-survey'
+  return process.env.NEXT_PUBLIC_SURVEY_URL || '/https://24-s1-2-c-moral-decisions.github.io/moral-survey/'
 }

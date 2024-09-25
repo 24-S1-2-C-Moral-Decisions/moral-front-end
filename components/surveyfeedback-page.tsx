@@ -18,11 +18,7 @@ const selectedChangeAnalysisTexts = {
 export const SurveyFeedbackPage = ({ data }: { data: any }) => {
     return (
         <>
-        <div className="flex flex-col relative w-full mb-10">
-            {/*<h2>Feedback Results</h2>*/}
-            <NavBar />
-        </div>
-            <div className="w-[80%] mx-auto bg-[#ffffff]">
+            <div className="mt-3 w-[80%] mx-auto bg-[#ffffff]">
                 <RadarChartAndResult />
                 <ImpactResult />
                 <div className="flex mb-8">

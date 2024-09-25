@@ -55,11 +55,6 @@ export const FeedbackPage = ({ data }: { data: any }) => {
     return (
         <>
             <div className="w-full bg-[#fafafc]">
-                <div className="flex flex-col relative w-full h-full mb-10">
-                    {/*<h2>Feedback Results</h2>*/}
-                    <NavBar />
-                    {/*<DoughnutChartPanel result={result} />*/}
-                </div>
                 <DoughnutChartAndResult />
                 <div className="flex w-full items-center justify-center">
                 </div>

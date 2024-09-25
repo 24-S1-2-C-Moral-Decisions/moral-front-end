@@ -110,8 +110,23 @@ const topics = [
     },
 ]
 
+type Topic={
+    title:string,
+    picUrl:string,
+    url:string
+};
 
-export const NavBar = () => {
+type Topics=Topic[];
+
+type Post = {
+    id: string,
+    title: string,
+    selftext: string,
+}
+
+type Posts = Post[];
+
+export const NavBar = ({topics,hotPosts}:{topics:Topics,hotPosts:Posts}) => {
     const router = useRouter();
 
     const [selectedTopic, setSelectedTopic] = useState("All");

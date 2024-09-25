@@ -15,8 +15,7 @@ export const MainPage = ({ data }: { data: any }) => {
     const [close, setClose] = React.useState("false");
     const [dispalyInfo, setDisplayInfo] = React.useState<String>("");
     const [blink, setBlink] = React.useState<boolean>(true);
-    const [logo, setLogo] = React.useState("imgs/Logo_black.svg");
-
+    const [logo, setLogo] = React.useState("imgs/logo_black.svg");
 
     /**
      * The function used to update situation.
@@ -49,10 +48,10 @@ export const MainPage = ({ data }: { data: any }) => {
 
     return (
         <div className={cn("relative flex flex-col h-full w-full overflow-hidden", { "animate-shrink": close === "true" })}>
-            <div className="absolute z-[-2] bg-[#2B2B2B] w-full h-full clip-circle-3-30-35 animate-expand-circle" />
+            <div className="absolute z-[-2] bg-[#2B2B2B] w-full h-full clip-circle-3-30-35 animate-expand-circle pointer-events-none" />
             <img src="imgs/bg-dot.png" alt="bg-dot" className="opacity-0 absolute h-full animate-dot-bg-fade-in" />
-            <div className="w-full pt-10 pl-20">
-                <img src={logo} alt="Logo" width="240px" height="61px" />
+            <div className="w-full pt-10 pl-20 z-10">
+                <img className="cursor-pointer" src={logo} alt="Logo" width="240px" height="61px" onClick={() => router.push("/home")} />
             </div>
             <div className="flex w-full flex-grow items-center ">
                 <div className="pl-20 pb-20 flex flex-col w-[50%]">
@@ -83,7 +82,14 @@ export const MainPage = ({ data }: { data: any }) => {
                         >
                             Start Game
                         </Button>
-                        <Button className="opacity-0 w-[40%] h-[48px] bg-white text-black rounded-3xl animate-button-fade-in">Skip Game</Button>
+                        <Button className="opacity-0 w-[40%] h-[48px] bg-white text-black rounded-3xl animate-button-fade-in"
+                            onClick={() => {
+                                setClose("true");
+                                setTimeout(() => {
+                                    router.push("/home")
+                                }, 500);
+                            }}
+                        >Skip Game</Button>
                     </div>
                 </div>
                 <div className="relative flex w-[50%] justify-center items-center">

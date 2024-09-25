@@ -108,34 +108,6 @@ const topics = [
         url: "/home/search/safety",
         postsNum: 20,
     },
-
-]
-
-const navList = [
-    {
-        title: "Home",
-        url: ""
-    },
-    {
-        title: "Topic Pair Exploration",
-        url: ""
-    },
-    {
-        title: "Post Exploration",
-        url: ""
-    },
-    {
-        title: "Moral Foundations",
-        url: ""
-    },
-    {
-        title: "eMFD",
-        url: ""
-    },
-    {
-        title: "AITA Filtered",
-        url: ""
-    }
 ]
 
 
@@ -149,10 +121,7 @@ export const NavBar = () => {
 
     return (
         <div className="w-full md:h-[120px] h-[50px] flex items-center justify-between px-5 border-b-2 ">
-            <button className="md:block hidden" onClick={() => router.push("/home")}>
-                <img src="/imgs/Logo-3.svg" alt="Logo" height="65px" />
-            </button>
-
+            <img className="md:block hidden cursor-pointer" src="/imgs/Logo-3.svg" alt="Logo" height="65px" onClick={() => router.push("/home")} />
             {/* topic select menu for mobile */}
             <div className="md:hidden flex space-x-2">
                 <DropdownMenu>

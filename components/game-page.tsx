@@ -66,8 +66,8 @@ export const GamePage = ({ data }: { data: any }) => {
                         return nextIndex;
                     }
                 });
-            }, 1500);
-        }, 2000);
+            },900);
+        }, 1400);
         return () => clearInterval(interval);
     }
 
@@ -76,12 +76,15 @@ export const GamePage = ({ data }: { data: any }) => {
      * @param answer The user click yes or no.
      */
     const buttonClick = (answer: boolean) => {
+        localStorage.setItem('userAnswer', answer ? 'yes' : 'no');
         answer ? setAnswer(true) : setAnswer(false);
         setIsInteractiveDialogVisible(false);
         setIsAnswerDialogVisible(true);
         setTimeout(() => {
            router.push("/feedback");
         }, 3000)
+        const storedAnswer = localStorage.getItem('userAnswer');
+        console.log('User Answer:', storedAnswer);
     };
 
     React.useEffect(() => updateAnimation(), [currentDialogInfoIndex]);

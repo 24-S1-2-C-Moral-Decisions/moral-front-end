@@ -29,6 +29,12 @@ export default async function SearchPage() {
             postsNum: postsNum,
         };
     }));
+
+    // select the top 8 topics for tag list
+    const topTopics = topics
+        .sort((a, b) => b.postsNum - a.postsNum)
+        .slice(1, 9);
+    
     console.timeEnd("Topics Query Time")
 
     console.time("Hot Posts Query Time")
@@ -61,7 +67,7 @@ export default async function SearchPage() {
                 </div>
 
                 <div className="w-full overflow-x-auto">
-                    <TagList />
+                    <TagList topics={topTopics}/>
                 </div>
 
                 <hr className="w-full" />

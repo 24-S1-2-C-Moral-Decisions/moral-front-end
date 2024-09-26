@@ -1,66 +1,16 @@
-import { NavBar } from "@/components/home/nav-bar";
+
 import { TagList } from "@/components/home/tag-list";
 import { HotPosts } from "@/components/search/hot-posts";
 import { PopularTopics } from "@/components/search/popular-topics";
 import { SurveyPopup } from "@/components/search/survey-popup";
 import { connectToDatabase } from "@/lib/connectDB";
 
-const tags = [
-    {
-        title: "Communication",
-        picUrl: "/imgs/tags/ic-communication.svg",
-        url: ""
-    },
-    {
-        title: "Family",
-        picUrl: "/imgs/tags/ic-family.svg",
-        url: ""
-    },
-    {
-        title: "Friend",
-        picUrl: "/imgs/tags/ic-friends.svg",
-        url: ""
-    },
-    {
-        title: "Manner",
-        picUrl: "/imgs/tags/ic-manners.svg",
-        url: ""
-    },
-    {
-        title: "Money",
-        picUrl: "/imgs/tags/ic-money.svg",
-        url: ""
-    },
-    {
-        title: "Time",
-        picUrl: "/imgs/tags/ic-time.svg",
-        url: ""
-    },
-    {
-        title: "Work",
-        picUrl: "/imgs/tags/ic-work.svg",
-        url: ""
-    },
-    {
-        title: "More",
-        picUrl: "/imgs/tags/ic-more.svg",
-        url: ""
-    }
-]
-
-type Topic = {
-    title: string,
-    picUrl: string,
-    url: string,
-    postsNum: number
-};
-
-type Topics = Topic[];
 
 
 
 export default async function SearchPage() {
 
+    console.time("Topics Query Time")
     const { db } = await connectToDatabase()
 
     // fetch topics list
@@ -70,7 +20,7 @@ export default async function SearchPage() {
         const title = collection.name.charAt(0).toUpperCase() + collection.name.slice(1);
         const picUrl = `/imgs/tags/ic-${collection.name.toLowerCase()}.svg`;
         const url = `/home/search/${collection.name.toLowerCase()}`;
-        const postsNum = await db?.collection(collection.name).countDocuments() ?? 0;
+        const postsNum = await db?.collection(collection.name).estimatedDocumentCount() ?? 0;
 
         return {
             title: title,
@@ -79,7 +29,9 @@ export default async function SearchPage() {
             postsNum: postsNum,
         };
     }));
+    console.timeEnd("Topics Query Time")
 
+    console.time("Hot Posts Query Time")
     // fetch hot posts
     const topPosts = await db.collection('all')
         .find({})
@@ -91,6 +43,7 @@ export default async function SearchPage() {
         title: post.title,
         selftext: post.selftext,
     }));
+    console.timeEnd("Hot Posts Query Time")
 
     return (
         <div className="md:mt-5 w-full flex justify-center">
@@ -99,14 +52,15 @@ export default async function SearchPage() {
 
             <div className="px-2 md:w-[798px] w-full md:px-0 h-[758px] flex flex-col items-center space-y-5">
 
+                {/* home page search bar */}
                 <div className="w-full md:flex rounded-[25px] shadow-lg hidden">
-                    <input className="w-full h-[80px] rounded-l-[25px]" />
+                    <input className="px-3 w-full h-[80px] rounded-l-[25px] text-xl" placeholder="AITA For comparing my wife to a cow?" />
                     <button className="w-[75px] h-[80px] rounded-r-[25px] bg-[#EBEEFC] flex justify-center items-center">
                         <img src="/imgs/search-icon.svg" alt="search" />
                     </button>
                 </div>
 
-                <div>
+                <div className="w-full overflow-x-auto">
                     <TagList />
                 </div>
 

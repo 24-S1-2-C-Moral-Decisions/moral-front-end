@@ -51,9 +51,9 @@ export const TagList = () => {
     const router=useRouter();
 
     return (
-        <div className="w-full flex flex-wrap items-center md:justify-between px-5">
+        <div className="w-full flex items-center justify-between px-5">
             {tags.map((tag) => (
-                <button key={tag.title} className="mx-2 w-[77px] max-h-[79px] flex flex-col justify-between items-center"
+                <button key={tag.title} className="mx-4 w-[77px] max-h-[79px] flex flex-col justify-between items-center"
                 onClick={()=>router.push(tag.url)}>
                     <div className="w-[57px] h-[57px] rounded-full border-[0.5px] border-[#B2B2B2] flex justify-center items-center">
                         <img src={tag.picUrl} alt={tag.title} width="20px" height="20px" />

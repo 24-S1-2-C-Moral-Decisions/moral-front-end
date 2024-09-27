@@ -8,10 +8,15 @@ export type Topic = {
 
 export type Topics=Topic[]
 
+
 export type Post = {
-    id: string,
+    id?: string,
     title: string,
-    selftext: string,
+    selftext?: string,
+    verdict?: string,
+    isExpand?: boolean,
+    assholeNumber?: number,
+    notAssholeNumber?: number,
 }
 
 export type Posts=Post[]

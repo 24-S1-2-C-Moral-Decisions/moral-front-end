@@ -13,7 +13,7 @@ export function middleware(req:NextRequest) {
   if (
     !acceptLanguage.some(loc => req.nextUrl.pathname.startsWith(`/${loc}`))
   ) {
-    return NextResponse.redirect(new URL(`/en${req.nextUrl.pathname}`, req.url))
+    return NextResponse.redirect(new URL(`/en${req.nextUrl.pathname}${req.nextUrl.search}`, req.url))
   }
   
   return NextResponse.next()

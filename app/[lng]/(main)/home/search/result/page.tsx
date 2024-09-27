@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
-export default function ResultPage({backendUrl}:{backendUrl:string}) {
+export default function ResultPage() {
 
     const [result, setResult] = useState<Posts>([]);
     const [similarPosts, setSimilarPosts] = useState<Posts>([]);
@@ -52,7 +52,7 @@ export default function ResultPage({backendUrl}:{backendUrl:string}) {
                     assholeNumber: item.YTA,
                     notAssholeNumber: item.NTA
                 })));
-                
+
             } catch (error) {
                 setResult([]);
                 setSimilarPosts([]);

@@ -14,7 +14,7 @@ export default async function SearchPage() {
     console.time("Topics Query Time")
 
     // select the top 8 topics for tag list
-    const topTopics = fetchTopicList()
+    const topTopics = await fetchTopicList()
     
     console.timeEnd("Topics Query Time")
 

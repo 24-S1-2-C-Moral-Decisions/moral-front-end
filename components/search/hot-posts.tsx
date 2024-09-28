@@ -1,16 +1,10 @@
 "use client";
 
+import { Posts } from "@/types";
 import { useRouter } from "next/navigation";
 
-type Post = {
-    id: string,
-    title: string,
-    selftext: string,
-}
 
-type Posts = Post[];
-
-export const HotPosts = ({ posts }: { posts: Posts }) => {
+export const HotPosts = ({ posts }: { posts:Posts  }) => {
 
     const router=useRouter();
 

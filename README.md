@@ -2,6 +2,22 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Environmental string is defined in `./.env.local` file. You need to create a env file by your own
+
+`.env.local` contains three environmental string:
+1. `BACKEND_URL`      # the url of backend api
+2. `DATABASE_URL`     # the url of databse
+3. `POST_DB`          # the database in which the posts are stored
+
+Example of `.env.local` file:
+
+```.env.local
+BACKEND_URL="http://localhost:3001"
+DATABASE_URL="mongodb://127.0.0.1:27017"
+POST_DB="posts"
+```
+
+
 ### run in docker
 
 1. First, install [docker](https://docs.docker.com/get-docker/)

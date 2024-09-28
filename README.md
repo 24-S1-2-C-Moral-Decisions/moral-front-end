@@ -2,12 +2,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-Environmental string is defined in `./.env.local` file. You need to create a env file by your own
+Environment variables are defined in `./.env.local` file. You need to create an `.env.local` file in the root directory before run.
 
-`.env.local` contains three environmental string:
-1. `BACKEND_URL`      # the url of backend api
-2. `DATABASE_URL`     # the url of databse
-3. `POST_DB`          # the database in which the posts are stored
+`.env.local` contains three environment variables:
+1. `BACKEND_URL`      # the address of backend server
+2. `DATABASE_URL`     # the address of database
+3. `POST_DB`          # the name of the database in which the posts are stored
 
 Example of `.env.local` file:
 

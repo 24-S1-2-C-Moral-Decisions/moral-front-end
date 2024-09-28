@@ -20,25 +20,7 @@ export default async function SearchPage() {
 
     console.time("Hot Posts Query Time")
     // fetch hot posts
-    const hotPosts = await api.get(`/post/hotPosts`,
-        {
-            params: {
-                pageSize: 5,
-            }
-        }
-    )
-    .then((response) => {
-        return response.data.map((post: any) => {
-            return {
-                id: post.id.toString(),
-                title: post.title,
-                selftext: post.selftext,
-            }
-        });
-    })
-    .catch((error) => {
-        console.error("Failed to fetch hot posts", error);
-    });
+    const hotPosts = await fetchHotPosts()
     console.timeEnd("Hot Posts Query Time")
 
     return (
@@ -53,14 +35,14 @@ export default async function SearchPage() {
 
                 {/* tag list */}
                 <div className="w-full overflow-x-auto">
-                    <TagList topics={await fetchTopicList()}/>
+                    <TagList topics={topTopics}/>
                 </div>
 
                 {/* popular topics and posts */}
                 <hr className="w-full" />
                 <div className="w-full flex justify-between">
                     <div className="w-[333px] h-[490px] md:flex hidden">
-                        <PopularTopics topics={await fetchHotPosts()} />
+                        <PopularTopics topics={topTopics} />
                     </div>
                     <div className="md:px-0 px-3 w-[415px] h-[490px]">
                         <HotPosts posts={hotPosts} />

@@ -2,9 +2,9 @@
 import { ResultList } from "@/components/search/result-list";
 import { SimilarPosts } from "@/components/search/similar-posts";
 import { Posts} from "@/types";
-import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { api } from "../../../../../../lib/utils";
 
 
 export default function ResultPage() {
@@ -14,19 +14,18 @@ export default function ResultPage() {
     const searchParams = useSearchParams();
     const searchTopic=searchParams.get("topic");
     const searchString=searchParams.get("keywords");
-    const backenURL=process.env.BACKEND_URL;
 
     useEffect(() => {
-
         const getSearchResult = async () => {
-            try {
-                console.log(`${process.env.BACKEND_URL}/search`)
-                const response = await axios.get(`/api/search`, {
-                    params:{
-                        topic:searchTopic,
-                        keywords:searchString,
-                    }
-                });
+            api.get(`/search`, {
+                params:{
+                    topic:searchTopic,
+                    keywords:searchString,
+                    pages:0,
+                    pageSize: 5
+                }
+            })
+            .then((response) => {
                 setResult(response.data.map((item: any) => ({
                     id: item.id,
                     title: item.title,
@@ -37,27 +36,33 @@ export default function ResultPage() {
                     notAssholeNumber: item.NTA
                 })));
 
-                const similarPostsResponse = await axios.get("/api/search", {
-                    params:{
+                api.get(`/search`, {
+                    params: {
                         topic:"all",
                         keywords:response.data[0].title||"",
+                        pages:0,
+                        pageSize: 4
                     }
+                }).then((similarPostsResponse) => {
+                    setSimilarPosts((similarPostsResponse.data as Array<object>).slice(1).map((item: any) => ({
+                        id: item.id,
+                        title: item.title,
+                        selftext: item.selftext,
+                        verdict: item.verdict,
+                        isExpand: false,
+                        assholeNumber: item.YTA,
+                        notAssholeNumber: item.NTA
+                    })));
+                })
+                .catch((error) => {
+                    setSimilarPosts([]);
+                    console.error("Failed to search", error);
                 });
-                setSimilarPosts(similarPostsResponse.data.map((item: any) => ({
-                    id: item.id,
-                    title: item.title,
-                    selftext: item.selftext,
-                    verdict: item.verdict,
-                    isExpand: false,
-                    assholeNumber: item.YTA,
-                    notAssholeNumber: item.NTA
-                })));
-
-            } catch (error) {
+            })
+            .catch((error) => {
                 setResult([]);
-                setSimilarPosts([]);
                 console.error("Failed to search", error);
-            }
+            });
         }
 
         getSearchResult();

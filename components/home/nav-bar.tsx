@@ -11,7 +11,9 @@ import { Posts, Topics } from "@/types";
 
 
 
+
 export const NavBar = ({ topics, hotPosts }: { topics: Topics, hotPosts: Posts }) => {
+
     const router = useRouter();
     const pathname = usePathname();
 
@@ -21,6 +23,7 @@ export const NavBar = ({ topics, hotPosts }: { topics: Topics, hotPosts: Posts }
 
     return (
         <div className="w-full md:h-[120px] h-[50px] flex items-center justify-between px-5 border-b-2 ">
+
 
             {/* logo for large screen */}
             <button className="md:block hidden" onClick={() => router.push("/home")}>

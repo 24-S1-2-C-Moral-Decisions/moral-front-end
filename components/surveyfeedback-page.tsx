@@ -220,8 +220,7 @@ function Share() {
                         onClick={() => {
                             setClose("true");
                             setTimeout(() => {
-                                router.push("/home/search");
-                                // setPage("main"); {/* Change to home page later */ }
+                                router.push("/home");
                             }, 500);
                         }}
                     >

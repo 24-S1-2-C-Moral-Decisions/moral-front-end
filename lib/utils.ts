@@ -65,3 +65,25 @@ export async function fetchTopicList() {
     console.error("Failed to fetch topics", error);
 });
 }
+
+export async function fetchHotPosts() {
+  return await api.get(`/post/hotPosts`,
+    {
+        params: {
+            pageSize: 5,
+        }
+    }
+)
+.then((response) => {
+    return response.data.map((post: any) => {
+        return {
+            id: post.id.toString(),
+            title: post.title,
+            selftext: post.selftext,
+        }
+    });
+})
+.catch((error) => {
+    console.error("Failed to fetch hot posts", error);
+});
+}

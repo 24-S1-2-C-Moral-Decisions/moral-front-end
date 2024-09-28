@@ -1,105 +1,34 @@
 import { PostsList } from "@/components/search/posts-list";
-import { connectToDatabase } from "@/lib/connectDB";
+import { api } from "../../../../../../lib/utils";
 
 export default async function TopicPage({ params }: { params: { topic: string } }) {
 
     const { topic } = params;
-    const { db } = await connectToDatabase();
 
-    // const posts = [
-    //     {
-    //         title: "test title 1",
-    //         selftext: "test text 1",
-    //         verdict: "NTA",
-    //         isExpand: false
-    //     },
-    //     {
-    //         title: "test title 2",
-    //         selftext: "test text 2",
-    //         verdict: "YTA",
-    //         isExpand: false
-    //     },
-    //     {
-    //         title: "test title 3",
-    //         selftext: "test text 3",
-    //         verdict: "NAH",
-    //         isExpand: false
-    //     },
-    //     {
-    //         title: "test title 4",
-    //         selftext: "test text 4",
-    //         verdict: "INFO",
-    //         isExpand: false
-    //     },
-    //     {
-    //         title: "test title 22",
-    //         selftext: "test text 2",
-    //         verdict: "YTA",
-    //         isExpand: false
-    //     },
-    //     {
-    //         title: "test title 32",
-    //         selftext: "test text 3",
-    //         verdict: "NAH",
-    //         isExpand: false
-    //     },
-    //     {
-    //         title: "test title 42",
-    //         selftext: "test text 4",
-    //         verdict: "INFO",
-    //         isExpand: false
-    //     },
-    //     {
-    //         title: "test title 23",
-    //         selftext: "test text 2",
-    //         verdict: "YTA",
-    //         isExpand: false
-    //     },
-    //     {
-    //         title: "test title 33",
-    //         selftext: "test text 3",
-    //         verdict: "NAH",
-    //         isExpand: false
-    //     },
-    //     {
-    //         title: "test title 43",
-    //         selftext: "test text 4",
-    //         verdict: "INFO",
-    //         isExpand: false
-    //     },
-    //     {
-    //         title: "test title 24",
-    //         selftext: "test text 2",
-    //         verdict: "YTA",
-    //         isExpand: false
-    //     },
-    //     {
-    //         title: "test title 35",
-    //         selftext: "test text 3",
-    //         verdict: "NAH",
-    //         isExpand: false
-    //     },
-    //     {
-    //         title: "test title 46",
-    //         selftext: "test text 4",
-    //         verdict: "INFO",
-    //         isExpand: false
-    //     },
-    // ]
-    const initalPosts = await db.collection(topic.replace(/%20/g, " ").toLowerCase())
-        .find({})
-        .sort({ num_comments: -1 })
-        .limit(10)
-        .toArray();
+    const posts = await api.get(`/search`, {
+        params: {
+            topic: topic,
+            pages: 0,
+            pageSize: 10
+        }
+    })
+    .then((response) => {
+        console.log(topic);
+        console.log(" app/[lng]/(main)/home/search/[topic]/page.tsx: response.data", response.data.length);
+        return response.data.map((post: any) => ({
+                title: post.title,
+                selftext: post.selftext,
+                verdict: post.verdict,
+                isExpand: false,
+                assholeNumber: post.YTA,
+                notAssholeNumber: post.NTA,
+            }));
+    })
+    .catch((error) => {
+        console.error("Failed to search", error);
+    });
 
-    const posts = initalPosts.map((post) => ({
-        title: post.title,
-        selftext: post.selftext,
-        verdict: post.verdict,
-        isExpand: false,
-        assholeNumber: post.YTA,
-        notAssholeNumber: post.NTA,
-    }));
+    // const posts = initalPosts.map();
 
     return (
         <div className="p-5 w-full h-full flex flex-col">

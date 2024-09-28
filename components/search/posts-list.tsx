@@ -1,10 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { api, cn } from "@/lib/utils";
 import { useRef, useState } from "react";
 import { PostDoughnutChart } from "./post-doughnut-chart";
 import { PostAssholePanel } from "./post-asshole-panel";
-import axios from "axios";
 
 type Post = {
     title: string,
@@ -44,17 +43,32 @@ export const PostsList = ({ posts, topic }: { posts: Posts, topic?: string }) =>
 
             // fetch new data
             setTimeout(async () => {
-                try {
-                    const response = await axios.get(`/api/getPosts?page=${page}&topic=${topic}`);
-                    const newData = response.data;
-
-                    if (newData.length > 0) {
-                        setData((oldData) => [...oldData, ...newData]);
+                api.get(`/search`, {
+                    params:{
+                        topic:topic,
+                        pages:page,
+                        pageSize: 5
+                    }
+                })
+                .then((response) => {
+                    if (response.data.length > 0) {
+                        setData((oldData) => [...oldData, ...response.data.map((item: any) => {
+                            return {
+                                id: item.id,
+                                title: item.title,
+                                selftext: item.selftext,
+                                verdict: item.verdict,
+                                isExpand: false,
+                                assholeNumber: item.YTA,
+                                notAssholeNumber: item.NTA
+                            }
+                        })]);
                         setPage(page + 1);
                     }
-                } catch (error) {
-                    console.error("Failed to load more posts", error);
-                }
+                })
+                .catch((error) => {
+                    console.error("Failed to search", error);
+                });
 
                 setIsLoading(false);
             }, 1000)
@@ -79,6 +93,7 @@ export const PostsList = ({ posts, topic }: { posts: Posts, topic?: string }) =>
                             { "max-h-0": !expandedPosts[post.title], "max-h-[3000px]": expandedPosts[post.title] }
                         )}
                     >
+                        {/* <p>{JSON.stringify(post)}</p> */}
                         <p className="text-sm text-gray-600 py-2 whitespace-pre-wrap">
                             {post.selftext.replace(/\\n/g, '\n')}
                         </p>

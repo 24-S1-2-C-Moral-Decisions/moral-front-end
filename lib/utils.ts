@@ -6,16 +6,38 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-if (!process.env.NEXT_PUBLIC_SURVEY_URL) {
-  console.warn('NEXT_PUBLIC_SURVEY_URL is not set')
-}
+const envList = [
+  {
+    name: 'NEXT_PUBLIC_SURVEY_URL',
+    required: true,
+    default: 'https://24-s1-2-c-moral-decisions.github.io/moral-survey/',
+  },
+  {
+    name: 'NEXT_PUBLIC_API_URL',
+    required: true,
+    default: 'https://moralmomentapi.azurewebsites.net/',
+  },
+]
+
+envList.forEach((env) => {
+  if (!process.env[env.name]) {
+    if (env.default){
+      console.log(`Environment variable ${env.name} not set, using default value: ${env.default}`)
+      process.env[env.name] = env.default
+    }
+    else if (env.required) {
+      console.error(`Environment variable ${env.name} is required`)
+      if (typeof window !== 'undefined') {
+        alert(`Environment variable ${env.name} is required`)
+      }
+    }
+  }
+});
+
 export function getSurveyURL(): string {
   return process.env.NEXT_PUBLIC_SURVEY_URL || 'https://24-s1-2-c-moral-decisions.github.io/moral-survey/'
 }
 
-if (!process.env.NEXT_PUBLIC_API_URL) {
-  console.warn('NEXT_PUBLIC_API_URL is not set')
-}
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api',
   headers: {

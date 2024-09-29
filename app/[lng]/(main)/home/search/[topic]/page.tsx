@@ -8,13 +8,11 @@ export default async function TopicPage({ params }: { params: { topic: string } 
     const posts = await api.get(`/search`, {
         params: {
             topic: topic,
-            pages: 0,
+            page: 0,
             pageSize: 10
         }
     })
     .then((response) => {
-        console.log(topic);
-        console.log(" app/[lng]/(main)/home/search/[topic]/page.tsx: response.data", response.data.length);
         return response.data.map((post: any) => ({
                 title: post.title,
                 selftext: post.selftext,

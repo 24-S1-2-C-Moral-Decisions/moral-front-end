@@ -1,5 +1,5 @@
 import { PopularTopics } from "@/components/search/popular-topics";
-import { api, fetchTopicList } from "../../../../../lib/utils";
+import { fetchTopicList } from "../../../../../lib/utils";
 
 export default async function SearchLayout({ children }: { children: React.ReactNode }) {
     return (

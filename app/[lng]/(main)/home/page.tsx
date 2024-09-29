@@ -4,7 +4,7 @@ import { HomepageSearchBar } from "@/components/search/homepage-search-bar";
 import { HotPosts } from "@/components/search/hot-posts";
 import { PopularTopics } from "@/components/search/popular-topics";
 import { SurveyPopup } from "@/components/search/survey-popup";
-import { api, fetchHotPosts, fetchTopicList } from "../../../../lib/utils";
+import { fetchHotPosts, fetchTopicList } from "../../../../lib/utils";
 
 
 

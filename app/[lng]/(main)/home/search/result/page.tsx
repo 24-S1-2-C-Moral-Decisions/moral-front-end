@@ -4,7 +4,7 @@ import { SimilarPosts } from "@/components/search/similar-posts";
 import { Posts} from "@/types";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { api } from "../../../../../../lib/utils";
+import { api } from "@/lib/utils";
 
 
 export default function ResultPage() {
@@ -70,8 +70,8 @@ export default function ResultPage() {
 
     return (
         <div className="md:p-5 p-3 w-full h-full flex flex-col space-y-5 overflow-scroll">
-            <ResultList posts={result} />
-            <SimilarPosts posts={similarPosts} />
+            <ResultList posts={result??[]} />
+            <SimilarPosts posts={similarPosts??[]} />
         </div>
     )
 }

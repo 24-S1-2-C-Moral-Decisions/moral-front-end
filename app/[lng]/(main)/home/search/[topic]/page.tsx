@@ -1,5 +1,5 @@
 import { PostsList } from "@/components/search/posts-list";
-import { api } from "../../../../../../lib/utils";
+import { api } from "@/lib/utils";
 
 export default async function TopicPage({ params }: { params: { topic: string } }) {
 
@@ -44,7 +44,7 @@ export default async function TopicPage({ params }: { params: { topic: string } 
             </div>
 
             <div className="h-full overflow-auto">
-                <PostsList posts={posts} topic={topic.replace(/%20/g, " ").toLowerCase()} />
+                <PostsList posts={posts??[]} topic={topic.replace(/%20/g, " ").toLowerCase()} />
             </div>
         </div>
     )

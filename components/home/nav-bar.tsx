@@ -22,7 +22,7 @@ export const NavBar = ({ topics, hotPosts }: { topics: Topics, hotPosts: Posts }
     const [openSearchDrawer, setOpenSearchDrawer] = useState(false);
 
     return (
-        <div className="xl:px-[144px] w-full md:h-[100px] h-[50px] flex items-center justify-between border-b-2 ">
+        <div className="w-full md:h-[100px] h-[50px] xl:px-[144px] flex items-center justify-between border-b-2 ">
 
 
             {/* logo for large screen */}

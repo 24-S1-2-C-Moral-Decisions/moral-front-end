@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // Define the mapping from string values to numeric scale
 const scaleMapping: { [key: string]: number } = {
   'strongly disagree': 1,
@@ -12,50 +14,40 @@ const scaleMapping: { [key: string]: number } = {
 // Define the reverse scoring items
 const reverseItems = ['Q7.2_3', 'Q7.2_6', 'Q7.2_10', 'Q7.2_14'];
 
-// Initial data with answers in string format
-const initialData = {
-  'Q7.2_1': 'agree',
-  'Q7.2_2': 'somewhat agree',
-  'Q7.2_3': 'disagree',
-  'Q7.2_4': 'strongly agree',
-  'Q7.2_5': 'neither agree nor disagree',
-  'Q7.2_6': 'agree',
-  'Q7.2_7': 'strongly agree',
-  'Q7.2_8': 'agree',
-  'Q7.2_9': 'somewhat disagree',
-  'Q7.2_10': 'disagree',
-  'Q7.2_11': 'agree',
-  'Q7.2_12': 'strongly agree',
-  'Q7.2_13': 'somewhat agree',
-  'Q7.2_14': 'strongly disagree',
-  'Q7.2_15': 'agree'
+// Function to fetch initial data
+const fetchInitialData = async () => {
+  try {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const response = await axios.get(`${apiUrl}/survey/answer`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching personality data:', error);
+    return {}; // Return an empty object in case of error
+  }
 };
 
-// Define the interface for personality data
-interface PersonalityData {
-  [key: string]: string;
-}
-
 // Map personality data from strings to numbers
-const personalityData: PersonalityData = initialData;
+const mapPersonalityData = (personalityData: { [key: string]: string }) => {
+  const mappedData: { [key: string]: number } = Object.keys(personalityData).reduce((acc, key) => {
+    const value = personalityData[key];
+    if (value in scaleMapping) {
+      acc[key] = scaleMapping[value];
+    }
+    return acc;
+  }, {} as { [key: string]: number });
 
-const mappedData: { [key: string]: number } = Object.keys(personalityData).reduce((acc, key) => {
-  const value = personalityData[key];
-  if (value in scaleMapping) {
-    acc[key] = scaleMapping[value];
-  }
-  return acc;
-}, {} as { [key: string]: number });
+  // Handle reverse scoring for specific items
+  reverseItems.forEach(item => {
+    if (mappedData[item] !== undefined) {
+      mappedData[item] = 8 - mappedData[item];
+    }
+  });
 
-// Handle reverse scoring for specific items
-reverseItems.forEach(item => {
-  if (mappedData[item] !== undefined) {
-    mappedData[item] = 8 - mappedData[item];
-  }
-});
+  return mappedData;
+};
 
 // Calculate the Big Five personality traits
-const calculateBigFive = () => {
+const calculateBigFive = (mappedData: { [key: string]: number }) => {
   const Openness = (mappedData['Q7.2_7'] + mappedData['Q7.2_8'] + mappedData['Q7.2_9']) / 3;
   const Conscientiousness = (mappedData['Q7.2_13'] + mappedData['Q7.2_14'] + mappedData['Q7.2_15']) / 3;
   const Extraversion = (mappedData['Q7.2_4'] + mappedData['Q7.2_5'] + mappedData['Q7.2_6']) / 3;
@@ -71,5 +63,12 @@ const calculateBigFive = () => {
   };
 };
 
-// Calculate and export the Big Five personality traits
-export const personalityBigFive = calculateBigFive();
+// Fetch data and calculate personality big five
+const getPersonalityBigFive = async () => {
+  const initialData = await fetchInitialData();
+  const mappedData = mapPersonalityData(initialData);
+  return calculateBigFive(mappedData);
+};
+
+// Export personality big five
+export const personalityBigFive = getPersonalityBigFive();

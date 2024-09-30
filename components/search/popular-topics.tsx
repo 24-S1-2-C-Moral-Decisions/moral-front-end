@@ -24,7 +24,7 @@ export const PopularTopics = ({ topics }: { topics: Topics }) => {
                         onClick={
                             () => router.push(topic.url)
                         }>
-                        <h1 className="text-sm text-[#525252] text-left">
+                        <h1 className="text-sm text-[#525252] text-left font-arial">
                             {topic.title}
                         </h1>
                         <h1 className="text-xs text-[#9F9F9F] text-left">

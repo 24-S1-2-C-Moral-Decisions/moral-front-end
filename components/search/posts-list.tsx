@@ -28,10 +28,12 @@ export const PostsList = ({ posts, topic }: { posts: Posts, topic?: string }) =>
 
     // expand the details of a post
     const toggleExpand = (title: string) => {
-        setExpandedPosts((prevState) => ({
-            ...prevState,
-            [title]: !prevState[title],
-        }));
+        setExpandedPosts((prevState) => {
+            return {
+                ...prevState,
+                [title]: !prevState[title]
+            }
+        });
     };
 
     // fetch new data when scroll to the bottom
@@ -46,7 +48,7 @@ export const PostsList = ({ posts, topic }: { posts: Posts, topic?: string }) =>
                 api.get(`/search`, {
                     params:{
                         topic:topic,
-                        pages:page,
+                        page:page,
                         pageSize: 5
                     }
                 })

@@ -21,7 +21,7 @@ export default function ResultPage() {
                 params:{
                     topic:searchTopic,
                     keywords:searchString,
-                    pages:0,
+                    page:0,
                     pageSize: 5
                 }
             })
@@ -40,7 +40,7 @@ export default function ResultPage() {
                     params: {
                         topic:"all",
                         keywords:response.data[0].title||"",
-                        pages:0,
+                        page:0,
                         pageSize: 4
                     }
                 }).then((similarPostsResponse) => {

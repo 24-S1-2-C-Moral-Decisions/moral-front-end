@@ -16,7 +16,11 @@ BACKEND_URL="http://localhost:3001"
 DATABASE_URL="mongodb://127.0.0.1:27017"
 POST_DB="posts"
 ```
+If you have not added backend url to the system environment variables, please set them in .env.local:
 
+```.env.local
+NEXT_PUBLIC_BACKEND_URL="https://backend.example.com"
+```
 
 ### run in docker
 

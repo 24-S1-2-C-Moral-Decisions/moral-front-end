@@ -11,18 +11,17 @@ import { fetchHotPosts, fetchTopicList } from "@/lib/utils";
 
 export default async function SearchPage() {
 
-    console.time("Topics Query Time")
+
 
     // select the top 8 topics for tag list
     const allTopics = await fetchTopicList()
     const hotTopics = allTopics.sort((a:any, b:any) => b.postsNum - a.postsNum).slice(1, 9);
     
-    console.timeEnd("Topics Query Time")
 
-    console.time("Hot Posts Query Time")
+
     // fetch hot posts
     const hotPosts = await fetchHotPosts()
-    console.timeEnd("Hot Posts Query Time")
+
 
     return (
         <div className="md:mt-5 w-full flex justify-center">
@@ -51,7 +50,7 @@ export default async function SearchPage() {
                 </div>
             </div>
 
-            <div className="lg:block hidden">
+            <div className="ml-4 lg:block hidden">
                 <SurveyPopup />
             </div>
 

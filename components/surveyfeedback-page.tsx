@@ -220,7 +220,7 @@ function Share() {
                         onClick={() => {
                             setClose("true");
                             setTimeout(() => {
-                                router.push("/home");
+                                router.replace("/home");
                             }, 500);
                         }}
                     >

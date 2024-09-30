@@ -35,6 +35,7 @@ export async function fetchTopicList() {
 })
 .catch((error) => {
     console.error("Failed to fetch topics", error);
+    return [];
 });
 }
 
@@ -57,5 +58,6 @@ export async function fetchHotPosts() {
 })
 .catch((error) => {
     console.error("Failed to fetch hot posts", error);
+    return [];
 });
 }

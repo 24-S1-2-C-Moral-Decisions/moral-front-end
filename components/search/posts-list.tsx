@@ -1,7 +1,7 @@
 "use client";
 
-import { cn, fetchSearchPost } from "@/lib/utils";
-import { useRef, useState } from "react";
+import { api, cn, fetchSearchPost } from "@/lib/utils";
+import { useRef, useState, useEffect } from "react";
 import { PostDoughnutChart } from "./post-doughnut-chart";
 import { PostAssholePanel } from "./post-asshole-panel";
 
@@ -18,13 +18,23 @@ type Posts = Post[];
 
 
 
-export const PostsList = ({ posts, topic }: { posts: Posts, topic?: string }) => {
+export const PostsList = ({ topic }: { topic?: string }) => {
 
-    const [data, setData] = useState(posts);
+    const [data, setData] = useState<Posts>([]);
     const [expandedPosts, setExpandedPosts] = useState<{ [key: string]: boolean }>({});
     const [isLoading, setIsLoading] = useState(false);
     const [page, setPage] = useState(2)
     const postListRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        fetchSearchPost({
+            topic: topic,
+            page: 0,
+            pageSize: 10
+        }).then((data) => {
+            setData(data);
+        });
+    }, []);
 
     // expand the details of a post
     const toggleExpand = (title: string) => {
@@ -45,23 +55,38 @@ export const PostsList = ({ posts, topic }: { posts: Posts, topic?: string }) =>
 
             // fetch new data
             setTimeout(async () => {
-                fetchSearchPost({topic, page, pageSize: 5})
-                .then((newPosts) => {
-                    if (newPosts.length > 0) {
-                        setData((oldData) => [...oldData, ...newPosts.map((item: any) => {
-                            return {
-                                id: item.id,
-                                title: item.title,
-                                selftext: item.selftext,
-                                verdict: item.verdict,
-                                isExpand: false,
-                                assholeNumber: item.YTA,
-                                notAssholeNumber: item.NTA
-                            }
-                        })]);
-                        setPage(page + 1);
+                const newPosts = await api.get(`/search`, {
+                    params: {
+                        topic: topic,
+                        page: page,
+                        pageSize: 5
                     }
-                });
+                }).then((response) => {
+                    return response.data.map((item: any) => ({
+                        id: item.id,
+                        title: item.title,
+                        selftext: item.selftext,
+                        verdict: item.verdict,
+                        isExpand: false,
+                        assholeNumber: item.YTA,
+                        notAssholeNumber: item.NTA
+                    }))
+                })
+                
+                if (newPosts.length > 0) {
+                    setData((oldData) => [...oldData, ...newPosts.map((item: any) => {
+                        return {
+                            id: item.id,
+                            title: item.title,
+                            selftext: item.selftext,
+                            verdict: item.verdict,
+                            isExpand: false,
+                            assholeNumber: item.YTA,
+                            notAssholeNumber: item.NTA
+                        }
+                    })]);
+                    setPage(page + 1);
+                }
                 setIsLoading(false);
             }, 1000)
         }

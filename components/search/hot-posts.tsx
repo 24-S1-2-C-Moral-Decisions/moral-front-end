@@ -1,12 +1,18 @@
 "use client";
 
 import { Posts } from "@/types";
-import { useRouter } from "next/navigation";
+import { api, fetchHotPosts } from "@/lib/utils";
+import { useState, useEffect } from "react";
 
 
-export const HotPosts = ({ posts }: { posts:Posts  }) => {
+export const HotPosts = () => {
+    const [posts, setPosts] = useState<Posts>([]);
 
-    const router=useRouter();
+    useEffect(() => {
+        fetchHotPosts().then((data) => {
+            setPosts(data);
+        });
+    }, []);
 
     return (
         <div className="w-full h-full flex flex-col justify-between space-y-5">

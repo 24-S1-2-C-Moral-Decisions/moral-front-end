@@ -18,7 +18,7 @@ export const api = axios.create({
 })
 
 export async function fetchTopicList() {
-  return await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL +`/post/topics`).then((response) => {
+  return api.get(`/post/topics`).then((response) => {
     return response.data.map((topics: any) => {
         const title = topics.topic.charAt(0).toUpperCase() + topics.topic.slice(1);
         const picUrl = `/imgs/tags/ic-${topics.topic.toLowerCase()}.svg`;
@@ -40,7 +40,7 @@ export async function fetchTopicList() {
 }
 
 export async function fetchHotPosts() {
-  return await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL +`/post/hotPosts`,
+  return api.get(`/post/hotPosts`,
     {
         params: {
             pageSize: 5,
@@ -63,7 +63,7 @@ export async function fetchHotPosts() {
 }
 
 export async function fetchSearchPost(param: {topic?: string, keywords?: string, page?: number, pageSize?: number}) {
-  return axios.get(process.env.NEXT_PUBLIC_BACKEND_URL +`/search`, {
+  return api.get(`/search`, {
     params:param
 })
 .then((response) => {

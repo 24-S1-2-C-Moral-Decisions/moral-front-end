@@ -2,17 +2,17 @@
 import { AlignJustify} from "lucide-react"
 import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer"
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { HotPosts } from "../search/hot-posts";
-import { cn } from "@/lib/utils";
+import { cn, fetchTopicList } from "@/lib/utils";
 import { SearchBar } from "../search/search-bar";
-import { Posts, Topics } from "@/types";
+import { Topics } from "@/types";
 
 
 
 
-export const NavBar = ({ topics, hotPosts }: { topics: Topics, hotPosts: Posts }) => {
+export const NavBar = () => {
 
     const router = useRouter();
     const pathname = usePathname();
@@ -20,6 +20,14 @@ export const NavBar = ({ topics, hotPosts }: { topics: Topics, hotPosts: Posts }
     const [expandMap, setExpandMap] = useState(false);
     const [expandTopics, setExpandTopics] = useState(false);
     const [openSearchDrawer, setOpenSearchDrawer] = useState(false);
+
+    const [topics, setTopics] = useState<Topics>([]);
+
+    useEffect(() => {
+        fetchTopicList().then((data) => {
+            setTopics(data);
+        });
+    }, []);
 
     return (
         <div className="w-full md:h-[120px] h-[50px] flex items-center justify-between px-5 border-b-2 ">
@@ -129,7 +137,7 @@ export const NavBar = ({ topics, hotPosts }: { topics: Topics, hotPosts: Posts }
                         </div>
                         <DropdownMenuSeparator className="my-4" />
                         <div className="px-3">
-                            <HotPosts posts={hotPosts} />
+                            <HotPosts />
                         </div>
                     </DrawerContent>
                 </Drawer>
@@ -167,7 +175,7 @@ export const NavBar = ({ topics, hotPosts }: { topics: Topics, hotPosts: Posts }
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <div className="">
-                            <HotPosts posts={hotPosts} />
+                            <HotPosts />
                         </div>
                     </DropdownMenuContent>
                 </DropdownMenu> */}

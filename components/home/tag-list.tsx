@@ -1,11 +1,21 @@
 "use client";
 import { Topics } from "@/types";
 import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react";
+import { fetchTopicList } from "@/lib/utils";
 
 
-export const TagList = ({topics}:{topics:Topics}) => {
+export const TagList = () => {
 
     const router=useRouter();
+
+    const [topics, setTopics] = useState<Topics>([]);
+
+    useEffect(() => {
+        fetchTopicList().then((data) => {
+            setTopics(data);
+        });
+    }, []);
 
     return (
         <div className="w-full flex items-center justify-between px-5">

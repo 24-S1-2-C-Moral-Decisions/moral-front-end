@@ -4,12 +4,12 @@ import { HomepageSearchBar } from "@/components/search/homepage-search-bar";
 import { HotPosts } from "@/components/search/hot-posts";
 import { PopularTopics } from "@/components/search/popular-topics";
 import { SurveyPopup } from "@/components/search/survey-popup";
+import { fetchHotPosts, fetchTopicList } from "@/lib/utils";
 
 
 
 
 export default async function SearchPage() {
-
     return (
         <div className="md:mt-5 w-full flex justify-center">
 
@@ -37,7 +37,7 @@ export default async function SearchPage() {
                 </div>
             </div>
 
-            <div className="lg:block hidden">
+            <div className="ml-4 lg:block hidden">
                 <SurveyPopup />
             </div>
 

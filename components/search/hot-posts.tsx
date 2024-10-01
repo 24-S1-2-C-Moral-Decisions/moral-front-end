@@ -24,7 +24,8 @@ export const HotPosts = () => {
             </div>
             <div className="px-2 h-full flex flex-col md:justify-between">
                 {posts.map((post, index) => (
-                    <button key={post.title} className="md:h-[85px] h-[60px] flex space-x-5">
+                    <button key={post.title} className="md:h-[85px] h-[60px] flex space-x-5"
+                    onClick={()=>router.push(`/home/search/result?keywords=${post.title}`)}>
                         <h1 className="md:w-[46px] w-[30px] md:text-4xl text-2xl text-[#D9D7D9] font-extrabold">{"0" + (index + 1)}</h1>
                         <p className="text-black text-left text-sm font-bold">
                             {post.title}

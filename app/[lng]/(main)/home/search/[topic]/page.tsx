@@ -1,32 +1,11 @@
 import { PostsList } from "@/components/search/posts-list";
-import { api } from "../../../../../../lib/utils";
+import { api, fetchPostsByTopic } from "../../../../../../lib/utils";
 
 export default async function TopicPage({ params }: { params: { topic: string } }) {
 
     const { topic } = params;
 
-    const posts = await api.get(`/search`, {
-        params: {
-            topic: topic,
-            page: 0,
-            pageSize: 10
-        }
-    })
-    .then((response) => {
-        return response.data.map((post: any) => ({
-                title: post.title,
-                selftext: post.selftext,
-                verdict: post.verdict,
-                isExpand: false,
-                assholeNumber: post.YTA,
-                notAssholeNumber: post.NTA,
-            }));
-    })
-    .catch((error) => {
-        console.error("Failed to search", error);
-    });
-
-    // const posts = initalPosts.map();
+    const posts = await fetchPostsByTopic(topic);
 
     return (
         <div className="p-5 w-full h-full flex flex-col">

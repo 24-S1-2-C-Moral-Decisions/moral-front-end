@@ -61,3 +61,29 @@ export async function fetchHotPosts() {
     return [];
 });
 }
+
+export async function fetchPostsByTopic(topic: string, page: number = 0, pageSize: number = 10) {
+  return await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL +`/post/topic`,
+    {
+      params: {
+        topic: topic,
+        page: page,
+        pageSize: pageSize,
+      }
+    }
+  )
+  .then((response) => {
+    return response.data.map((post: any) => ({
+      title: post.title,
+      selftext: post.selftext,
+      verdict: post.verdict,
+      isExpand: false,
+      assholeNumber: post.YTA,
+      notAssholeNumber: post.NTA,
+    }))
+  })  
+  .catch((error) => {
+    console.error("Failed to search", error);
+    return [];
+  });
+}

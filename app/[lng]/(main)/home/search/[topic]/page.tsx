@@ -23,7 +23,7 @@ export default async function TopicPage({ params }: { params: { topic: string } 
             </div>
 
             <div className="h-full overflow-auto">
-                <PostsList posts={posts} topic={topic.replace(/%20/g, " ").toLowerCase()} />
+                <PostsList posts={posts??[]} topic={topic.replace(/%20/g, " ").toLowerCase()} />
             </div>
         </div>
     )

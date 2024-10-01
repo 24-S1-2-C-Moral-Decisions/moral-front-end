@@ -1,11 +1,11 @@
 import { PostsList } from "@/components/search/posts-list";
-import { api, fetchPostsByTopic } from "../../../../../../lib/utils";
+import { api, fetchSearchPost } from "../../../../../../lib/utils";
 
 export default async function TopicPage({ params }: { params: { topic: string } }) {
 
     const { topic } = params;
 
-    const posts = await fetchPostsByTopic(topic);
+    const posts = await fetchSearchPost(topic);
 
     return (
         <div className="p-5 w-full h-full flex flex-col">

@@ -1,6 +1,6 @@
 "use client";
 
-import { api, cn, fetchPostsByTopic } from "@/lib/utils";
+import { api, cn, fetchSearchPost } from "@/lib/utils";
 import { useRef, useState } from "react";
 import { PostDoughnutChart } from "./post-doughnut-chart";
 import { PostAssholePanel } from "./post-asshole-panel";
@@ -45,7 +45,7 @@ export const PostsList = ({ posts, topic }: { posts: Posts, topic?: string }) =>
 
             // fetch new data
             setTimeout(async () => {
-                fetchPostsByTopic(topic??'all', page, 5)
+                fetchSearchPost(topic, page, 5)
                 .then((newPosts) => {
                     if (newPosts.length > 0) {
                         setData((oldData) => [...oldData, ...newPosts.map((item: any) => {

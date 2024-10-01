@@ -34,7 +34,7 @@ export async function fetchTopicList() {
     });
 })
 .catch((error) => {
-    console.error("Failed to fetch topics", error.data);
+    console.error("Failed to fetch topics", error);
     return [];
 });
 }
@@ -57,33 +57,33 @@ export async function fetchHotPosts() {
     });
 })
 .catch((error) => {
-    console.error("Failed to fetch hot posts", error.data);
+    console.error("Failed to fetch hot posts", error);
     return [];
 });
 }
 
-export async function fetchPostsByTopic(topic: string, page: number = 0, pageSize: number = 10) {
-  return await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL +`/post/topics`,
-    {
-      params: {
-        topic: topic,
-        page: page,
-        pageSize: pageSize,
-      }
+export async function fetchSearchPost(topic: string|undefined, keyword: string|undefined, page: number = 0, pageSize: number = 10) {
+  return axios.get(process.env.NEXT_PUBLIC_BACKEND_URL +`/search`, {
+    params:{
+        topic:topic,
+        keywords:keyword,
+        page,
+        pageSize,
     }
-  )
-  .then((response) => {
-    return response.data.map((post: any) => ({
-      title: post.title,
-      selftext: post.selftext,
-      verdict: post.verdict,
-      isExpand: false,
-      assholeNumber: post.YTA,
-      notAssholeNumber: post.NTA,
+})
+.then((response) => {
+    return response.data.map((item: any) => ({
+        id: item.id,
+        title: item.title,
+        selftext: item.selftext,
+        verdict: item.verdict,
+        isExpand: false,
+        assholeNumber: item.YTA,
+        notAssholeNumber: item.NTA
     }))
-  })  
-  .catch((error) => {
+})
+.catch((error) => {
     console.error("Failed to search", error);
     return [];
-  });
+});
 }

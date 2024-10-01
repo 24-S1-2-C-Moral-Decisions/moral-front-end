@@ -61,11 +61,7 @@ export const PostsList = ({ posts, topic }: { posts: Posts, topic?: string }) =>
                         })]);
                         setPage(page + 1);
                     }
-                })
-                .catch((error) => {
-                    console.error("Failed to search", error);
                 });
-
                 setIsLoading(false);
             }, 1000)
         }

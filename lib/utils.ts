@@ -63,7 +63,7 @@ export async function fetchHotPosts() {
 }
 
 export async function fetchPostsByTopic(topic: string, page: number = 0, pageSize: number = 10) {
-  return await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL +`/post/topic`,
+  return await axios.get(process.env.NEXT_PUBLIC_BACKEND_URL +`/post/topics`,
     {
       params: {
         topic: topic,

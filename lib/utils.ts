@@ -34,7 +34,7 @@ export async function fetchTopicList() {
     });
 })
 .catch((error) => {
-    console.error("Failed to fetch topics", error.data);
+    console.error("Failed to fetch topics", error);
     return [];
 });
 }
@@ -57,7 +57,28 @@ export async function fetchHotPosts() {
     });
 })
 .catch((error) => {
-    console.error("Failed to fetch hot posts", error.data);
+    console.error("Failed to fetch hot posts", error);
+    return [];
+});
+}
+
+export async function fetchSearchPost(param: {topic?: string, keywords?: string, page?: number, pageSize?: number}) {
+  return axios.get(process.env.NEXT_PUBLIC_BACKEND_URL +`/search`, {
+    params:param
+})
+.then((response) => {
+    return response.data.map((item: any) => ({
+        id: item.id,
+        title: item.title,
+        selftext: item.selftext,
+        verdict: item.verdict,
+        isExpand: false,
+        assholeNumber: item.YTA,
+        notAssholeNumber: item.NTA
+    }))
+})
+.catch((error) => {
+    console.error("Failed to search", error);
     return [];
 });
 }

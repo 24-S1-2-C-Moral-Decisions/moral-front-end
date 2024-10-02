@@ -1,14 +1,6 @@
 import { PostsList } from "@/components/search/posts-list";
-import { api, fetchSearchPost } from "../../../../../../lib/utils";
 
 export default async function TopicPage({ params }: { params: { topic: string } }) {
-
-    const { topic } = params;
-
-    const posts = await fetchSearchPost({
-        topic: topic
-    });
-
     return (
         <div className="p-5 w-full h-full flex flex-col">
             <div className="w-full flex flex-col">
@@ -23,7 +15,7 @@ export default async function TopicPage({ params }: { params: { topic: string } 
             </div>
 
             <div className="h-full overflow-auto">
-                <PostsList posts={posts??[]} topic={topic.replace(/%20/g, " ").toLowerCase()} />
+                <PostsList topic={params.topic.replace(/%20/g, " ").toLowerCase()} />
             </div>
         </div>
     )

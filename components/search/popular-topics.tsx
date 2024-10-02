@@ -1,5 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { fetchTopicList } from "@/lib/utils";
 
 type Topic = {
     title: string,
@@ -11,9 +13,17 @@ type Topic = {
 type Topics = Topic[];
 
 
-export const PopularTopics = ({ topics }: { topics: Topics }) => {
+export const PopularTopics = () => {
 
     const router = useRouter();
+
+    const [topics, setTopics] = useState<Topics>([]);
+
+    useEffect(() => {
+        fetchTopicList().then((data) => {
+            setTopics(data);
+        });
+    }, []);
 
     return (
         <div className="w-full h-[490px] flex flex-col rounded-[30px] bg-[#F9FAFA] p-5 space-y-4">

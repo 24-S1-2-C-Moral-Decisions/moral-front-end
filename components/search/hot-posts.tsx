@@ -3,11 +3,12 @@
 import { Posts } from "@/types";
 import { fetchHotPosts } from "@/lib/utils";
 import { useState, useEffect } from "react";
-import router from "next/router";
+import { useRouter } from 'next/navigation'
 
 
 export const HotPosts = () => {
     const [posts, setPosts] = useState<Posts>([]);
+    const router = useRouter();
 
     useEffect(() => {
         fetchHotPosts().then((data) => {

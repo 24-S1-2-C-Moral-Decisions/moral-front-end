@@ -1,8 +1,9 @@
 "use client";
 
 import { Posts } from "@/types";
-import { api, fetchHotPosts } from "@/lib/utils";
+import { fetchHotPosts } from "@/lib/utils";
 import { useState, useEffect } from "react";
+import router from "next/router";
 
 
 export const HotPosts = () => {

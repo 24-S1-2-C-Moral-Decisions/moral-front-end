@@ -78,17 +78,17 @@
   }
 }
 
-.clip-circle-3-30-35 {
-  clip-path: circle(3% at 30% 35%);
+.clip-circle-3-26-40 {
+  clip-path: circle(3% at 26% 36%);
 }
 
 @keyframes expandImg {
   0% {
     transform: scale(0.75);
   }
-
+ 
   100% {
-    transform: scale(1.5);
+    transform: scale(4);
   }
 }
 
@@ -96,19 +96,77 @@
   0% {
     transform: scale(1);
   }
-
+  50% {
+    background-color: white;
+  }
   100% {
-    transform: scale(3);
+    transform: scale(6);
+    background-color: white;
+
+  }
+}
+
+@keyframes moveDot3 {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(140px);
+  }
+}
+
+@keyframes moveDot2 {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(200px);
+  }
+}
+
+@keyframes moveDot1 {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(300px);
+  }
+}
+
+@keyframes moveDot4 {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-140px);
+  }
+}
+
+@keyframes moveDot5 {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-200px);
+  }
+}
+
+@keyframes moveDot6 {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-300px);
   }
 }
 
 @keyframes expandCircle {
   0% {
-    clip-path: circle(3% at 30% 35%);
+    clip-path: circle(3% at 26% 40%);
   }
 
   100% {
-    clip-path: circle(100% at 30% 35%);
+    clip-path: circle(100% at 26% 40%);
   }
 }
 
@@ -184,6 +242,30 @@
   }
 }
 
+.animate-move3 {
+  animation: moveDot3 1.25s ease-in 2s forwards;
+}
+
+.animate-move2 {
+  animation: moveDot2 1s ease-in 2s forwards;
+}
+
+.animate-move1 {
+  animation: moveDot1 1s ease-in 2s forwards;
+}
+
+.animate-move6 {
+  animation: moveDot6 1s ease-in 2s forwards;
+}
+
+.animate-move5 {
+  animation: moveDot5 1s ease-in 2s forwards;
+}
+
+.animate-move4 {
+  animation: moveDot4 1.5s ease-in 2s forwards;
+}
+
 .animate-expand-move {
   animation: expandMove 3s ease-out 2s forwards;
 }
@@ -214,6 +296,10 @@
 
 .animate-expand-img-bg {
   animation: expandImgBg 1s ease-in 3s forwards;
+}
+
+.animate-move-to-Circle {
+  animation: moveDotToCircle 1s ease-in forwards;
 }
 
 .animate-button-fade-in {

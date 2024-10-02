@@ -264,8 +264,7 @@ function ScrollToSection({ id }: ScrollToProps) {
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    router.push("/surveyfeedback")
-                                    // setPage("surveyFeedback"); {/* Change to survey page later */ }
+                                    router.replace("/surveyfeedback")
                                 }, 500);
                             }}
                         >

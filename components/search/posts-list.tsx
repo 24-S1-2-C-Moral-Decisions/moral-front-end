@@ -74,17 +74,7 @@ export const PostsList = ({ topic }: { topic?: string }) => {
                 })
                 
                 if (newPosts.length > 0) {
-                    setData((oldData) => [...oldData, ...newPosts.map((item: any) => {
-                        return {
-                            id: item.id,
-                            title: item.title,
-                            selftext: item.selftext,
-                            verdict: item.verdict,
-                            isExpand: false,
-                            assholeNumber: item.YTA,
-                            notAssholeNumber: item.NTA
-                        }
-                    })]);
+                    setData((oldData) => [...oldData, ...newPosts]);
                     setPage(page + 1);
                 }
                 setIsLoading(false);
@@ -116,6 +106,7 @@ export const PostsList = ({ topic }: { topic?: string }) => {
                         </p>
 
                         <div className="flex flex-col md:flex-row md:justify-evenly">
+                            <span>{JSON.stringify(post)}</span>
                             <PostDoughnutChart result={{ "assholeNumber": post.assholeNumber, "notAssholeNumber": post.notAssholeNumber, "totalNumber": post.assholeNumber + post.notAssholeNumber }} />
                             <PostAssholePanel result={{ "assholeNumber": post.assholeNumber, "notAssholeNumber": post.notAssholeNumber, "totalNumber": post.assholeNumber + post.notAssholeNumber }} />
                         </div>

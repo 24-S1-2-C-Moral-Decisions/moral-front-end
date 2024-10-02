@@ -81,7 +81,7 @@ export const GamePage = ({ data }: { data: any }) => {
         setIsInteractiveDialogVisible(false);
         setIsAnswerDialogVisible(true);
         setTimeout(() => {
-           router.push("/feedback");
+           router.replace("/feedback");
         }, 3000)
         const storedAnswer = localStorage.getItem('userAnswer');
         console.log('User Answer:', storedAnswer);
@@ -97,12 +97,12 @@ export const GamePage = ({ data }: { data: any }) => {
                 </div>
 
                 <div className="pt-20 pr-20 flex justify-center">
-                    <img className="cursor-pointer" src="../imgs/close-btn.svg " alt="close-btn" width="16px" height="16px" onClick={()=>router.push("/home")} />
+                    <img className="cursor-pointer" src="../imgs/close-btn.svg " alt="close-btn" width="16px" height="16px" onClick={()=>router.replace("/home")} />
                 </div>
             </div>
             <div className="flex flex-col justify-center items-center mt-2 ">
                 <div className="w-[75%] flex flex-col justify-center items-center gap-y-5">
-                    <p className="text-center text-black text-center font-kanit text-xl font-semibold leading-normal ">
+                    <p className="text-center text-black text-center font-kanit text-xl font-semibold leading-normal max-w-[1305px]">
                         {data["game-text"]}
                     </p>
                     <div className="relative flex items-center justify-center">

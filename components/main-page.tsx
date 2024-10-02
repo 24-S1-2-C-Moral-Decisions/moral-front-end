@@ -51,7 +51,7 @@ export const MainPage = ({ data }: { data: any }) => {
             <div className="absolute z-[-2] bg-[#2B2B2B] w-full h-full clip-circle-3-30-35 animate-expand-circle pointer-events-none" />
             <img src="imgs/bg-dot.png" alt="bg-dot" className="opacity-0 absolute h-full animate-dot-bg-fade-in" />
             <div className="w-full pt-10 pl-20 z-10">
-                <img className="cursor-pointer" src={logo} alt="Logo" width="240px" height="61px" onClick={() => router.push("/home")} />
+                <img className="cursor-pointer" src={logo} alt="Logo" width="240px" height="61px" onClick={() => router.replace("/home")} />
             </div>
             <div className="flex w-full flex-grow items-center ">
                 <div className="pl-20 pb-20 flex flex-col w-[50%]">
@@ -76,7 +76,7 @@ export const MainPage = ({ data }: { data: any }) => {
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    router.push("/game")
+                                    router.replace("/game")
                                 }, 500);
                             }}
                         >
@@ -86,7 +86,7 @@ export const MainPage = ({ data }: { data: any }) => {
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
-                                    router.push("/home")
+                                    router.replace("/home")
                                 }, 500);
                             }}
                         >Skip Game</Button>

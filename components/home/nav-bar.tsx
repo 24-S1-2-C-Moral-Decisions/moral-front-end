@@ -22,12 +22,12 @@ export const NavBar = ({ topics, hotPosts }: { topics: Topics, hotPosts: Posts }
     const [openSearchDrawer, setOpenSearchDrawer] = useState(false);
 
     return (
-        <div className="w-full md:h-[120px] h-[50px] flex items-center justify-between px-5 border-b-2 ">
+        <div className="w-full md:h-[100px] h-[50px] xl:px-[144px] flex items-center justify-between border-b-2 ">
 
 
             {/* logo for large screen */}
             <button className="md:block hidden" onClick={() => router.push("/home")}>
-                <img src="/imgs/Logo-3.svg" alt="Logo" height="65px" />
+                <img src="/imgs/Logo-3.svg" alt="Logo" width="300px"/>
             </button>
 
             {/* topic select menu for mobile */}
@@ -90,20 +90,20 @@ export const NavBar = ({ topics, hotPosts }: { topics: Topics, hotPosts: Posts }
             </div>
 
             {/* navigation bar for desktop */}
-            <div className="h-full pr-10 md:flex items-center space-x-5 hidden">
+            <div className="h-full md:flex items-center space-x-5 hidden">
                 {/* home button */}
-                <button className="w-[158px] h-[65px] flex items-center justify-center space-x-2 rounded-[30px] bg-[#D9D9D9]"
+                <button className="w-[120px] h-[40px] flex items-center justify-center space-x-2 rounded-[30px] bg-[#D9D9D9]"
                     onClick={() => {
                         router.push("/home")
                     }}>
-                    <img src="/imgs/home-icon.svg" alt="home" width="36px" />
-                    <nav className=" text-2xl">
+                    <img src="/imgs/home-icon.svg" alt="home" width="20px" />
+                    <nav className=" text-lg">
                         Home
                     </nav>
                 </button>
 
                 {/* survey button */}
-                <button className="w-[120px] h-[65px] flex items-center justify-center bg-[#EBEEFC] rounded-[30px] text-2xl">
+                <button className="w-[100px] h-[40px] flex items-center justify-center bg-[#EBEEFC] rounded-[30px] text-lg">
                     Survey
                 </button>
 

@@ -4,24 +4,24 @@ import { HomepageSearchBar } from "@/components/search/homepage-search-bar";
 import { HotPosts } from "@/components/search/hot-posts";
 import { PopularTopics } from "@/components/search/popular-topics";
 import { SurveyPopup } from "@/components/search/survey-popup";
-import { fetchHotPosts, fetchTopicList } from "../../../../lib/utils";
+import { fetchHotPosts, fetchTopicList } from "@/lib/utils";
 
 
 
 
 export default async function SearchPage() {
 
-    console.time("Topics Query Time")
+
 
     // select the top 8 topics for tag list
-    const topTopics = await fetchTopicList()
+    const allTopics = await fetchTopicList()
+    const hotTopics = allTopics.sort((a:any, b:any) => b.postsNum - a.postsNum).slice(1, 9);
     
-    console.timeEnd("Topics Query Time")
 
-    console.time("Hot Posts Query Time")
+
     // fetch hot posts
     const hotPosts = await fetchHotPosts()
-    console.timeEnd("Hot Posts Query Time")
+
 
     return (
         <div className="md:mt-5 w-full flex justify-center">
@@ -35,22 +35,22 @@ export default async function SearchPage() {
 
                 {/* tag list */}
                 <div className="w-full overflow-x-auto">
-                    <TagList topics={topTopics}/>
+                    <TagList topics={hotTopics??[]}/>
                 </div>
 
                 {/* popular topics and posts */}
                 <hr className="w-full" />
                 <div className="w-full flex justify-between">
                     <div className="w-[333px] h-[490px] md:flex hidden">
-                        <PopularTopics topics={topTopics} />
+                        <PopularTopics topics={allTopics??[]} />
                     </div>
                     <div className="md:px-0 px-3 w-[415px] h-[490px]">
-                        <HotPosts posts={hotPosts} />
+                        <HotPosts posts={hotPosts??[]} />
                     </div>
                 </div>
             </div>
 
-            <div className="lg:block hidden">
+            <div className="ml-4 lg:block hidden">
                 <SurveyPopup />
             </div>
 

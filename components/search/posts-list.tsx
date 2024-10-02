@@ -1,6 +1,6 @@
 "use client";
 
-import { api, cn } from "@/lib/utils";
+import { cn, fetchSearchPost } from "@/lib/utils";
 import { useRef, useState } from "react";
 import { PostDoughnutChart } from "./post-doughnut-chart";
 import { PostAssholePanel } from "./post-asshole-panel";
@@ -45,16 +45,10 @@ export const PostsList = ({ posts, topic }: { posts: Posts, topic?: string }) =>
 
             // fetch new data
             setTimeout(async () => {
-                api.get(`/search`, {
-                    params:{
-                        topic:topic,
-                        page:page,
-                        pageSize: 5
-                    }
-                })
-                .then((response) => {
-                    if (response.data.length > 0) {
-                        setData((oldData) => [...oldData, ...response.data.map((item: any) => {
+                fetchSearchPost({topic, page, pageSize: 5})
+                .then((newPosts) => {
+                    if (newPosts.length > 0) {
+                        setData((oldData) => [...oldData, ...newPosts.map((item: any) => {
                             return {
                                 id: item.id,
                                 title: item.title,
@@ -67,11 +61,7 @@ export const PostsList = ({ posts, topic }: { posts: Posts, topic?: string }) =>
                         })]);
                         setPage(page + 1);
                     }
-                })
-                .catch((error) => {
-                    console.error("Failed to search", error);
                 });
-
                 setIsLoading(false);
             }, 1000)
         }

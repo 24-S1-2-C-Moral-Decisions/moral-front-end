@@ -42,7 +42,7 @@ const userChoice = 'A';
 export const FeedbackPage = ({ data }: { data: any }) => {
     return (
         <>
-            <div className="w-full bg-[#fafafc]">
+            <div className="w-full bg-[#fafafc] pt-[6vw]">
                 <DoughnutChartAndResult />
                 <div className="flex w-full items-center justify-center">
                 </div>
@@ -255,12 +255,12 @@ function ScrollToSection({ id }: ScrollToProps) {
                         backgroundRepeat: 'no-repeat',
                     }}
                 >
-                    <div className="w-[70%] flex flex-col justify-start items-start font-lato">
-                        <p className="text-[#FE5354] text-[2.0vw] font-bold mb-[0.5vw]">Join thousands who have discovered their moral profile!</p>
-                        <p className="text-black text-[1.2vw] font-bold">Uncover your unique personality traits, decision-making style, and moral profile compared to others.</p>
+                    <div className="w-[75%] flex flex-col justify-start items-start font-kanit font-bold">
+                        <p className="text-[#472B00] text-[2.2vw] mb-[0.9vw]">Join thousands who have discovered their moral profile!</p>
+                        <p className="text-[#FE5354] text-[1.1vw]">Uncover your unique personality traits, decision-making style, and moral profile compared to others.</p>
                     </div>
-                    <div className="w-[15%] flex items-end">
-                        <Button className="flex w-[12vw] h-[3vw] justify-center text-white text-[1.2vw] bg-[#FE5354] rounded-xl hover:bg-[#C62828] transition-colors duration-300"
+                    <div className="w-[17%] flex items-end font-kanit font-bold">
+                        <Button className="flex w-[20vw] h-[3vw] justify-center text-white text-[1.2vw] bg-[#FE5354] rounded-xl hover:bg-[#C62828] transition-colors duration-300"
                             onClick={() => {
                                 setClose("true");
                                 setTimeout(() => {
@@ -269,8 +269,8 @@ function ScrollToSection({ id }: ScrollToProps) {
                                 }, 500);
                             }}
                         >
-                            <span className="text-[1.5vw]">Take Survey!</span>
-                            <img src="/imgs/buttonArrow.png" alt="arrow" className="w-[2vw] justify-center ml-auto" />
+                            <span className="text-[1.2vw]">Take Survey!</span>
+                            <img src="/imgs/buttonArrow.png" alt="arrow" className="w-[1.5vw] justify-center" />
                         </Button>
                     </div>
                 </div>

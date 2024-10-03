@@ -74,17 +74,7 @@ export const PostsList = ({ topic }: { topic?: string }) => {
                 })
 
                 if (newPosts.length > 0) {
-                    setData((oldData) => [...oldData, ...newPosts.map((item: any) => {
-                        return {
-                            id: item.id,
-                            title: item.title,
-                            selftext: item.selftext,
-                            verdict: item.verdict,
-                            isExpand: false,
-                            assholeNumber: item.YTA,
-                            notAssholeNumber: item.NTA
-                        }
-                    })]);
+                    setData((oldData) => [...oldData, ...newPosts]);
                     setPage(page + 1);
                 }
                 setIsLoading(false);
@@ -97,6 +87,7 @@ export const PostsList = ({ topic }: { topic?: string }) => {
             ref={postListRef}
             onScroll={handleScroll}>
             {data.map((post) => (
+
                 <div className="flex flex-col" key={post.title}>
                     <div className="border-t-2" />
                     <div className="mt-5 p-3 pl-5 space-y-2 hover:bg-[#EBEDEF] rounded-lg transition">
@@ -121,6 +112,7 @@ export const PostsList = ({ topic }: { topic?: string }) => {
                                 <PostDoughnutChart result={{ "assholeNumber": post.assholeNumber, "notAssholeNumber": post.notAssholeNumber, "totalNumber": post.assholeNumber + post.notAssholeNumber }} />
                                 <PostAssholePanel result={{ "assholeNumber": post.assholeNumber, "notAssholeNumber": post.notAssholeNumber, "totalNumber": post.assholeNumber + post.notAssholeNumber }} />
                             </div>
+
                         </div>
                         <div className="flex items-center">
                             <button className="w-[40px] h-[25px] bg-gray-200 rounded-2xl flex justify-center items-center"

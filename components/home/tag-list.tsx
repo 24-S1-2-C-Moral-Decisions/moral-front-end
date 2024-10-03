@@ -21,9 +21,9 @@ export const TagList = () => {
     return (
         <div className="w-full flex items-center justify-between px-5">
             {topics.map((tag) => (
-                <button key={tag.title} className="mx-4 w-[77px] max-h-[79px] flex flex-col justify-between items-center"
+                <button key={tag.title} className="mx-4 w-[77px] max-h-[79px] flex flex-col justify-between items-center group"
                 onClick={()=>router.push(tag.url)}>
-                    <div className="w-[57px] h-[57px] rounded-full border-[0.5px] border-[#B2B2B2] flex justify-center items-center">
+                    <div className="w-[57px] h-[57px] rounded-full border-[0.5px] border-[#B2B2B2] flex justify-center items-center group-hover:bg-blue-100 transition duration-300">
                         <img src={tag.picUrl} alt={tag.title} width="20px" height="20px"  />
                     </div>
 

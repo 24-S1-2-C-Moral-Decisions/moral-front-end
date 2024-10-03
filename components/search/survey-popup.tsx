@@ -1,6 +1,4 @@
 "use client";
-import { CircleOff, LucideMessageCircleX, LucideXCircle, MessageCircleX } from "lucide-react"
-import { useState } from "react"
 
 
 export const SurveyPopup = () => {

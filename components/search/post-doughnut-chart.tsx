@@ -1,4 +1,4 @@
-import { DoughnutChart } from "../ui/chart";
+import { DoughnutChart } from "@/components/ui/chart";
 
 type result={
     assholeNumber:number,

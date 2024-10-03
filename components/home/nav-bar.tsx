@@ -1,12 +1,12 @@
 "use client";
 import { AlignJustify} from "lucide-react"
-import { Drawer, DrawerContent, DrawerTrigger } from "../ui/drawer"
-import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { HotPosts } from "../search/hot-posts";
+import { HotPosts } from "@/components/search/hot-posts";
 import { cn, fetchTopicList } from "@/lib/utils";
-import { SearchBar } from "../search/search-bar";
+import { SearchBar } from "@/components/search/search-bar";
 import { Topics } from "@/types";
 
 
@@ -30,8 +30,7 @@ export const NavBar = () => {
     }, []);
 
     return (
-        <div className="w-full md:h-[100px] h-[50px] xl:px-[144px] flex items-center justify-between border-b-2 ">
-
+        <div className="w-full md:h-[100px] h-[50px] xl:px-[144px] px-[15px] flex items-center justify-between border-b-2 bg-white">
 
             {/* logo for large screen */}
             <button className="md:block hidden" onClick={() => router.push("/home")}>

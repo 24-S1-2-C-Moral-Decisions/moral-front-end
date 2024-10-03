@@ -97,9 +97,9 @@ export const PostsList = ({ topic }: { topic?: string }) => {
             ref={postListRef}
             onScroll={handleScroll}>
             {data.map((post) => (
-                <div className="flex flex-col">
+                <div className="flex flex-col" key={post.title}>
                     <div className="border-t-2" />
-                    <div key={post.title} className="mt-5 p-3 pl-5 space-y-2 hover:bg-[#EBEDEF] rounded-lg transition">
+                    <div className="mt-5 p-3 pl-5 space-y-2 hover:bg-[#EBEDEF] rounded-lg transition">
                         {/* post title */}
                         <h1 className="text-lg font-semibold">
                             {post.title}

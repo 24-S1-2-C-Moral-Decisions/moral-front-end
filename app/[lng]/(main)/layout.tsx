@@ -4,8 +4,12 @@ export default async function MainLayout({ children }: { children: React.ReactNo
 
     return (
         <div className="w-full h-full flex flex-col">
-            <NavBar />
-            {children}
+            <div className="fixed top-0 w-full">
+                <NavBar />
+            </div>
+            <div className="w-full h-full md:mt-[100px] mt-[50px]">
+                {children}
+            </div>
         </div>
     )
 }

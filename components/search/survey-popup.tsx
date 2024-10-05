@@ -18,7 +18,7 @@ export const SurveyPopup = () => {
                 Face an ethical dilemma and decide: Is the person an asshole? After your initial judgment, compare your views with the &apos;Am I The Asshole?&apos; community. This quick 10-minute survey tests how your moral judgments align with others. Join now and see where you stand!
                 </p>
             </div>
-            <button className="w-[176px] h-[50px] rounded-[30px] flex items-center justify-between px-5 bg-[#68A8F3] mt-5">
+            <button className="w-[176px] h-[50px] rounded-[30px] flex items-center justify-between px-5 bg-[#68A8F3] hover:bg-[#4793EB] active:bg-[#4767E7] mt-5 transition duration-300">
                 <p className="text-white text-sm font-lato-bold">
                     Participate Now!
                 </p>

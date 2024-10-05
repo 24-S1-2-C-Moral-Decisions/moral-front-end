@@ -23,7 +23,9 @@ const config = {
         'optimab': ['optimab', 'sans-serif'],
         'lato': ['lato', 'sans-serif'],
         'kanit': ['kanit', 'sans-serif'],
-        'inter': ['inter', 'sans-serif']
+        'inter': ['inter', 'sans-serif'],
+        'impact':['impact','sans-serif'],
+        'lato-bold':['lato-bold','sans-serif']
       },
       boxShadow: {
         'search-bar-shadow': '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',

@@ -322,3 +322,17 @@
   font-size: 16px;
   font-weight: bold;
 }
+
+@font-face {
+  font-family: 'impact';
+  src: url('/fonts/impact.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'lato-bold';
+  src: url('/fonts/Lato-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

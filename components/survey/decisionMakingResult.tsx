@@ -19,10 +19,10 @@ const decisionStyleColumns = {
 };
 
 // Function to fetch initial data
-const fetchInitialData = async () => {
+const fetchInitialData = async (answerId: string) => {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-    const response = await axios.get(`${apiUrl}/survey/answer`);
+    const response = await axios.get(`${apiUrl}/survey/answer/${answerId}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching decision making data:', error);
@@ -54,10 +54,10 @@ const calculateDecisionStyles = (data: { [key: string]: string }) => {
 };
 
 // Fetch data and calculate decision styles
-const getDecisionStyles = async () => {
-  const initialData = await fetchInitialData();
+const getDecisionStyles = async (answerId: string) => {
+  const initialData = await fetchInitialData(answerId);
   return calculateDecisionStyles(initialData);
 };
 
 // Export decision styles
-export const decisionStyles = getDecisionStyles();
+export const decisionStyles = (answer: string) => getDecisionStyles(answer);

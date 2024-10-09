@@ -15,10 +15,10 @@ const scaleMapping: { [key: string]: number } = {
 const reverseItems = ['Q7.2_3', 'Q7.2_6', 'Q7.2_10', 'Q7.2_14'];
 
 // Function to fetch initial data
-const fetchInitialData = async () => {
+const fetchInitialData = async (answerId: string) => {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-    const response = await axios.get(`${apiUrl}/survey/answer`);
+    const response = await axios.get(`${apiUrl}/survey/answer/${answerId}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching personality data:', error);
@@ -64,11 +64,11 @@ const calculateBigFive = (mappedData: { [key: string]: number }) => {
 };
 
 // Fetch data and calculate personality big five
-const getPersonalityBigFive = async () => {
-  const initialData = await fetchInitialData();
+const getPersonalityBigFive = async (answerId: string) => {
+  const initialData = await fetchInitialData(answerId);
   const mappedData = mapPersonalityData(initialData);
   return calculateBigFive(mappedData);
 };
 
 // Export personality big five
-export const personalityBigFive = getPersonalityBigFive();
+export const personalityBigFive = (answerId: string) => getPersonalityBigFive(answerId);

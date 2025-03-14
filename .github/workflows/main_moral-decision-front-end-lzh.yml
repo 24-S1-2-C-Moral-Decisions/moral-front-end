@@ -70,5 +70,5 @@ jobs:
         with:
           app-name: 'moral-decision-front-end-lzh'
           slot-name: 'Production'
-          package: .
+          package: next.zip
           

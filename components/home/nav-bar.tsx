@@ -8,7 +8,7 @@ import { HotPosts } from "@/components/search/hot-posts";
 import { cn, fetchTopicList } from "@/lib/utils";
 import { SearchBar } from "@/components/search/search-bar";
 import { Topics } from "@/types";
-
+import * as uuid from "uuid";
 
 
 
@@ -29,6 +29,11 @@ export const NavBar = () => {
         });
     }, []);
 
+    const jumpToSurvey = (): void =>{
+        const profiledId = uuid.v4();
+        const surveyUrl = process.env.NEXT_PUBLIC_SURVEY_URL || "http://localhost:8081/";
+        window.location.href = `${surveyUrl}?prolificId=${profiledId}`;
+    }
     return (
         <div className="w-full md:h-[100px] h-[50px] xl:px-[144px] px-[15px] flex items-center justify-between border-b-2 bg-white">
 
@@ -110,10 +115,10 @@ export const NavBar = () => {
                 </button>
 
                 {/* survey button */}
-                <button className="w-[100px] h-[40px] flex items-center justify-center bg-[#EBEEFC] rounded-[30px] text-lg">
+                <button className="w-[100px] h-[40px] flex items-center 
+                justify-center bg-[#EBEEFC] rounded-[30px] text-lg" onClick={() => jumpToSurvey()}>
                     Survey
                 </button>
-
             </div>
 
 

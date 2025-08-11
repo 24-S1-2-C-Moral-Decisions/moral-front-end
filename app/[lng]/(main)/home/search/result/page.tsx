@@ -200,14 +200,16 @@ export default function ResultPage() {
         <div className="w-full h-full flex items-center justify-center">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-gray-700 mb-2">
-              未找到相关帖子
+              No posts found
             </h2>
-            {postId && <p className="text-gray-500">帖子ID: {postId}</p>}
+            {postId && <p className="text-gray-500">Post ID: {postId}</p>}
             {searchString && (
-              <p className="text-gray-500">搜索关键词: "{searchString}"</p>
+              <p className="text-gray-500">
+                You are searching: &quot;{searchString}&quot;
+              </p>
             )}
             {searchTopic && (
-              <p className="text-gray-500">搜索话题: {searchTopic}</p>
+              <p className="text-gray-500">Topic: {searchTopic}</p>
             )}
           </div>
         </div>

@@ -1,8 +1,16 @@
 "use client";
 
+import { getSurveyURL } from "@/lib/utils";
 
 export const SurveyPopup = () => {
-
+    const handleParticipateClick = () => {
+        // Get a random survey number (1-5) to distribute users across different surveys
+        const randomSurveyNumber = Math.floor(Math.random() * 5) + 1;
+        // Get the specific survey URL for the random number
+        const surveyURL = getSurveyURL(randomSurveyNumber);
+        console.log('Opening survey URL:', surveyURL);
+        window.open(surveyURL, '_blank');
+    };
 
     return (
         <div className="p-4 w-[288px] h-[435px] flex flex-col items-center rounded-[15px] bg-[#F9FAFa]">
@@ -18,7 +26,10 @@ export const SurveyPopup = () => {
                 Face an ethical dilemma and decide: Is the person an asshole? After your initial judgment, compare your views with the &apos;Am I The Asshole?&apos; community. This quick 10-minute survey tests how your moral judgments align with others. Join now and see where you stand!
                 </p>
             </div>
-            <button className="w-[176px] h-[50px] rounded-[30px] flex items-center justify-between px-5 bg-[#68A8F3] hover:bg-[#4793EB] active:bg-[#4767E7] mt-5 transition duration-300">
+            <button 
+                className="w-[176px] h-[50px] rounded-[30px] flex items-center justify-between px-5 bg-[#68A8F3] hover:bg-[#4793EB] active:bg-[#4767E7] mt-5 transition duration-300"
+                onClick={handleParticipateClick}
+            >
                 <p className="text-white text-sm font-lato-bold">
                     Participate Now!
                 </p>

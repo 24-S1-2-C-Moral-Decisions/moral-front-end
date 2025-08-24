@@ -12,7 +12,7 @@ import {
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { HotPosts } from "@/components/search/hot-posts";
-import { cn, fetchTopicList } from "@/lib/utils";
+import { cn, fetchTopicList, getSurveyURL } from "@/lib/utils";
 import { SearchBar } from "@/components/search/search-bar";
 import { Topics } from "@/types";
 
@@ -74,7 +74,11 @@ export const NavBar = () => {
                 "overflow-scroll"
               )}
             >
-              <DropdownMenuCheckboxItem onSelect={() => router.push("")}>
+              <DropdownMenuCheckboxItem onSelect={() => {
+                const randomSurveyNumber = Math.floor(Math.random() * 5) + 1;
+                const surveyURL = getSurveyURL(randomSurveyNumber);
+                window.open(surveyURL, '_blank');
+              }}>
                 <nav className="">Survey</nav>
               </DropdownMenuCheckboxItem>
               <DropdownMenuCheckboxItem onSelect={() => router.push("/home")}>
@@ -147,7 +151,15 @@ export const NavBar = () => {
         </button>
 
         {/* survey button */}
-        <button className="w-[100px] h-[40px] flex items-center justify-center bg-[#EBEEFC] rounded-[30px] text-lg">
+        <button 
+          className="w-[100px] h-[40px] flex items-center justify-center bg-[#EBEEFC] rounded-[30px] text-lg"
+          onClick={() => {
+            // Get a random survey number (1-5) to distribute users across different surveys
+            const randomSurveyNumber = Math.floor(Math.random() * 5) + 1;
+            const surveyURL = getSurveyURL(randomSurveyNumber);
+            window.open(surveyURL, '_blank');
+          }}
+        >
           Survey
         </button>
       </div>

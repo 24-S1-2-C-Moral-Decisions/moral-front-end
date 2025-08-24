@@ -6,11 +6,17 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getSurveyURL(): string {
-  return (
-    process.env.NEXT_PUBLIC_SURVEY_URL ||
-    "https://24-s1-2-c-moral-decisions.github.io/moral-survey/"
-  );
+export function getSurveyURL(surveyNumber?: number): string {
+  // Use environment variable for survey URL, fallback to localhost for development
+  const baseURL = process.env.NEXT_PUBLIC_SURVEY_URL || "http://localhost:8080/";
+  
+  // If surveyNumber is provided, append the survey path
+  if (surveyNumber && surveyNumber >= 1 && surveyNumber <= 5) {
+    return baseURL + `moral-survey-${surveyNumber}/`;
+  }
+  
+  // Return base URL
+  return baseURL;
 }
 
 export const api = axios.create({

@@ -12,7 +12,7 @@ Environment variables are defined in `./.env.local` file. You need to create an 
 Example of `.env.local` file:
 
 ```.env.local
-BACKEND_URL="http://localhost:3001"
+BACKEND_URL="http://<host>:3001"
 DATABASE_URL="mongodb://127.0.0.1:27017"
 POST_DB="posts"
 ```
@@ -27,7 +27,7 @@ NEXT_PUBLIC_BACKEND_URL="https://backend.example.com"
 1. First, install [docker](https://docs.docker.com/get-docker/)
 2. build and run docker container
 
-<!--  docker build -build-arg API_URL=http://localhost:8000 -t moral-front-end . -->
+<!--  docker build -build-arg API_URL=http://<host>:8000 -t moral-front-end . -->
 ```bash
 docker build --build-arg FRONTEND_PORT=3000 -t moral-front-end .
 docker run -p 3000:3000 moral-front-end
@@ -60,7 +60,7 @@ npm run build
 npm run dev             
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://<host>:3000](http://<host>:3000) with your browser to see the result.
 
 You can start editing the page by modifying `page.tsx` or `layout.tsx` in app folder. The page auto-updates as you edit the file.
 
